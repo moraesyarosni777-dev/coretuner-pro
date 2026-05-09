@@ -1,4 +1,4 @@
-name: name: Build CoreTuner Pro APK
+name: Build CoreTuner Pro APK
 
 on:
   push:
