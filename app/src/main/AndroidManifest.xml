@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    
-    <uses-permission android:name="moe.shizuku.manager.permission.API_V23" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.coretuner.pro">
 
     <application
+        android:allowBackup="true"
         android:label="CoreTuner Pro"
+        android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+        
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -14,9 +16,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <meta-data
-            android:name="moe.shizuku.client.V3_SUPPORT"
-            android:value="true" />
     </application>
 </manifest>
