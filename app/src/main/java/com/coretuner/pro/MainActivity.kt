@@ -1,4 +1,4 @@
-package com.coretuner.pro
+        package com.coretuner.pro
 
 import android.app.Activity
 import android.graphics.Color
@@ -16,84 +16,60 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Fundo Profissional Escuro Premium
         val root = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(40, 60, 40, 40)
-            setBackgroundColor(Color.parseColor("#09060E")) // Preto Profundo
+            setBackgroundColor(Color.parseColor("#09060E"))
         }
 
-        // Título Secundário (Tamanho Menor)
         val title = TextView(this).apply {
             text = "CoreTuner Pro MAX"
-            textSize = 20f
+            textSize = 18f
             typeface = Typeface.DEFAULT_BOLD
-            setTextColor(Color.parseColor("#CCFFFFFF")) // Branco suave
+            setTextColor(Color.parseColor("#80FFFFFF"))
             gravity = Gravity.CENTER
-            setPadding(0, 0, 0, 10)
+            setPadding(0, 0, 0, 5)
         }
         root.addView(title)
 
-        // =========================================================================
-        // ASSINATURA GIGANTE E NEUMÓRFICA REALISTA (by Yarosni)
-        // Esse é o efeito "que dá pra pegar com a mão" (profundidade física)
-        // =========================================================================
         val yarosniSignature = TextView(this).apply {
             text = "by Yarosni"
-            textSize = 60f // Gigante e proeminente
-            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD_ITALIC)
-            
-            // Cor principal do texto (Branco Puro para o "brilho" frontal)
-            setTextColor(Color.WHITE)
-
-            // TÉCNICA DE PROFUNDIDADE NEUMÓRFICA: Layered Shadows
-            // DX/DY grandes criam a "parede" lateral do objeto 3D.
-            // O raio grande suaviza a borda da projeção.
-            // Cor Roxo Profundo para a sombra projetada (Extrusão).
-            setShadowLayer(
-                20f,             // Raio (suavidade da projeção)
-                10f,            // DX (deslocamento horizontal da sombra)
-                15f,            // DY (deslocamento vertical da sombra)
-                Color.parseColor("#4A148C") // Roxo Profundo/Saturado
-            )
-            
-            gravity = Gravity.CENTER
-            setPadding(0, 0, 0, 50) // Espaço para respirar
-            elevation = 50f // Elevação máxima da View para realismo no sistema
-        }
-        // Adiciona a assinatura tangível no topo
-        root.addView(yarosniSignature)
-
-        // Subtítulo da Moraes Yarosni (mantido para respeito à full name)
-        val fullSignature = TextView(this).apply {
-            text = "Developed by Moraes Yarosni"
-            textSize = 12f
-            typeface = Typeface.DEFAULT
-            setTextColor(Color.parseColor("#80FFFFFF")) // 50% transparente
+            textSize = 42f 
+            typeface = Typeface.create("cursive", Typeface.BOLD) 
+            setTextColor(Color.parseColor("#F5F5F5")) 
+            setShadowLayer(8f, 4f, 6f, Color.parseColor("#AA000000"))
             gravity = Gravity.CENTER
             setPadding(0, 0, 0, 40)
         }
+        root.addView(yarosniSignature)
+
+        val fullSignature = TextView(this).apply {
+            text = "Developed by Moraes Yarosni"
+            textSize = 11f
+            typeface = Typeface.DEFAULT
+            setTextColor(Color.parseColor("#4DFFFFFF"))
+            gravity = Gravity.CENTER
+            setPadding(0, 0, 0, 30)
+        }
         root.addView(fullSignature)
 
-        // Console de Saída (Visual Clássico de Terminal)
         console = TextView(this).apply {
-            text = "[ CORE INSTALADO ]\nMotorola Moto G60\nAguardando injeção de código MAX..."
-            setTextColor(Color.parseColor("#00FF66")) // Verde Terminal
-            setBackgroundColor(Color.parseColor("#120E1C")) // Roxo Escuro Console
+            text = "[ CORE MAX ]\nMotorola Moto G60\nInterface fluida ativada."
+            setTextColor(Color.parseColor("#00FF66"))
+            setBackgroundColor(Color.parseColor("#120E1C"))
             setPadding(40, 40, 40, 40)
             textSize = 11f
             typeface = Typeface.MONOSPACE
-            elevation = 20f
+            elevation = 15f
         }
         
         val scrollConsole = ScrollView(this).apply {
-            layoutParams = LinearLayout.LayoutParams(-1, 280) // Console menor para caber tudo
+            layoutParams = LinearLayout.LayoutParams(-1, 260)
             setPadding(0, 0, 0, 30)
         }
         scrollConsole.addView(console)
         root.addView(scrollConsole)
 
-        // Container para rolar os botões 3D
         val btnContainer = ScrollView(this).apply {
             layoutParams = LinearLayout.LayoutParams(-1, -1)
         }
@@ -102,28 +78,24 @@ class MainActivity : Activity() {
             setPadding(10, 10, 10, 10)
         }
 
-        // Função Criadora de Menus 3D Realísticos/Vidro
         fun addBtn3D(label: String, cmd: String, colorStart: String, colorEnd: String) {
             val b = Button(this).apply {
                 text = label
                 textSize = 14f
                 typeface = Typeface.DEFAULT_BOLD
                 setTextColor(Color.WHITE)
-                setShadowLayer(8f, 3f, 4f, Color.BLACK) // Texto em 3D sutil
+                setShadowLayer(5f, 2f, 3f, Color.BLACK)
                 isAllCaps = false
-                elevation = 25f // Profundidade extrema do botão
+                elevation = 20f
 
-                // Efeito 3D Metal/Vidro: Gradiente e Reflexo
                 background = GradientDrawable(
                     GradientDrawable.Orientation.TOP_BOTTOM,
                     intArrayOf(Color.parseColor(colorStart), Color.parseColor(colorEnd))
                 ).apply {
                     cornerRadius = 40f
-                    // Stroke branco sutil na borda superior cria o reflexo de luz
-                    setStroke(4, Color.parseColor("#66FFFFFF")) 
+                    setStroke(3, Color.parseColor("#4DFFFFFF")) 
                 }
 
-                // Animação de clique tátil
                 setOnClickListener {
                     animate().scaleX(0.92f).scaleY(0.92f).setDuration(80).withEndAction {
                         animate().scaleX(1f).scaleY(1f).setDuration(80)
@@ -136,15 +108,14 @@ class MainActivity : Activity() {
             btnLayout.addView(b, p)
         }
 
-        // Botões Clássicos (Roxo Neumórfico)
         addBtn3D("🎯 Otimizar Touch (Latência)", "setprop debug.sf.latch_unsignaled 1", "#6200EA", "#31007A")
         addBtn3D("🚀 Turbo RAM / LMK", "device_config put activity_manager max_phantom_processes 2147483647", "#6200EA", "#31007A")
         addBtn3D("🧹 Limpar Cache Oculto", "pm trim-caches 32G", "#6200EA", "#31007A")
+        addBtn3D("⚡ Forçar 120Hz Constante", "settings put system min_refresh_rate 120.0 && settings put system peak_refresh_rate 120.0", "#00C853", "#00600F")
+        addBtn3D("🏎️ Modo Relâmpago (Animações)", "settings put global window_animation_scale 0.5 && settings put global transition_animation_scale 0.5 && settings put global animator_duration_scale 0.5", "#D50000", "#7F0000")
         
-        // Botões Extremos (Cores Vibrantes Neumórficas)
-        addBtn3D("⚡ Forçar 120Hz Constante", "settings put system min_refresh_rate 120.0 && settings put system peak_refresh_rate 120.0", "#00C853", "#00600F") // Verde
-        addBtn3D("🏎️ Modo Relâmpago (Animações 0.5x)", "settings put global window_animation_scale 0.5 && settings put global transition_animation_scale 0.5 && settings put global animator_duration_scale 0.5", "#D50000", "#7F0000") // Vermelho
-        addBtn3D("🛠️ Manutenção Profunda ART/Trim", "sm fstrim && cmd package bg-dexopt-job", "#FF6D00", "#AA4000") // Laranja
+        // Aqui mantemos o modo background, não trocamos pro speed pra não fritar o celular.
+        addBtn3D("🛠️ Manutenção Profunda ART/Trim", "sm fstrim && cmd package bg-dexopt-job", "#FF6D00", "#AA4000")
 
         btnContainer.addView(btnLayout)
         root.addView(btnContainer)
@@ -153,20 +124,31 @@ class MainActivity : Activity() {
     }
 
     private fun rodar(c: String) {
-        console.append("\n\n> $c")
-        try {
-            val method = Shizuku::class.java.getDeclaredMethod(
-                "newProcess", 
-                Array<String>::class.java, 
-                Array<String>::class.java, 
-                String::class.java
-            )
-            method.isAccessible = true
-            val p = method.invoke(null, arrayOf("sh", "-c", c), null, null) as Process
-            p.waitFor()
-            console.append("\n[OK] Injeção concluída.")
-        } catch (e: Exception) {
-            console.append("\n[Erro]: ${e.cause?.message ?: e.message}")
-        }
+        // Escreve na tela imediatamente
+        console.append("\n\n> $c\n[Aguarde... processando em background]")
+        
+        // Abre uma Thread paralela para não travar o aplicativo
+        Thread {
+            try {
+                val method = Shizuku::class.java.getDeclaredMethod(
+                    "newProcess", 
+                    Array<String>::class.java, 
+                    Array<String>::class.java, 
+                    String::class.java
+                )
+                method.isAccessible = true
+                val p = method.invoke(null, arrayOf("sh", "-c", c), null, null) as Process
+                p.waitFor() // Trava apenas a thread paralela, não a tela
+                
+                // Volta para a tela principal para dar o OK
+                runOnUiThread {
+                    console.append("\n[OK] Injeção concluída.")
+                }
+            } catch (e: Exception) {
+                runOnUiThread {
+                    console.append("\n[Erro]: ${e.cause?.message ?: e.message}")
+                }
+            }
+        }.start()
     }
 }
