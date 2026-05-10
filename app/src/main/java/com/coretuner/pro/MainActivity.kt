@@ -2,86 +2,87 @@ package com.coretuner.pro
 
 import android.app.Activity
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.view.Gravity
+import android.widget.*
 import rikka.shizuku.Shizuku
 
 class MainActivity : Activity() {
 
+    private lateinit var console: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Configuração do Visual Dark
-        val layout = LinearLayout(this).apply {
+        val root = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(50, 50, 50, 50)
+            setPadding(50, 60, 50, 50)
             setBackgroundColor(Color.parseColor("#0F111A"))
         }
 
         val title = TextView(this).apply {
             text = "CoreTuner Pro"
-            textSize = 24f
+            textSize = 28f
+            typeface = Typeface.DEFAULT_BOLD
             setTextColor(Color.WHITE)
-            setPadding(0, 0, 0, 60)
+            gravity = Gravity.CENTER
         }
-        layout.addView(title)
+        root.addView(title)
 
-        // Função para criar botões
-        fun addBtn(name: String, color: String, cmd: String) {
-            val btn = Button(this).apply {
-                text = name
-                setTextColor(Color.parseColor(color))
+        val signature = TextView(this).apply {
+            text = "Developed by Moraes Yarosni"
+            textSize = 12f
+            setTextColor(Color.parseColor("#4DFFFFFF"))
+            gravity = Gravity.CENTER
+            setPadding(0, 0, 0, 50)
+        }
+        root.addView(signature)
+
+        console = TextView(this).apply {
+            text = "Console pronto..."
+            setTextColor(Color.parseColor("#00FF66"))
+            setBackgroundColor(Color.BLACK)
+            setPadding(30, 30, 30, 30)
+            textSize = 13f
+            typeface = Typeface.MONOSPACE
+        }
+        
+        val scroll = ScrollView(this).apply {
+            layoutParams = LinearLayout.LayoutParams(-1, 500)
+        }
+        scroll.addView(console)
+        root.addView(scroll)
+
+        fun addBtn(label: String, cmd: String) {
+            val b = Button(this).apply {
+                text = label
+                setTextColor(Color.WHITE)
                 setBackgroundColor(Color.parseColor("#161622"))
-                setPadding(0, 50, 0, 50)
-                setOnClickListener { executar(cmd) }
+                setOnClickListener { rodar(cmd) }
             }
-            val params = LinearLayout.LayoutParams(-1, -2)
-            params.setMargins(0, 0, 0, 40)
-            layout.addView(btn, params)
+            val p = LinearLayout.LayoutParams(-1, -2)
+            p.setMargins(0, 30, 0, 0)
+            root.addView(b, p)
         }
 
-        // Botões de Tuning
-        addBtn("Otimizar Touch (Latência)", "#00FF66", "setprop debug.sf.latch_unsignaled 1")
-        addBtn("Turbo RAM / LMK", "#A020F0", "device_config put activity_manager max_phantom_processes 2147483647")
-        addBtn("I/O Storage Boost", "#00FF66", "sm fstrim")
+        addBtn("Otimizar Touch", "setprop debug.sf.latch_unsignaled 1")
+        addBtn("Turbo RAM", "device_config put activity_manager max_phantom_processes 2147483647")
+        addBtn("Limpar Cache", "pm trim-caches 32G")
 
-        setContentView(layout)
-
-        // Verificação do Shizuku segura
-        try {
-            if (Shizuku.pingBinder()) {
-                if (Shizuku.checkSelfPermission() != 0) {
-                    Shizuku.requestPermission(0)
-                }
-            }
-        } catch (e: Exception) {
-            Toast.makeText(this, "Aguardando Shizuku...", Toast.LENGTH_SHORT).show()
-        }
+        setContentView(root)
     }
 
-    // Execução via Reflexão para evitar erros de acesso
-    private fun executar(comando: String) {
-        if (Shizuku.checkSelfPermission() == 0) {
-            try {
-                val metodo = Shizuku::class.java.getDeclaredMethod(
-                    "newProcess", 
-                    Array<String>::class.java, 
-                    String::class.java, 
-                    Int::class.javaPrimitiveType
-                )
-                metodo.isAccessible = true
-                val processo = metodo.invoke(null, arrayOf("sh", "-c", comando), null, 0) as Process
-                processo.waitFor()
-                Toast.makeText(this, "Tuning aplicado!", Toast.LENGTH_SHORT).show()
-            } catch (e: Exception) {
-                Toast.makeText(this, "Erro: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
-        } else {
-            Toast.makeText(this, "Autorize o Shizuku primeiro!", Toast.LENGTH_LONG).show()
-            Shizuku.requestPermission(0)
+    private fun rodar(c: String) {
+        console.append("\n> $c")
+        try {
+            val method = Shizuku::class.java.getDeclaredMethod("newProcess", Array<String>::class.java, String::class.java, Int::class.javaPrimitiveType)
+            method.isAccessible = true
+            val p = method.invoke(null, arrayOf("sh", "-c", c), null, 0) as Process
+            p.waitFor()
+            console.append("\n[OK]")
+        } catch (e: Exception) {
+            console.append("\n[Erro]: ${e.message}")
         }
     }
 }
