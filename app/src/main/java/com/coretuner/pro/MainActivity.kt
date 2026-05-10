@@ -1,4 +1,4 @@
-        package com.coretuner.pro
+package com.coretuner.pro
 
 import android.app.Activity
 import android.graphics.Color
@@ -16,118 +16,129 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Fundo Escuro Premium (Glassmorphism Base)
         val root = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(40, 60, 40, 40)
-            setBackgroundColor(Color.parseColor("#09060E"))
+            setBackgroundColor(Color.parseColor("#0A0A0A"))
         }
 
-        val title = TextView(this).apply {
+        root.addView(TextView(this).apply {
             text = "CoreTuner Pro MAX"
             textSize = 18f
+            setTextColor(Color.WHITE)
+            gravity = Gravity.CENTER
+        })
+
+        // Assinatura by Yarosni (Neon Green Realista)
+        root.addView(TextView(this).apply {
+            text = "by Yarosni"
+            textSize = 46f
+            typeface = Typeface.create("cursive", Typeface.BOLD)
+            setTextColor(Color.parseColor("#00FF00"))
+            setShadowLayer(18f, 0f, 0f, Color.parseColor("#00FF00"))
+            gravity = Gravity.CENTER
+            setPadding(0, 10, 0, 0)
+        })
+
+        root.addView(TextView(this).apply {
+            text = "Hardcore tuning, brutal performance."
+            textSize = 12f
             typeface = Typeface.DEFAULT_BOLD
-            setTextColor(Color.parseColor("#80FFFFFF"))
+            setTextColor(Color.parseColor("#AAAAAA"))
             gravity = Gravity.CENTER
             setPadding(0, 0, 0, 5)
-        }
-        root.addView(title)
-
-        val yarosniSignature = TextView(this).apply {
-            text = "by Yarosni"
-            textSize = 42f 
-            typeface = Typeface.create("cursive", Typeface.BOLD) 
-            setTextColor(Color.parseColor("#F5F5F5")) 
-            setShadowLayer(8f, 4f, 6f, Color.parseColor("#AA000000"))
-            gravity = Gravity.CENTER
-            setPadding(0, 0, 0, 40)
-        }
-        root.addView(yarosniSignature)
-
-        val fullSignature = TextView(this).apply {
+        })
+        root.addView(TextView(this).apply {
             text = "Developed by Moraes Yarosni"
-            textSize = 11f
-            typeface = Typeface.DEFAULT
-            setTextColor(Color.parseColor("#4DFFFFFF"))
+            textSize = 10f
+            setTextColor(Color.parseColor("#777777"))
             gravity = Gravity.CENTER
             setPadding(0, 0, 0, 30)
-        }
-        root.addView(fullSignature)
+        })
 
-        console = TextView(this).apply {
-            text = "[ CORE MAX ]\nMotorola Moto G60\nInterface fluida ativada."
-            setTextColor(Color.parseColor("#00FF66"))
-            setBackgroundColor(Color.parseColor("#120E1C"))
-            setPadding(40, 40, 40, 40)
-            textSize = 11f
-            typeface = Typeface.MONOSPACE
-            elevation = 15f
+        // Painel Terminal Embutido (Borda Verde)
+        val terminalBox = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(30, 30, 30, 30)
+            background = GradientDrawable().apply {
+                setColor(Color.parseColor("#1A1A1A"))
+                setStroke(3, Color.parseColor("#00FF00"))
+                cornerRadius = 20f
+            }
         }
         
-        val scrollConsole = ScrollView(this).apply {
-            layoutParams = LinearLayout.LayoutParams(-1, 260)
-            setPadding(0, 0, 0, 30)
-        }
-        scrollConsole.addView(console)
-        root.addView(scrollConsole)
+        terminalBox.addView(TextView(this).apply {
+            text = "[ CORE INSTALADO ]\nMotorola Moto G60"
+            textSize = 13f
+            typeface = Typeface.MONOSPACE
+            setTextColor(Color.parseColor("#00FF00"))
+            gravity = Gravity.CENTER
+        })
 
-        val btnContainer = ScrollView(this).apply {
+        console = TextView(this).apply {
+            text = "Aguardando injeção de código MAX..."
+            textSize = 13f
+            typeface = Typeface.MONOSPACE
+            setTextColor(Color.parseColor("#00FF00"))
+            gravity = Gravity.CENTER
+            setPadding(0, 10, 0, 0)
+        }
+        terminalBox.addView(console)
+        root.addView(terminalBox)
+
+        val scrollBtn = ScrollView(this).apply {
             layoutParams = LinearLayout.LayoutParams(-1, -1)
+            setPadding(0, 40, 0, 0)
         }
         val btnLayout = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(10, 10, 10, 10)
         }
 
-        fun addBtn3D(label: String, cmd: String, colorStart: String, colorEnd: String) {
+        // Motor de Botões Néon 3D Programático
+        fun addNeonBtn(label: String, colorHex: String, cmd: String, loadingMsg: String) {
             val b = Button(this).apply {
                 text = label
-                textSize = 14f
-                typeface = Typeface.DEFAULT_BOLD
-                setTextColor(Color.WHITE)
-                setShadowLayer(5f, 2f, 3f, Color.BLACK)
                 isAllCaps = false
-                elevation = 20f
-
-                background = GradientDrawable(
-                    GradientDrawable.Orientation.TOP_BOTTOM,
-                    intArrayOf(Color.parseColor(colorStart), Color.parseColor(colorEnd))
-                ).apply {
-                    cornerRadius = 40f
-                    setStroke(3, Color.parseColor("#4DFFFFFF")) 
+                textSize = 14f
+                setTextColor(Color.parseColor(colorHex))
+                typeface = Typeface.DEFAULT_BOLD
+                background = GradientDrawable().apply {
+                    setColor(Color.parseColor("#00000000")) // Fundo translúcido
+                    setStroke(4, Color.parseColor(colorHex)) // Borda Néon
+                    cornerRadius = 25f
                 }
-
                 setOnClickListener {
-                    animate().scaleX(0.92f).scaleY(0.92f).setDuration(80).withEndAction {
-                        animate().scaleX(1f).scaleY(1f).setDuration(80)
-                        rodar(cmd)
+                    animate().scaleX(0.95f).scaleY(0.95f).setDuration(50).withEndAction {
+                        animate().scaleX(1f).scaleY(1f).setDuration(50)
+                        rodar(cmd, loadingMsg)
                     }
                 }
             }
-            val p = LinearLayout.LayoutParams(-1, 150)
-            p.setMargins(0, 0, 0, 40)
-            btnLayout.addView(b, p)
+            val params = LinearLayout.LayoutParams(-1, 140)
+            params.setMargins(0, 0, 0, 30)
+            btnLayout.addView(b, params)
         }
 
-        addBtn3D("🎯 Otimizar Touch (Latência)", "setprop debug.sf.latch_unsignaled 1", "#6200EA", "#31007A")
-        addBtn3D("🚀 Turbo RAM / LMK", "device_config put activity_manager max_phantom_processes 2147483647", "#6200EA", "#31007A")
-        addBtn3D("🧹 Limpar Cache Oculto", "pm trim-caches 32G", "#6200EA", "#31007A")
-        addBtn3D("⚡ Forçar 120Hz Constante", "settings put system min_refresh_rate 120.0 && settings put system peak_refresh_rate 120.0", "#00C853", "#00600F")
-        addBtn3D("🏎️ Modo Relâmpago (Animações)", "settings put global window_animation_scale 0.5 && settings put global transition_animation_scale 0.5 && settings put global animator_duration_scale 0.5", "#D50000", "#7F0000")
-        
-        // Aqui mantemos o modo background, não trocamos pro speed pra não fritar o celular.
-        addBtn3D("🛠️ Manutenção Profunda ART/Trim", "sm fstrim && cmd package bg-dexopt-job", "#FF6D00", "#AA4000")
+        // Comandos Extremos Reais Integrados
+        addNeonBtn("🎯 Otimizar Touch (Latência)", "#00FF00", "setprop debug.sf.latch_unsignaled 1", "Otimizando touch...")
+        addNeonBtn("🚀 Turbo RAM / LMK", "#BF00FF", "device_config put activity_manager max_phantom_processes 2147483647", "Injetando Turbo RAM...")
+        addNeonBtn("🧹 Limpar Cache Oculto", "#00FF00", "pm trim-caches 32G", "Limpando caches...")
+        addNeonBtn("⚡ Forçar 120Hz Real", "#00FF00", "settings put system min_refresh_rate 120.0 && settings put system peak_refresh_rate 120.0", "Cravando 120Hz...")
+        addNeonBtn("🏎️ Modo Relâmpago (Animações)", "#FF0000", "settings put global window_animation_scale 0.25 && settings put global transition_animation_scale 0.25 && settings put global animator_duration_scale 0.25", "Acelerando animações para 0.25x...")
+        addNeonBtn("🛠️ Manutenção Profunda (ART/Trim)", "#FFA500", "sm fstrim && cmd package bg-dexopt-job", "Executando faxina profunda...")
+        addNeonBtn("🚨 Injeção Extrema -m speed", "#FF0000", "pm compile -a -f -m speed", "Aviso: Compilação speed iniciada!")
 
-        btnContainer.addView(btnLayout)
-        root.addView(btnContainer)
+        scrollBtn.addView(btnLayout)
+        root.addView(scrollBtn)
 
         setContentView(root)
     }
 
-    private fun rodar(c: String) {
-        // Escreve na tela imediatamente
-        console.append("\n\n> $c\n[Aguarde... processando em background]")
+    private fun rodar(c: String, msg: String) {
+        console.text = msg
+        console.setTextColor(Color.WHITE)
         
-        // Abre uma Thread paralela para não travar o aplicativo
         Thread {
             try {
                 val method = Shizuku::class.java.getDeclaredMethod(
@@ -138,15 +149,16 @@ class MainActivity : Activity() {
                 )
                 method.isAccessible = true
                 val p = method.invoke(null, arrayOf("sh", "-c", c), null, null) as Process
-                p.waitFor() // Trava apenas a thread paralela, não a tela
+                p.waitFor() // Processa em background sem travar a interface
                 
-                // Volta para a tela principal para dar o OK
                 runOnUiThread {
-                    console.append("\n[OK] Injeção concluída.")
+                    console.text = "Injeção 'by Yarosni' validada."
+                    console.setTextColor(Color.parseColor("#00FF00"))
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    console.append("\n[Erro]: ${e.cause?.message ?: e.message}")
+                    console.text = "Erro Shizuku: Permissão Negada"
+                    console.setTextColor(Color.RED)
                 }
             }
         }.start()
