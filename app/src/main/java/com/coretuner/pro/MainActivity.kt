@@ -4,6 +4,7 @@ import android.app.Activity
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.*
@@ -16,11 +17,11 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Fundo Escuro Premium (Glassmorphism Base)
+        // 1. Fundo Escuro Base
         val root = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(40, 60, 40, 40)
-            setBackgroundColor(Color.parseColor("#0A0A0A"))
+            setBackgroundColor(Color.parseColor("#050505"))
         }
 
         root.addView(TextView(this).apply {
@@ -28,17 +29,18 @@ class MainActivity : Activity() {
             textSize = 18f
             setTextColor(Color.WHITE)
             gravity = Gravity.CENTER
+            typeface = Typeface.SERIF
         })
 
-        // Assinatura by Yarosni (Neon Green Realista)
+        // 2. Assinatura Neon 3D Realista
         root.addView(TextView(this).apply {
             text = "by Yarosni"
-            textSize = 46f
+            textSize = 48f
             typeface = Typeface.create("cursive", Typeface.BOLD)
             setTextColor(Color.parseColor("#00FF00"))
-            setShadowLayer(18f, 0f, 0f, Color.parseColor("#00FF00"))
+            setShadowLayer(25f, 0f, 0f, Color.parseColor("#00FF00")) // Brilho intenso
             gravity = Gravity.CENTER
-            setPadding(0, 10, 0, 0)
+            setPadding(0, 15, 0, 0)
         })
 
         root.addView(TextView(this).apply {
@@ -54,18 +56,23 @@ class MainActivity : Activity() {
             textSize = 10f
             setTextColor(Color.parseColor("#777777"))
             gravity = Gravity.CENTER
-            setPadding(0, 0, 0, 30)
+            setPadding(0, 0, 0, 35)
         })
 
-        // Painel Terminal Embutido (Borda Verde)
+        // 3. Efeito Vidro Convexo Programático (Painel Central)
+        val glassBackground = GradientDrawable().apply {
+            colors = intArrayOf(Color.parseColor("#4D202020"), Color.parseColor("#1A101010"))
+            gradientType = GradientDrawable.RADIAL_GRADIENT
+            gradientRadius = 600f
+            setStroke(3, Color.parseColor("#00FF00"))
+            cornerRadius = 30f
+        }
+
         val terminalBox = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(30, 30, 30, 30)
-            background = GradientDrawable().apply {
-                setColor(Color.parseColor("#1A1A1A"))
-                setStroke(3, Color.parseColor("#00FF00"))
-                cornerRadius = 20f
-            }
+            setPadding(40, 40, 40, 40)
+            background = glassBackground
+            elevation = 15f // Profundidade 3D
         }
         
         terminalBox.addView(TextView(this).apply {
@@ -74,6 +81,7 @@ class MainActivity : Activity() {
             typeface = Typeface.MONOSPACE
             setTextColor(Color.parseColor("#00FF00"))
             gravity = Gravity.CENTER
+            setTypeface(typeface, Typeface.BOLD)
         })
 
         console = TextView(this).apply {
@@ -82,52 +90,58 @@ class MainActivity : Activity() {
             typeface = Typeface.MONOSPACE
             setTextColor(Color.parseColor("#00FF00"))
             gravity = Gravity.CENTER
-            setPadding(0, 10, 0, 0)
+            setPadding(0, 15, 0, 0)
         }
         terminalBox.addView(console)
         root.addView(terminalBox)
 
         val scrollBtn = ScrollView(this).apply {
             layoutParams = LinearLayout.LayoutParams(-1, -1)
-            setPadding(0, 40, 0, 0)
+            setPadding(0, 50, 0, 0)
         }
         val btnLayout = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
         }
 
-        // Motor de Botões Néon 3D Programático
-        fun addNeonBtn(label: String, colorHex: String, cmd: String, loadingMsg: String) {
+        // 4. Construtor de Botões de Vidro (Glass Buttons)
+        fun addGlassBtn(label: String, colorHex: String, cmd: String, loadingMsg: String) {
+            val btnGlassBg = GradientDrawable().apply {
+                setColor(Color.parseColor("#26121212")) // Acrílico super escuro e translúcido
+                setStroke(4, Color.parseColor(colorHex)) // Borda Neon
+                cornerRadius = 25f
+            }
+
             val b = Button(this).apply {
                 text = label
                 isAllCaps = false
                 textSize = 14f
                 setTextColor(Color.parseColor(colorHex))
                 typeface = Typeface.DEFAULT_BOLD
-                background = GradientDrawable().apply {
-                    setColor(Color.parseColor("#00000000")) // Fundo translúcido
-                    setStroke(4, Color.parseColor(colorHex)) // Borda Néon
-                    cornerRadius = 25f
-                }
+                background = btnGlassBg
+                elevation = 8f // Botões saltando da tela
+                stateListAnimator = null // Remove sombra padrão feia do Android
+                
                 setOnClickListener {
-                    animate().scaleX(0.95f).scaleY(0.95f).setDuration(50).withEndAction {
-                        animate().scaleX(1f).scaleY(1f).setDuration(50)
+                    // Animação tátil 3D de afundar o vidro
+                    animate().scaleX(0.92f).scaleY(0.92f).setDuration(60).withEndAction {
+                        animate().scaleX(1f).scaleY(1f).setDuration(60)
                         rodar(cmd, loadingMsg)
                     }
                 }
             }
-            val params = LinearLayout.LayoutParams(-1, 140)
-            params.setMargins(0, 0, 0, 30)
+            val params = LinearLayout.LayoutParams(-1, 150)
+            params.setMargins(0, 0, 0, 35)
             btnLayout.addView(b, params)
         }
 
-        // Comandos Extremos Reais Integrados
-        addNeonBtn("🎯 Otimizar Touch (Latência)", "#00FF00", "setprop debug.sf.latch_unsignaled 1", "Otimizando touch...")
-        addNeonBtn("🚀 Turbo RAM / LMK", "#BF00FF", "device_config put activity_manager max_phantom_processes 2147483647", "Injetando Turbo RAM...")
-        addNeonBtn("🧹 Limpar Cache Oculto", "#00FF00", "pm trim-caches 32G", "Limpando caches...")
-        addNeonBtn("⚡ Forçar 120Hz Real", "#00FF00", "settings put system min_refresh_rate 120.0 && settings put system peak_refresh_rate 120.0", "Cravando 120Hz...")
-        addNeonBtn("🏎️ Modo Relâmpago (Animações)", "#FF0000", "settings put global window_animation_scale 0.25 && settings put global transition_animation_scale 0.25 && settings put global animator_duration_scale 0.25", "Acelerando animações para 0.25x...")
-        addNeonBtn("🛠️ Manutenção Profunda (ART/Trim)", "#FFA500", "sm fstrim && cmd package bg-dexopt-job", "Executando faxina profunda...")
-        addNeonBtn("🚨 Injeção Extrema -m speed", "#FF0000", "pm compile -a -f -m speed", "Aviso: Compilação speed iniciada!")
+        // 5. Injeção de Comandos
+        addGlassBtn("🎯 Otimizar Touch (Latência)", "#00FF00", "setprop debug.sf.latch_unsignaled 1", "Otimizando touch...")
+        addGlassBtn("🚀 Turbo RAM / LMK", "#BF00FF", "device_config put activity_manager max_phantom_processes 2147483647", "Injetando Turbo RAM...")
+        addGlassBtn("🧹 Limpar Cache Oculto", "#00FF00", "pm trim-caches 32G", "Limpando caches...")
+        addGlassBtn("⚡ Forçar 120Hz Real", "#00FF00", "settings put system min_refresh_rate 120.0 && settings put system peak_refresh_rate 120.0", "Cravando 120Hz...")
+        addGlassBtn("🏎️ Modo Relâmpago (Animações)", "#FF0000", "settings put global window_animation_scale 0.25 && settings put global transition_animation_scale 0.25 && settings put global animator_duration_scale 0.25", "Acelerando animações para 0.25x...")
+        addGlassBtn("🛠️ Manutenção Profunda (ART/Trim)", "#FFA500", "sm fstrim && cmd package bg-dexopt-job", "Executando faxina profunda...")
+        addGlassBtn("🚨 Injeção Extrema -m speed", "#FF0000", "pm compile -a -f -m speed", "Aviso: Compilação speed iniciada!")
 
         scrollBtn.addView(btnLayout)
         root.addView(scrollBtn)
@@ -135,6 +149,7 @@ class MainActivity : Activity() {
         setContentView(root)
     }
 
+    // 6. Motor Shizuku
     private fun rodar(c: String, msg: String) {
         console.text = msg
         console.setTextColor(Color.WHITE)
@@ -149,7 +164,7 @@ class MainActivity : Activity() {
                 )
                 method.isAccessible = true
                 val p = method.invoke(null, arrayOf("sh", "-c", c), null, null) as Process
-                p.waitFor() // Processa em background sem travar a interface
+                p.waitFor() 
                 
                 runOnUiThread {
                     console.text = "Injeção 'by Yarosni' validada."
