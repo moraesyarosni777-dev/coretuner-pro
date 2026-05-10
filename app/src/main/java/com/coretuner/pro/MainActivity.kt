@@ -1,13 +1,17 @@
 package com.coretuner.pro
 
 import android.app.Activity
-import android.graphics.Color
-import android.graphics.Typeface
+import android.content.Context
+import android.graphics.*
 import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.view.Gravity
-import android.widget.*
+import android.view.MotionEvent
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.ScrollView
+import android.widget.TextView
+import android.widget.Toast
 import rikka.shizuku.Shizuku
 
 class MainActivity : Activity() {
@@ -17,165 +21,209 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // 1. Fundo Escuro Base
+        // 1. Fundo Profundo (Gradiente #050505 a #121212)
+        val bgGradient = GradientDrawable(
+            GradientDrawable.Orientation.TOP_BOTTOM,
+            intArrayOf(Color.parseColor("#050505"), Color.parseColor("#121212"))
+        )
+
         val root = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(40, 60, 40, 40)
-            setBackgroundColor(Color.parseColor("#050505"))
+            setPadding(40, 70, 40, 40)
+            background = bgGradient
         }
 
+        // Títulos (Tipografia Moderna, Sans-Serif, Branco Puro)
         root.addView(TextView(this).apply {
             text = "CoreTuner Pro MAX"
-            textSize = 18f
+            textSize = 14f
             setTextColor(Color.WHITE)
             gravity = Gravity.CENTER
-            typeface = Typeface.SERIF
+            typeface = Typeface.create("sans-serif-light", Typeface.NORMAL)
+            letterSpacing = 0.1f
         })
 
-        // 2. Assinatura Neon 3D Realista
         root.addView(TextView(this).apply {
             text = "by Yarosni"
-            textSize = 48f
-            typeface = Typeface.create("cursive", Typeface.BOLD)
-            setTextColor(Color.parseColor("#00FF00"))
-            setShadowLayer(25f, 0f, 0f, Color.parseColor("#00FF00")) // Brilho intenso
+            textSize = 42f
+            typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
+            setTextColor(Color.WHITE)
             gravity = Gravity.CENTER
-            setPadding(0, 15, 0, 0)
+            setPadding(0, 10, 0, 0)
         })
 
+        // Textos de Suporte (Verde Glacial / Menta Premium)
+        val glacialGreen = Color.parseColor("#A7FFEB")
+
         root.addView(TextView(this).apply {
-            text = "Hardcore tuning, brutal performance."
-            textSize = 12f
-            typeface = Typeface.DEFAULT_BOLD
-            setTextColor(Color.parseColor("#AAAAAA"))
-            gravity = Gravity.CENTER
-            setPadding(0, 0, 0, 5)
-        })
-        root.addView(TextView(this).apply {
-            text = "Developed by Moraes Yarosni"
+            text = "HARDCORE TUNING • BRUTAL PERFORMANCE"
             textSize = 10f
-            setTextColor(Color.parseColor("#777777"))
+            typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
+            setTextColor(glacialGreen)
             gravity = Gravity.CENTER
-            setPadding(0, 0, 0, 35)
+            letterSpacing = 0.15f
+            setPadding(0, 5, 0, 40)
         })
 
-        // 3. Efeito Vidro Convexo Programático (Painel Central)
-        val glassBackground = GradientDrawable().apply {
-            colors = intArrayOf(Color.parseColor("#4D202020"), Color.parseColor("#1A101010"))
-            gradientType = GradientDrawable.RADIAL_GRADIENT
-            gradientRadius = 600f
-            setStroke(3, Color.parseColor("#00FF00"))
-            cornerRadius = 30f
+        // 2. Terminal - Efeito Vidro Lapidado
+        val glassTerminalBg = GradientDrawable().apply {
+            setColor(Color.parseColor("#08FFFFFF")) // rgba(255, 255, 255, 0.03)
+            setStroke(2, Color.parseColor("#26A7FFEB")) // rgba(167, 255, 235, 0.15)
+            cornerRadius = 35f
         }
 
         val terminalBox = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(40, 40, 40, 40)
-            background = glassBackground
-            elevation = 15f // Profundidade 3D
+            background = glassTerminalBg
         }
         
         terminalBox.addView(TextView(this).apply {
-            text = "[ CORE INSTALADO ]\nMotorola Moto G60"
-            textSize = 13f
-            typeface = Typeface.MONOSPACE
-            setTextColor(Color.parseColor("#00FF00"))
+            text = "[ STATUS DO SISTEMA ]"
+            textSize = 12f
+            typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
+            setTextColor(glacialGreen)
             gravity = Gravity.CENTER
-            setTypeface(typeface, Typeface.BOLD)
+            letterSpacing = 0.1f
         })
 
         console = TextView(this).apply {
             text = "Aguardando injeção de código MAX..."
             textSize = 13f
             typeface = Typeface.MONOSPACE
-            setTextColor(Color.parseColor("#00FF00"))
+            setTextColor(Color.WHITE)
             gravity = Gravity.CENTER
             setPadding(0, 15, 0, 0)
         }
         terminalBox.addView(console)
         root.addView(terminalBox)
 
-        val scrollBtn = ScrollView(this).apply {
-            layoutParams = LinearLayout.LayoutParams(-1, -1)
+        val scroll = ScrollView(this).apply { layoutParams = LinearLayout.LayoutParams(-1, -1) }
+        val btnLayout = LinearLayout(this).apply { 
+            orientation = LinearLayout.VERTICAL
             setPadding(0, 50, 0, 0)
         }
-        val btnLayout = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-        }
 
-        // 4. Construtor de Botões de Vidro (Glass Buttons)
-        fun addGlassBtn(label: String, colorHex: String, cmd: String, loadingMsg: String) {
-            val btnGlassBg = GradientDrawable().apply {
-                setColor(Color.parseColor("#26121212")) // Acrílico super escuro e translúcido
-                setStroke(4, Color.parseColor(colorHex)) // Borda Neon
-                cornerRadius = 25f
-            }
+        // 3. Injeção de Botões Dark Glassmorphism Premium
+        btnLayout.addView(PremiumGlassButton(this, "Otimizar Touch (Latência)", "setprop debug.sf.latch_unsignaled 1"))
+        btnLayout.addView(PremiumGlassButton(this, "Turbo RAM / LMK", "device_config put activity_manager max_phantom_processes 2147483647"))
+        btnLayout.addView(PremiumGlassButton(this, "Limpar Cache Oculto", "pm trim-caches 32G"))
+        btnLayout.addView(PremiumGlassButton(this, "Forçar 120Hz Real", "settings put system min_refresh_rate 120.0 && settings put system peak_refresh_rate 120.0"))
+        btnLayout.addView(PremiumGlassButton(this, "Modo Relâmpago (Animações)", "settings put global window_animation_scale 0.25 && settings put global transition_animation_scale 0.25"))
+        btnLayout.addView(PremiumGlassButton(this, "Manutenção Profunda ART", "sm fstrim && cmd package bg-dexopt-job"))
+        btnLayout.addView(PremiumGlassButton(this, "Injeção Extrema -m speed", "pm compile -a -f -m speed"))
 
-            val b = Button(this).apply {
-                text = label
-                isAllCaps = false
-                textSize = 14f
-                setTextColor(Color.parseColor(colorHex))
-                typeface = Typeface.DEFAULT_BOLD
-                background = btnGlassBg
-                elevation = 8f // Botões saltando da tela
-                stateListAnimator = null // Remove sombra padrão feia do Android
-                
-                setOnClickListener {
-                    // Animação tátil 3D de afundar o vidro
-                    animate().scaleX(0.92f).scaleY(0.92f).setDuration(60).withEndAction {
-                        animate().scaleX(1f).scaleY(1f).setDuration(60)
-                        rodar(cmd, loadingMsg)
-                    }
-                }
-            }
-            val params = LinearLayout.LayoutParams(-1, 150)
-            params.setMargins(0, 0, 0, 35)
-            btnLayout.addView(b, params)
-        }
-
-        // 5. Injeção de Comandos
-        addGlassBtn("🎯 Otimizar Touch (Latência)", "#00FF00", "setprop debug.sf.latch_unsignaled 1", "Otimizando touch...")
-        addGlassBtn("🚀 Turbo RAM / LMK", "#BF00FF", "device_config put activity_manager max_phantom_processes 2147483647", "Injetando Turbo RAM...")
-        addGlassBtn("🧹 Limpar Cache Oculto", "#00FF00", "pm trim-caches 32G", "Limpando caches...")
-        addGlassBtn("⚡ Forçar 120Hz Real", "#00FF00", "settings put system min_refresh_rate 120.0 && settings put system peak_refresh_rate 120.0", "Cravando 120Hz...")
-        addGlassBtn("🏎️ Modo Relâmpago (Animações)", "#FF0000", "settings put global window_animation_scale 0.25 && settings put global transition_animation_scale 0.25 && settings put global animator_duration_scale 0.25", "Acelerando animações para 0.25x...")
-        addGlassBtn("🛠️ Manutenção Profunda (ART/Trim)", "#FFA500", "sm fstrim && cmd package bg-dexopt-job", "Executando faxina profunda...")
-        addGlassBtn("🚨 Injeção Extrema -m speed", "#FF0000", "pm compile -a -f -m speed", "Aviso: Compilação speed iniciada!")
-
-        scrollBtn.addView(btnLayout)
-        root.addView(scrollBtn)
-
+        scroll.addView(btnLayout)
+        root.addView(scroll)
         setContentView(root)
     }
 
-    // 6. Motor Shizuku
-    private fun rodar(c: String, msg: String) {
-        console.text = msg
+    private fun rodar(c: String) {
+        console.text = "Processando..."
         console.setTextColor(Color.WHITE)
-        
         Thread {
             try {
                 val method = Shizuku::class.java.getDeclaredMethod(
-                    "newProcess", 
-                    Array<String>::class.java, 
-                    Array<String>::class.java, 
-                    String::class.java
+                    "newProcess", Array<String>::class.java, Array<String>::class.java, String::class.java
                 )
                 method.isAccessible = true
                 val p = method.invoke(null, arrayOf("sh", "-c", c), null, null) as Process
-                p.waitFor() 
-                
-                runOnUiThread {
-                    console.text = "Injeção 'by Yarosni' validada."
-                    console.setTextColor(Color.parseColor("#00FF00"))
+                p.waitFor()
+                runOnUiThread { 
+                    console.text = "Injeção concluída com sucesso."
+                    console.setTextColor(Color.parseColor("#A7FFEB"))
                 }
             } catch (e: Exception) {
-                runOnUiThread {
-                    console.text = "Erro Shizuku: Permissão Negada"
-                    console.setTextColor(Color.RED)
+                runOnUiThread { 
+                    console.text = "Erro: Sem permissão do Shizuku."
+                    console.setTextColor(Color.parseColor("#FF5252"))
                 }
             }
         }.start()
+    }
+
+    // ========================================================
+    // MOTOR DE RENDERIZAÇÃO: DARK GLASSMORPHISM PREMIUM
+    // ========================================================
+    inner class PremiumGlassButton(context: Context, private val btnText: String, private val cmd: String) : View(context) {
+        
+        private var isPressedState = false
+
+        // Fundo translucido 3% (Blur simulado)
+        private val fillPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.parseColor("#08FFFFFF") 
+        }
+
+        // Borda fina Vidro Lapidado 15% opacidade verde glacial
+        private val borderPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            style = Paint.Style.STROKE
+            strokeWidth = 2f
+            color = Color.parseColor("#26A7FFEB")
+        }
+
+        // Tipografia
+        private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.WHITE
+            textSize = 38f
+            typeface = Typeface.create("sans-serif", Typeface.NORMAL)
+            textAlign = Paint.Align.CENTER
+            letterSpacing = 0.04f // Equivalente a 1.2px
+        }
+
+        // Inner Glow Suave (Substituindo sombra pesada)
+        private val innerGlowPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        init {
+            val params = LinearLayout.LayoutParams(-1, 150)
+            params.setMargins(0, 0, 0, 35)
+            layoutParams = params
+        }
+
+        override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+            super.onSizeChanged(w, h, oldw, oldh)
+            // Brilho holográfico sutil de cima para baixo
+            innerGlowPaint.shader = LinearGradient(
+                0f, 0f, 0f, h.toFloat() / 2,
+                Color.parseColor("#15A7FFEB"), Color.TRANSPARENT,
+                Shader.TileMode.CLAMP
+            )
+        }
+
+        override fun onDraw(canvas: Canvas) {
+            val rect = RectF(5f, 5f, width - 5f, height - 5f)
+            val corner = 25f
+
+            if (isPressedState) {
+                canvas.scale(0.97f, 0.97f, width / 2f, height / 2f)
+                fillPaint.color = Color.parseColor("#15FFFFFF") // Fica mais claro ao toque
+            } else {
+                fillPaint.color = Color.parseColor("#08FFFFFF")
+            }
+
+            // Sem drop shadow pesada, apenas o fill, inner glow e a borda cirúrgica
+            canvas.drawRoundRect(rect, corner, corner, fillPaint)
+            canvas.drawRoundRect(rect, corner, corner, innerGlowPaint)
+            canvas.drawRoundRect(rect, corner, corner, borderPaint)
+
+            val textY = (height / 2f) - ((textPaint.descent() + textPaint.ascent()) / 2f)
+            canvas.drawText(btnText, width / 2f, textY, textPaint)
+        }
+
+        override fun onTouchEvent(event: MotionEvent): Boolean {
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    isPressedState = true
+                    invalidate()
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    isPressedState = false
+                    invalidate()
+                    if (event.action == MotionEvent.ACTION_UP) {
+                        rodar(cmd)
+                    }
+                }
+            }
+            return true
+        }
     }
 }
