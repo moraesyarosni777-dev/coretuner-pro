@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:label="CoreTuner Pro"
-        android:supportsRtl="true"
+        android:icon="@android:drawable/ic_menu_manage"
         android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
         
         <activity
@@ -16,5 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="rikka.shizuku.ShizukuProvider"
+            android:authorities="com.coretuner.pro.shizuku"
+            android:enabled="true"
+            android:exported="true"
+            android:multiprocess="false" />
     </application>
 </manifest>
