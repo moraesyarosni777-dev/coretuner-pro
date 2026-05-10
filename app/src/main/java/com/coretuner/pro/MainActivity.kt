@@ -17,7 +17,7 @@ class MainActivity : Activity() {
         val layout = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(50, 50, 50, 50)
-            backgroundColor = Color.parseColor("#0F111A")
+            setBackgroundColor(Color.parseColor("#0F111A"))
         }
 
         val title = TextView(this).apply {
@@ -58,7 +58,7 @@ class MainActivity : Activity() {
         }
     }
 
-    // Função que roda os códigos via Shizuku (Modo Reflexão para evitar erro de acesso)
+    // Função que roda os códigos via Shizuku
     private fun executar(comando: String) {
         if (Shizuku.checkSelfPermission() == android.content.pm.PackageManager.PERMISSION_GRANTED) {
             try {
