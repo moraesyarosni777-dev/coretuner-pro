@@ -73,13 +73,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // ESSE É O COMANDO QUE FAZ FICAR VERDE:
     private fun runShell(command: String) {
         coroutineScope.launch(Dispatchers.IO) {
             try {
                 if (Shizuku.pingBinder()) {
-                    // Chamada compatível com a API 13.x
-                    val process = Shizuku.newProcess(arrayOf("sh", "-c", command), null, null)
-                    process.waitFor()
+                    val args = arrayOf("sh", "-c", command)
+                    // Truque de Reflection para acessar o processo privado
+                    val method = Shizuku::class.java.getDeclaredMethod("newProcess", Array<String>::class.java, Array<String>::class.java, String::class.java)
+                    method.isAccessible = true
+                    val proc = method.invoke(null, args, null, null) as java.lang.Process
+                    proc.waitFor()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
