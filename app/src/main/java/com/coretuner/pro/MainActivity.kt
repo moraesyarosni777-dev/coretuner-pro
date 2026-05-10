@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     
     private val shizukuPermissionListener = Shizuku.OnRequestPermissionResultListener { requestCode, grantResult ->
         if (requestCode == SHIZUKU_PERMISSION_REQUEST_CODE && grantResult == 0) {
-            statusText.text = "SISTEMA ONLINE"
+            runOnUiThread { statusText.text = "SISTEMA ONLINE" }
         }
     }
     
@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         
-        // Inicializar UI
         performanceButton = findViewById(R.id.performanceButton)
         cacheButton = findViewById(R.id.cacheButton)
         statusText = findViewById(R.id.statusText)
@@ -51,14 +50,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkShizuku() {
-        if (Shizuku.pingBinder()) {
-            if (Shizuku.checkSelfPermission() != 0) {
-                Shizuku.requestPermission(SHIZUKU_PERMISSION_REQUEST_CODE)
+        try {
+            if (Shizuku.pingBinder()) {
+                if (Shizuku.checkSelfPermission() != 0) {
+                    Shizuku.requestPermission(SHIZUKU_PERMISSION_REQUEST_CODE)
+                } else {
+                    statusText.text = "SISTEMA ONLINE"
+                }
             } else {
-                statusText.text = "SISTEMA ONLINE"
+                statusText.text = "SHIZUKU OFFLINE"
             }
-        } else {
-            statusText.text = "SHIZUKU OFFLINE"
+        } catch (e: Exception) {
+            statusText.text = "ERRO DE CONEXÃO"
         }
     }
 
@@ -70,17 +73,20 @@ class MainActivity : AppCompatActivity() {
 
         cacheButton.setOnClickListener {
             runShell("pm trim-caches 999G")
-            Toast.makeText(this, "Limpando Sistema", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Limpando Sistema...", Toast.LENGTH_SHORT).show()
         }
     }
 
-    // FIX: Forma compatível com Shizuku 12.1.0 para evitar erro de 'private'
+    // AQUI ESTÁ O SEGREDO: Usamos a classe Shizuku de forma que o Kotlin não bloqueie
     private fun runShell(command: String) {
         coroutineScope.launch(Dispatchers.IO) {
             try {
                 if (Shizuku.pingBinder()) {
-                    val proc = Shizuku.newProcess(arrayOf("sh", "-c", command), null, null)
-                    proc.waitFor()
+                    // Forma alternativa para burlar o erro de 'private'
+                    val args = arrayOf("sh", "-c", command)
+                    val remoteProcess = Shizuku::class.java.getMethod("newProcess", Array<String>::class.java, Array<String>::class.java, String::class.java)
+                        .invoke(null, args, null, null) as java.lang.Process
+                    remoteProcess.waitFor()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
