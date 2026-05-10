@@ -50,18 +50,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkShizuku() {
-        try {
-            if (Shizuku.pingBinder()) {
-                if (Shizuku.checkSelfPermission() != 0) {
-                    Shizuku.requestPermission(SHIZUKU_PERMISSION_REQUEST_CODE)
-                } else {
-                    statusText.text = "SISTEMA ONLINE"
-                }
+        if (Shizuku.pingBinder()) {
+            if (Shizuku.checkSelfPermission() != 0) {
+                Shizuku.requestPermission(SHIZUKU_PERMISSION_REQUEST_CODE)
             } else {
-                statusText.text = "SHIZUKU OFFLINE"
+                statusText.text = "SISTEMA ONLINE"
             }
-        } catch (e: Exception) {
-            statusText.text = "ERRO DE CONEXÃO"
+        } else {
+            statusText.text = "SHIZUKU OFFLINE"
         }
     }
 
@@ -77,16 +73,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // AQUI ESTÁ O SEGREDO: Usamos a classe Shizuku de forma que o Kotlin não bloqueie
     private fun runShell(command: String) {
         coroutineScope.launch(Dispatchers.IO) {
             try {
                 if (Shizuku.pingBinder()) {
-                    // Forma alternativa para burlar o erro de 'private'
-                    val args = arrayOf("sh", "-c", command)
-                    val remoteProcess = Shizuku::class.java.getMethod("newProcess", Array<String>::class.java, Array<String>::class.java, String::class.java)
-                        .invoke(null, args, null, null) as java.lang.Process
-                    remoteProcess.waitFor()
+                    // Chamada compatível com a API 13.x
+                    val process = Shizuku.newProcess(arrayOf("sh", "-c", command), null, null)
+                    process.waitFor()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
