@@ -1,6 +1,17 @@
-#!/usr/bin/env sh
-APP_ARGS=""
-for arg do
-    APP_ARGS="$APP_ARGS \"$arg\""
-done
-exec java -Xmx64M -jar "$0" $APP_ARGS
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.1.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
