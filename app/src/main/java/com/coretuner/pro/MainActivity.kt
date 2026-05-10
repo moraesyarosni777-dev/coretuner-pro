@@ -1,37 +1,34 @@
 package com.coretuner.pro
 
 import android.app.Activity
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import android.graphics.Color
-import android.view.Gravity
 import rikka.shizuku.Shizuku
 
 class MainActivity : Activity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Fundo ultra dark texturizado
         val layout = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setBackgroundColor(Color.parseColor("#0B0B12")) 
-            setPadding(60, 100, 60, 60)
-            gravity = Gravity.CENTER_HORIZONTAL
+            setPadding(50, 50, 50, 50)
+            backgroundColor = Color.parseColor("#0F111A")
         }
 
-        // Título verde neon
         val title = TextView(this).apply {
-            text = "CORETUNER PRO"
-            setTextColor(Color.parseColor("#00FF66")) 
-            textSize = 28f
-            setPadding(0, 0, 0, 80)
+            text = "CoreTuner Pro"
+            textSize = 24f
+            setTextColor(Color.WHITE)
+            setPadding(0, 0, 0, 50)
         }
         layout.addView(title)
 
-        // Função para criar os botões táticos
+        // Função para criar os botões
         fun addBtn(name: String, color: String, cmd: String) {
             val btn = Button(this).apply {
                 text = name
@@ -48,14 +45,23 @@ class MainActivity : Activity() {
             layout.addView(btn, params)
         }
 
-        // Os botões injetando os comandos do XDA
-        addBtn("Otimizar Touch (Latência)", "#00FF66", "setprop debug.sf.latch_unsignaled 1 && setprop debug.hwui.target_cpu_time_percent 100 && setprop debug.cpurend.vsync false")
-        addBtn("Turbo RAM / LMK", "#A020F0", "device_config put activity_manager max_phantom_processes 2147483647 && device_config put activity_manager max_cached_processes 32 && settings put global cached_apps_freezer enabled")
-         // Função que roda os códigos silenciosamente
-    prprivate fun executar(comando: String) {
+        // Botões com comandos
+        addBtn("Otimizar Touch (Latência)", "#00FF66", "setprop debug.sf.latch_unsignaled 1 && setprop debug.hwui.fps_divisor 1")
+        addBtn("Turbo RAM / LMK", "#A020F0", "device_config put activity_manager max_phantom_processes 2147483647")
+        addBtn("I/O & Storage Boost", "#00FF66", "sm fstrim && pm trim-caches 32G")
+
+        setContentView(layout)
+
+        // Pede permissão ao abrir
+        if (Shizuku.checkSelfPermission() != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            Shizuku.requestPermission(0)
+        }
+    }
+
+    // Função que roda os códigos via Shizuku (Modo Reflexão para evitar erro de acesso)
+    private fun executar(comando: String) {
         if (Shizuku.checkSelfPermission() == android.content.pm.PackageManager.PERMISSION_GRANTED) {
             try {
-                // Modo seguro de acessar o processo via Shizuku
                 val metodo = Shizuku::class.java.getDeclaredMethod(
                     "newProcess", 
                     Array<String>::class.java, 
@@ -64,14 +70,14 @@ class MainActivity : Activity() {
                 )
                 metodo.isAccessible = true
                 val processo = metodo.invoke(null, arrayOf("sh", "-c", comando), null, 0) as Process
-                
                 processo.waitFor()
-                Toast.makeText(this, "Tuning aplicado na raiz!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Tuning aplicado!", Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
-                Toast.makeText(this, "Erro de permissão no Shell.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Erro no Shell: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         } else {
-            Toast.makeText(this, "Permita o app no Shizuku primeiro.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Permita o app no Shizuku!", Toast.LENGTH_LONG).show()
             Shizuku.requestPermission(0)
         }
     }
+}
