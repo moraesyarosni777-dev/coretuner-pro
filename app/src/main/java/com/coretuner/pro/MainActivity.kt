@@ -51,21 +51,20 @@ class MainActivity : Activity() {
         // Os botões injetando os comandos do XDA
         addBtn("Otimizar Touch (Latência)", "#00FF66", "setprop debug.sf.latch_unsignaled 1 && setprop debug.hwui.target_cpu_time_percent 100 && setprop debug.cpurend.vsync false")
         addBtn("Turbo RAM / LMK", "#A020F0", "device_config put activity_manager max_phantom_processes 2147483647 && device_config put activity_manager max_cached_processes 32 && settings put global cached_apps_freezer enabled")
-        addBtn("I/O & Storage Boost", "#00FF66", "sm fstrim && pm trim-caches 32G")
-
-        setContentView(layout)
-        
-        // Pede permissão pro Shizuku assim que abrir
-        if (Shizuku.checkSelfPermission() != android.content.pm.PackageManager.PERMISSION_GRANTED) {
-            Shizuku.requestPermission(0)
-        }
-    }
-
-    // O motor que roda os códigos silenciosamente
-    private fun executar(comando: String) {
+         // Função que roda os códigos silenciosamente
+    prprivate fun executar(comando: String) {
         if (Shizuku.checkSelfPermission() == android.content.pm.PackageManager.PERMISSION_GRANTED) {
             try {
-                val processo = Shizuku.newProcess(arrayOf("sh", "-c", comando), null, null)
+                // Modo seguro de acessar o processo via Shizuku
+                val metodo = Shizuku::class.java.getDeclaredMethod(
+                    "newProcess", 
+                    Array<String>::class.java, 
+                    String::class.java, 
+                    Int::class.javaPrimitiveType
+                )
+                metodo.isAccessible = true
+                val processo = metodo.invoke(null, arrayOf("sh", "-c", comando), null, 0) as Process
+                
                 processo.waitFor()
                 Toast.makeText(this, "Tuning aplicado na raiz!", Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
@@ -76,4 +75,3 @@ class MainActivity : Activity() {
             Shizuku.requestPermission(0)
         }
     }
-}
