@@ -1,5 +1,6 @@
 package com.coretuner.pro
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -39,41 +40,52 @@ class MainActivity : AppCompatActivity() {
 
         setupButtons()
         startTelemetry()
-        connectShizukuAgility() 
-    }
+        connectShizuku()
 
-    private fun connectShizukuAgility() {
-        if (Shizuku.pingBinder()) {
-            checkShizukuPermission()
-        } else {
-            statusText.text = "> STATUS: SHIZUKU OFFLINE"
-            statusText.setTextColor(Color.parseColor("#FF3D00"))
-        }
-
-        scope.launch {
-            while (isActive) {
-                if (Shizuku.pingBinder() && Shizuku.checkSelfPermission() != 0) {
-                    checkShizukuPermission()
-                }
-                delay(4000)
+        // BOTÃO DE PÂNICO: Se estiver offline, clique no texto vermelho para abrir o Shizuku!
+        statusText.setOnClickListener {
+            if (!Shizuku.pingBinder() || Shizuku.checkSelfPermission() != 0) {
+                try {
+                    val intent = packageManager.getLaunchIntentForPackage("moe.shizuku.privileged.api")
+                    if (intent != null) {
+                        startActivity(intent)
+                        Toast.makeText(this, "AUTORIZE A CHAVE AQUI DENTRO!", Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) { e.printStackTrace() }
             }
         }
     }
 
-    private fun checkShizukuPermission() {
-        if (Shizuku.checkSelfPermission() == 0) {
-            statusText.text = "> STATUS: ONLINE // VIP"
-            statusText.setTextColor(Color.parseColor("#BBFF00"))
-        } else {
-            statusText.text = "> STATUS: REQUER PERMISSÃO"
-            statusText.setTextColor(Color.parseColor("#FFC107"))
-            try { Shizuku.requestPermission(1001) } catch (e: Exception) {}
+    private fun connectShizuku() {
+        scope.launch {
+            while (isActive) {
+                if (Shizuku.pingBinder()) {
+                    if (Shizuku.checkSelfPermission() == 0) {
+                        statusText.text = "> STATUS: ONLINE // VIP"
+                        statusText.setTextColor(Color.parseColor("#BBFF00"))
+                    } else {
+                        statusText.text = "> CLIQUE AQUI P/ AUTORIZAR"
+                        statusText.setTextColor(Color.parseColor("#FFC107"))
+                        try { Shizuku.requestPermission(1001) } catch (e: Exception) {}
+                    }
+                } else {
+                    statusText.text = "> CLIQUE AQUI P/ ABRIR SHIZUKU"
+                    statusText.setTextColor(Color.parseColor("#FF3D00"))
+                }
+                delay(3000)
+            }
         }
     }
 
+    private fun verificarShizuku(): Boolean {
+        if (!Shizuku.pingBinder() || Shizuku.checkSelfPermission() != 0) {
+            Toast.makeText(this, "CLIQUE NO TEXTO VERMELHO PARA ABRIR O SHIZUKU!", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
+    }
+
     private fun setupButtons() {
-        // --- 2 BOTÕES MESTRES (SMART) ---
-        
         findViewById<MaterialButton>(R.id.smartExtremeButton).setOnClickListener {
             if (!verificarShizuku()) return@setOnClickListener
             isPerformanceMode = true
@@ -83,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                       "settings put system peak_refresh_rate 120.0; " +
                       "settings put system min_refresh_rate 120.0; " +
                       "settings put global touch_sensitivity_level 10"
-            executarAjusteVip(cmd, "MODO IPHONE INJETADO (0.03) 🚀")
+            executarAjusteVip(cmd, "AJUSTE EXTREMO INJETADO 🚀")
             mainCard.setStrokeColor(Color.parseColor("#D50000"))
         }
 
@@ -97,39 +109,35 @@ class MainActivity : AppCompatActivity() {
             mainCard.setStrokeColor(Color.parseColor("#00C853"))
         }
 
-        // --- 6 BOTÕES INDIVIDUAIS ---
-
         findViewById<MaterialButton>(R.id.performanceButton).setOnClickListener {
+            if (!verificarShizuku()) return@setOnClickListener
             executarAjusteVip("settings put global window_animation_scale 0.03", "ANIMAÇÕES 0.03 ⚡")
         }
 
         findViewById<MaterialButton>(R.id.batteryButton).setOnClickListener {
+            if (!verificarShizuku()) return@setOnClickListener
             executarAjusteVip("settings put global low_power 1", "POUPANÇA ATIVA ❄️")
         }
 
         findViewById<MaterialButton>(R.id.touchButton).setOnClickListener {
+            if (!verificarShizuku()) return@setOnClickListener
             executarAjusteVip("settings put global touch_sensitivity_level 10", "TOUCH VIP 👆")
         }
 
         findViewById<MaterialButton>(R.id.fpsButton).setOnClickListener {
-            executarAjusteVip("settings put system peak_refresh_rate 120.0", "FPS NO MÁXIMO 📺")
+            if (!verificarShizuku()) return@setOnClickListener
+            executarAjusteVip("settings put system peak_refresh_rate 120.0", "FPS MAX 📺")
         }
 
         findViewById<MaterialButton>(R.id.systemButton).setOnClickListener {
+            if (!verificarShizuku()) return@setOnClickListener
             executarAjusteVip("am kill-all; pm trim-caches 999G", "SISTEMA LIMPO 🧠")
         }
 
         findViewById<MaterialButton>(R.id.zramButton).setOnClickListener {
+            if (!verificarShizuku()) return@setOnClickListener
             executarAjusteVip("settings put global zram_enabled 1", "ZRAM TUNED 💾")
         }
-    }
-
-    private fun verificarShizuku(): Boolean {
-        if (!Shizuku.pingBinder() || Shizuku.checkSelfPermission() != 0) {
-            Toast.makeText(this, "AUTORIZE O APP NO SHIZUKU!", Toast.LENGTH_LONG).show()
-            return false
-        }
-        return true
     }
 
     private fun executarAjusteVip(cmd: String, msg: String) {
