@@ -17,6 +17,14 @@
         android:label="CoreTuner MAX VIP"
         android:theme="@style/Theme.CoreTunerPro">
 
+        <provider
+            android:name="rikka.shizuku.ShizukuProvider"
+            android:authorities="com.coretuner.pro.shizuku"
+            android:multiprocess="false"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
