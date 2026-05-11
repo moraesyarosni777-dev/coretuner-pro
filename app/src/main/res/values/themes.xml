@@ -1,7 +1,13 @@
 <resources>
     <style name="Theme.CoreTunerPro" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">#00E5FF</item>
-        <item name="android:statusBarColor">#0A0B0D</item>
-        <item name="android:windowBackground">#0A0B0D</item>
+        <item name="colorPrimary">#D500F9</item> 
+        <item name="colorOnPrimary">#FFFFFF</item>
+        
+        <item name="android:windowBackground">#120A1A</item>
+        
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#EEEEEE</item>
+        
+        <item name="android:statusBarColor">#120A1A</item>
     </style>
 </resources>
