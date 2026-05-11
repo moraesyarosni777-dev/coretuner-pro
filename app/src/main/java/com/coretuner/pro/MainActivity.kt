@@ -20,7 +20,6 @@ import androidx.core.graphics.ColorUtils
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.*
 import rikka.shizuku.Shizuku
-import rikka.shizuku.ShizukuProvider
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
@@ -133,11 +132,9 @@ class MainActivity : AppCompatActivity() {
     }
     
     private fun isShizukuAvailable(): Boolean {
-        return try {
-            applicationContext.packageManager.resolveContentProvider(ShizukuProvider.AUTHORITY, 0) != null
-        } catch (e: Exception) {
-            false
-        }
+        // Bypass na checagem antiga de AUTHORITY do Claude.
+        // O pingBinder() na função acima já faz esse trabalho com precisão.
+        return true
     }
     
     private fun setupPremiumInterface() {
