@@ -5,15 +5,21 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_metal_industrial">
 
-    <ScrollView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_margin="8dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:strokeColor="#651FFF"
+        app:strokeWidth="6dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -22,25 +28,24 @@
                 android:textColor="#FFFFFF"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:letterSpacing="0.1"
-                android:layout_marginTop="5dp" />
+                android:letterSpacing="0.1" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/mainCard"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:layout_marginTop="10dp"
                 app:cardCornerRadius="24dp"
                 app:cardBackgroundColor="#CC1A1C24" 
                 app:strokeColor="#BBFF00" 
                 app:strokeWidth="3dp"
-                app:cardElevation="25dp"
-                android:translationZ="10dp">
+                app:cardElevation="25dp">
                 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="20dp">
+                    android:padding="15dp">
 
                     <TextView
                         android:id="@+id/statusText"
@@ -58,7 +63,7 @@
                         android:layout_centerInParent="true"
                         android:text="0.00 GHz"
                         android:textColor="#00FF41"
-                        android:textSize="45sp"
+                        android:textSize="40sp"
                         android:fontFamily="monospace"
                         android:shadowColor="#00FF41"
                         android:shadowRadius="15" />
@@ -78,7 +83,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
                         android:text="DTC: 0.00"
                         android:textColor="#00B0FF"
                         android:fontFamily="monospace" />
@@ -88,173 +92,174 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="> CONTROLES MESTRES"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1.2"
                 android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="5dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/smartExtremeButton"
                     android:layout_width="0dp"
-                    android:layout_height="100dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:layout_margin="5dp"
                     android:text="AJUSTE FINO\nEXTREMO 🚀"
                     app:backgroundTint="#261A1C24"
                     android:textColor="#D50000"
-                    app:cornerRadius="18dp"
+                    app:cornerRadius="15dp"
                     app:strokeWidth="3dp"
                     app:strokeColor="#D50000"
-                    app:elevation="15dp"
-                    android:translationZ="5dp"/>
+                    app:elevation="10dp"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/smartEcoButton"
                     android:layout_width="0dp"
-                    android:layout_height="100dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:layout_margin="5dp"
                     android:text="ECONOMIA\nEXTREMA 🔋"
                     app:backgroundTint="#261A1C24"
                     android:textColor="#00C853"
-                    app:cornerRadius="18dp"
+                    app:cornerRadius="15dp"
                     app:strokeWidth="3dp"
                     app:strokeColor="#00C853"
-                    app:elevation="15dp"
-                    android:translationZ="5dp"/>
+                    app:elevation="10dp"/>
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="> CONTROLES INDIVIDUAIS"
                 android:textColor="#A0A0A0"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
-            <GridLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:columnCount="2">
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/performanceButton"
                     android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_columnWeight="1"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:layout_margin="5dp"
                     android:text="PERFORMANCE"
                     app:backgroundTint="#261A1C24"
                     android:textColor="#FF3D00"
-                    app:cornerRadius="15dp"
+                    app:cornerRadius="12dp"
                     app:strokeWidth="2.5dp"
-                    app:strokeColor="#FF3D00"
-                    app:elevation="10dp"
-                    android:translationZ="3dp"/>
+                    app:strokeColor="#FF3D00"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/batteryButton"
                     android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_columnWeight="1"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:layout_margin="5dp"
                     android:text="BATERIA"
                     app:backgroundTint="#261A1C24"
                     android:textColor="#00B0FF"
-                    app:cornerRadius="15dp"
+                    app:cornerRadius="12dp"
                     app:strokeWidth="2.5dp"
-                    app:strokeColor="#00B0FF"
-                    app:elevation="10dp"
-                    android:translationZ="3dp"/>
+                    app:strokeColor="#00B0FF"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/touchButton"
                     android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_columnWeight="1"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:layout_margin="5dp"
                     android:text="TOUCH"
                     app:backgroundTint="#261A1C24"
                     android:textColor="#D500F9"
-                    app:cornerRadius="15dp"
+                    app:cornerRadius="12dp"
                     app:strokeWidth="2.5dp"
-                    app:strokeColor="#D500F9"
-                    app:elevation="10dp"
-                    android:translationZ="3dp"/>
+                    app:strokeColor="#D500F9"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/fpsButton"
                     android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_columnWeight="1"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:layout_margin="5dp"
                     android:text="FPS MAX"
                     app:backgroundTint="#261A1C24"
                     android:textColor="#00E676"
-                    app:cornerRadius="15dp"
+                    app:cornerRadius="12dp"
                     app:strokeWidth="2.5dp"
-                    app:strokeColor="#00E676"
-                    app:elevation="10dp"
-                    android:translationZ="3dp"/>
+                    app:strokeColor="#00E676"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/systemButton"
                     android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_columnWeight="1"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:layout_margin="5dp"
                     android:text="SISTEMA"
                     app:backgroundTint="#261A1C24"
                     android:textColor="#FFC107"
-                    app:cornerRadius="15dp"
+                    app:cornerRadius="12dp"
                     app:strokeWidth="2.5dp"
-                    app:strokeColor="#FFC107"
-                    app:elevation="10dp"
-                    android:translationZ="3dp"/>
+                    app:strokeColor="#FFC107"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/zramButton"
                     android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_columnWeight="1"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:layout_margin="5dp"
                     android:text="ZRAM/MEM"
                     app:backgroundTint="#261A1C24"
                     android:textColor="#651FFF"
-                    app:cornerRadius="15dp"
+                    app:cornerRadius="12dp"
                     app:strokeWidth="2.5dp"
-                    app:strokeColor="#651FFF"
-                    app:elevation="10dp"
-                    android:translationZ="3dp"/>
-            </GridLayout>
+                    app:strokeColor="#651FFF"/>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/signature3D"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="Moraes Yarosni VIP"
                 android:textColor="#FFFFFF"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:elevation="30dp"
                 android:shadowColor="#000000"
                 android:shadowRadius="20"
-                android:shadowDx="5"
-                android:shadowDy="5" />
+                android:shadowDx="3"
+                android:shadowDy="3" />
 
         </LinearLayout>
-    </ScrollView>
+    </com.google.android.material.card.MaterialCardView>
 </FrameLayout>
