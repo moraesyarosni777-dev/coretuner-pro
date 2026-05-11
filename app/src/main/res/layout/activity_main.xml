@@ -9,196 +9,198 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:drawable/screen_background_dark_transparent"
-        android:alpha="0.3" />
+        android:alpha="0.5" />
 
-    <com.google.android.material.card.MaterialCardView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        app:cardBackgroundColor="#80000000"
-        app:cardCornerRadius="32dp"
-        app:strokeColor="#9D00FF"
-        app:strokeWidth="5dp"
-        app:cardElevation="0dp">
+        android:fillViewport="true">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:weightSum="10">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="CORETUNER MAX // ULTRA VIP"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:gravity="center" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"
-                app:cardBackgroundColor="#99151025"
-                app:cardCornerRadius="25dp"
-                app:strokeColor="#651FFF"
-                app:strokeWidth="5dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:id="@+id/txt_shizuku"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="> CLIQUE AQUI P/ ABRIR SHIZUKU"
-                        android:textColor="#FF1744"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txt_cpu_speed"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="1,35 GHz"
-                        android:textColor="#00FF41"
-                        android:textSize="64sp"
-                        android:textStyle="bold"
-                        android:gravity="center" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardBackgroundColor="#99000000"
+            app:cardCornerRadius="30dp"
+            app:strokeColor="#9D00FF"
+            app:strokeWidth="6dp"
+            app:cardElevation="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.5"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_ajuste_fino"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:text="AJUSTE\nFINO"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CORETUNER MAX // ULTRA VIP"
                     android:textColor="#FFFFFF"
-                    app:backgroundTint="#AA4D0000"
-                    app:strokeColor="#FF1744"
-                    app:strokeWidth="5dp"
-                    app:cornerRadius="25dp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginBottom="15dp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_economia"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:text="ECONOMIA"
-                    android:textColor="#FFFFFF"
-                    app:backgroundTint="#AA003300"
-                    app:strokeColor="#00E676"
-                    app:strokeWidth="5dp"
-                    app:cornerRadius="25dp" />
-            </LinearLayout>
-
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.5"
-                android:columnCount="2"
-                android:rowCount="3"
-                android:layout_marginTop="5dp">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_performance"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="4dp"
-                    android:text="PERF"
-                    app:backgroundTint="#AA331900"
-                    app:strokeColor="#FF9100"
-                    app:strokeWidth="4dp"
-                    app:cornerRadius="20dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_bateria"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="4dp"
-                    android:text="BATERIA"
-                    app:backgroundTint="#AA001A33"
-                    app:strokeColor="#00B0FF"
-                    app:strokeWidth="4dp"
-                    app:cornerRadius="20dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_touch"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="4dp"
-                    android:text="TOUCH"
-                    app:backgroundTint="#AA260033"
-                    app:strokeColor="#D500F9"
-                    app:strokeWidth="4dp"
-                    app:cornerRadius="20dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_fps"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="4dp"
-                    android:text="FPS"
-                    app:backgroundTint="#AA002613"
-                    app:strokeColor="#00FF8C"
-                    app:strokeWidth="4dp"
-                    app:cornerRadius="20dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_sistema"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="4dp"
-                    android:text="SYSTEM"
-                    app:backgroundTint="#AA333300"
-                    app:strokeColor="#FFEA00"
-                    app:strokeWidth="4dp"
-                    app:cornerRadius="20dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_zram"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="4dp"
-                    android:text="ZRAM"
-                    app:backgroundTint="#AA1A0033"
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    app:cardBackgroundColor="#CC151025"
+                    app:cardCornerRadius="22dp"
                     app:strokeColor="#651FFF"
-                    app:strokeWidth="4dp"
-                    app:cornerRadius="20dp" />
-            </GridLayout>
+                    app:strokeWidth="5dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="MORAES YAROSNI // VIP 2026"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:gravity="center" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/txt_shizuku"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="> CLIQUE AQUI P/ ABRIR SHIZUKU"
+                            android:textColor="#FF1744"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txt_cpu_speed"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1,35 GHz"
+                            android:textColor="#00FF41"
+                            android:textSize="60sp"
+                            android:textStyle="bold"
+                            android:gravity="center" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_ajuste_fino"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                        android:text="AJUSTE\nFINO"
+                        android:textColor="#FFFFFF"
+                        app:backgroundTint="#AA4D0000"
+                        app:strokeColor="#FF1744"
+                        app:strokeWidth="5dp"
+                        app:cornerRadius="20dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_economia"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                        android:text="ECONOMIA"
+                        android:textColor="#FFFFFF"
+                        app:backgroundTint="#AA003300"
+                        app:strokeColor="#00E676"
+                        app:strokeWidth="5dp"
+                        app:cornerRadius="20dp" />
+                </LinearLayout>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:layout_marginTop="10dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_performance"
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="5dp"
+                        android:text="PERF"
+                        app:backgroundTint="#AA331900"
+                        app:strokeColor="#FF9100"
+                        app:strokeWidth="4dp"
+                        app:cornerRadius="15dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_bateria"
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="5dp"
+                        android:text="BATERIA"
+                        app:backgroundTint="#AA001A33"
+                        app:strokeColor="#00B0FF"
+                        app:strokeWidth="4dp"
+                        app:cornerRadius="15dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_touch"
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="5dp"
+                        android:text="TOUCH"
+                        app:backgroundTint="#AA260033"
+                        app:strokeColor="#D500F9"
+                        app:strokeWidth="4dp"
+                        app:cornerRadius="15dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_fps"
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="5dp"
+                        android:text="FPS"
+                        app:backgroundTint="#AA002613"
+                        app:strokeColor="#00FF8C"
+                        app:strokeWidth="4dp"
+                        app:cornerRadius="15dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_sistema"
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="5dp"
+                        android:text="SYSTEM"
+                        app:backgroundTint="#AA333300"
+                        app:strokeColor="#FFEA00"
+                        app:strokeWidth="4dp"
+                        app:cornerRadius="15dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_zram"
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="5dp"
+                        android:text="ZRAM"
+                        app:backgroundTint="#AA1A0033"
+                        app:strokeColor="#651FFF"
+                        app:strokeWidth="4dp"
+                        app:cornerRadius="15dp" />
+                </GridLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="MORAES YAROSNI // VIP 2026"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </ScrollView>
 </FrameLayout>
