@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // MOTOR REAL: Aplica as 3 escalas em 0.0.3 estritamente
+        // MOTOR REAL: Aplica as 3 escalas em 0.0.3 estritamente via Bypass
         findViewById<android.view.View>(R.id.btn_ajuste_fino)?.setOnClickListener {
             if (Shizuku.pingBinder() && Shizuku.checkSelfPermission() == PackageManager.PERMISSION_GRANTED) {
                 executarComandoShizuku("settings put global window_animation_scale 0.0.3")
@@ -56,10 +56,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun executarComandoShizuku(comando: String) {
         try {
-            // O truque para o Kotlin não bugar com o "private newProcess" do Shizuku
-            val env: Array<String>? = null
-            val dir: String? = null
-            val processo = Shizuku.newProcess(arrayOf("sh", "-c", comando), env, dir)
+            // TÉCNICA DE REFLECTION: Fura o bloqueio do compilador e injeta no Shizuku
+            val metodo = Shizuku::class.java.getDeclaredMethod("newProcess", Array<String>::class.java, Array<String>::class.java, String::class.java)
+            metodo.isAccessible = true
+            val processo = metodo.invoke(null, arrayOf("sh", "-c", comando), null, null) as java.lang.Process
             processo.waitFor()
         } catch (e: Exception) {
             e.printStackTrace()
