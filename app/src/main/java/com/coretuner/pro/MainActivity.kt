@@ -3,7 +3,6 @@ package com.coretuner.pro
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -41,8 +40,9 @@ class MainActivity : AppCompatActivity() {
             R.id.btn_sistema, R.id.btn_zram
         )
 
+        // Agora usamos android.view.View para aceitar os painéis de vidro clicáveis
         btnIds.forEach { id ->
-            findViewById<Button>(id)?.setOnClickListener {
+            findViewById<android.view.View>(id)?.setOnClickListener {
                 Toast.makeText(this, "Otimização Aplicada!", Toast.LENGTH_SHORT).show()
             }
         }
