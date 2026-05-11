@@ -7,7 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.card.MaterialCardView
+import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.*
 import rikka.shizuku.Shizuku
 import java.util.Random
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var dtcValueText: TextView
     private lateinit var ramValueText: TextView
     private lateinit var signature3D: TextView
-    private lateinit var mainCard: MaterialCardView
+    private lateinit var tabLayout: TabLayout
     
     private var isPerformanceMode = false
     private val scope = CoroutineScope(Dispatchers.Main + Job())
@@ -34,11 +34,18 @@ class MainActivity : AppCompatActivity() {
         dtcValueText = findViewById(R.id.dtcValueText)
         ramValueText = findViewById(R.id.ramValueText)
         signature3D = findViewById(R.id.signature3D)
-        mainCard = findViewById(R.id.mainCard)
+        tabLayout = findViewById(R.id.tabLayout)
 
+        setupTabs()
         setupButtons()
         startTelemetry()
         connectShizuku()
+    }
+
+    private fun setupTabs() {
+        tabLayout.addTab(tabLayout.newTab().setText("PRINCIPAL"))
+        tabLayout.addTab(tabLayout.newTab().setText("TUNING"))
+        tabLayout.addTab(tabLayout.newTab().setText("INFO"))
     }
 
     private fun connectShizuku() {
@@ -50,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                         statusText.setTextColor(android.graphics.Color.GREEN)
                         break 
                     } else {
-                        statusText.text = "> STATUS: PERMISSION REQ"
+                        statusText.text = "> STATUS: PERMISSÃO REQ"
                         Shizuku.requestPermission(1001)
                     }
                 } else {
@@ -65,25 +72,13 @@ class MainActivity : AppCompatActivity() {
     private fun setupButtons() {
         findViewById<MaterialButton>(R.id.performanceButton).setOnClickListener {
             isPerformanceMode = !isPerformanceMode
-            if (isPerformanceMode) {
-                runShell("settings put global window_animation_scale 0.5")
-                statusText.text = "EXTREMO ATIVADO ⚡"
-                statusText.setTextColor(android.graphics.Color.parseColor("#FF5722"))
-                mainCard.setStrokeColor(android.graphics.Color.parseColor("#FF5722"))
-                Toast.makeText(this, "Performance Injetada!", Toast.LENGTH_SHORT).show()
-            } else {
-                statusText.text = "> STATUS: ONLINE // VIP"
-                statusText.setTextColor(android.graphics.Color.GREEN)
-                mainCard.setStrokeColor(android.graphics.Color.parseColor("#3300E5FF"))
-            }
+            runShell("settings put global window_animation_scale 0.5")
+            Toast.makeText(this, "Performance VIP Injetada ⚡", Toast.LENGTH_SHORT).show()
         }
 
         findViewById<MaterialButton>(R.id.batteryButton).setOnClickListener {
             runShell("settings put global low_power 1")
-            statusText.text = "MODO FRIO ATIVO ❄️"
-            statusText.setTextColor(android.graphics.Color.parseColor("#00BCD4"))
-            mainCard.setStrokeColor(android.graphics.Color.parseColor("#00BCD4"))
-            Toast.makeText(this, "Resfriamento Iniciado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Modo Frio Ativado ❄️", Toast.LENGTH_SHORT).show()
         }
 
         findViewById<MaterialButton>(R.id.cacheButton).setOnClickListener {
@@ -115,13 +110,15 @@ class MainActivity : AppCompatActivity() {
         val h = Handler(Looper.getMainLooper())
         h.post(object : Runnable {
             override fun run() {
-                val coreBase = if (isPerformanceMode) 2.8 else 1.2
-                val core = coreBase + random.nextDouble()
-                coreValueText.text = String.format("%.2f GHz", core)
-                ramValueText.text = "RAM: ${random.nextInt(60) + 30}%"
+                val coreBase = if (isPerformanceMode) 2.9 else 1.2
+                coreValueText.text = String.format("%.2f GHz", coreBase + random.nextDouble())
+                ramValueText.text = "MEM: ${random.nextInt(40) + 40}%"
                 dtcValueText.text = "DTC: ${String.format("%.2f", random.nextDouble())}"
                 
-                signature3D.translationX = (Math.sin(System.currentTimeMillis() * 0.002) * 10).toFloat()
+                // Animação 3D da Assinatura
+                signature3D.translationX = (Math.sin(System.currentTimeMillis() * 0.002) * 12).toFloat()
+                signature3D.translationY = (Math.cos(System.currentTimeMillis() * 0.001) * 5).toFloat()
+                
                 h.postDelayed(this, 1000)
             }
         })
