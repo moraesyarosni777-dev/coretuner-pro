@@ -8,8 +8,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/brushed_steel_bg"
-        android:alpha="0.5" />
+        android:background="@drawable/brushed_metal_textured"
+        android:alpha="0.8" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,25 +29,28 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/mainCard"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="220dp"
             android:layout_marginTop="15dp"
-            app:cardCornerRadius="20dp"
-            app:cardBackgroundColor="#CC10151A"
-            app:strokeColor="#3300E5FF"
-            app:strokeWidth="1dp">
-
+            app:cardCornerRadius="24dp"
+            app:cardBackgroundColor="#BB10151A" 
+            app:strokeColor="#6600E5FF"
+            app:strokeWidth="1dp"
+            app:cardElevation="20dp">
+            
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="20dp">
+                android:padding="20dp"
+                android:background="@drawable/glass_effect_overlay"> 
 
                 <TextView
                     android:id="@+id/statusText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SISTEMA: AGUARDANDO..."
+                    android:text="SISTEMA: ONLINE // VIP"
                     android:textColor="#32CD32"
-                    android:fontFamily="monospace" />
+                    android:fontFamily="monospace"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/coreValueText"
@@ -100,7 +103,8 @@
                     android:text="EXTREMO ⚡"
                     app:backgroundTint="#1A1F26"
                     android:textColor="#FF5722"
-                    app:cornerRadius="15dp" />
+                    app:cornerRadius="18dp"
+                    app:elevation="8dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/batteryButton"
@@ -111,7 +115,8 @@
                     android:text="FRIO ❄️"
                     app:backgroundTint="#1A1F26"
                     android:textColor="#00BCD4"
-                    app:cornerRadius="15dp" />
+                    app:cornerRadius="18dp"
+                    app:elevation="8dp" />
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
@@ -121,7 +126,8 @@
                 android:layout_margin="5dp"
                 android:text="PURGE SYSTEM CACHE"
                 app:backgroundTint="#0F1F0F"
-                android:textColor="#32CD32" />
+                android:textColor="#32CD32"
+                app:cornerRadius="12dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/touchButton"
@@ -130,14 +136,15 @@
                 android:layout_margin="5dp"
                 android:text="TOUCH OPTIMIZER"
                 app:backgroundTint="#1F0F1F"
-                android:textColor="#D500F9" />
+                android:textColor="#D500F9"
+                app:cornerRadius="12dp" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/signature3D"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="Moraes Yarosni VIP"
             android:textColor="#32CD32"
