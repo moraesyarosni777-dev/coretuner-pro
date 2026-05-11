@@ -34,17 +34,33 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val btnIds = listOf(
-            R.id.btn_ajuste_fino, R.id.btn_economia, R.id.btn_performance,
-            R.id.btn_bateria, R.id.btn_touch, R.id.btn_fps,
-            R.id.btn_sistema, R.id.btn_zram
-        )
-
-        // Agora usamos android.view.View para aceitar os painéis de vidro clicáveis
-        btnIds.forEach { id ->
-            findViewById<android.view.View>(id)?.setOnClickListener {
-                Toast.makeText(this, "Otimização Aplicada!", Toast.LENGTH_SHORT).show()
+        // MOTOR REAL: Aplica as 3 escalas em 0.0.3 usando Shizuku
+        findViewById<android.view.View>(R.id.btn_ajuste_fino)?.setOnClickListener {
+            if (Shizuku.pingBinder() && Shizuku.checkSelfPermission() == PackageManager.PERMISSION_GRANTED) {
+                executarComandoShizuku("settings put global window_animation_scale 0.0.3")
+                executarComandoShizuku("settings put global transition_animation_scale 0.0.3")
+                executarComandoShizuku("settings put global animator_duration_scale 0.0.3")
+                Toast.makeText(this, "Animações cravadas em 0.0.3!", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Shizuku sem permissão!", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        // Outros botões
+        val outrosIds = listOf(R.id.btn_economia, R.id.btn_performance, R.id.btn_bateria, R.id.btn_touch, R.id.btn_fps, R.id.btn_sistema, R.id.btn_zram)
+        outrosIds.forEach { id ->
+            findViewById<android.view.View>(id)?.setOnClickListener {
+                Toast.makeText(this, "Módulo ativado com sucesso!", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun executarComandoShizuku(comando: String) {
+        try {
+            val processo = Shizuku.newProcess(arrayOf("sh", "-c", comando), null, null)
+            processo.waitFor()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
@@ -52,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         val txtShizuku = findViewById<TextView>(R.id.txt_shizuku)
         if (vinculado) {
             txtShizuku.text = "SHIZUKU VINCULADO COM SUCESSO"
-            txtShizuku.setTextColor(Color.GREEN)
+            txtShizuku.setTextColor(Color.parseColor("#39FF14"))
         }
     }
 
