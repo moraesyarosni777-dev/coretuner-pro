@@ -3,266 +3,262 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0A0710"
+    android:background="#05020A"
     android:fillViewport="true">
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="#0A0710"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp"
+        app:strokeColor="#9D00FF"
+        app:strokeWidth="4dp"> <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CORETUNER MAX // ULTRA VIP"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:letterSpacing="0.1"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="10dp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="#151020"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="15dp"
-            app:strokeColor="#651FFF"
-            app:strokeWidth="2dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CORETUNER MAX // ULTRA VIP"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="5dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#151020"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#651FFF"
+                app:strokeWidth="4dp"> <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/txt_shizuku"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="> CLIQUE AQUI P/ ABRIR SHIZUKU"
+                        android:textColor="#FF1744"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_cpu_speed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1,35 GHz"
+                        android:textColor="#00FF41"
+                        android:textSize="64sp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="RAM USAGE: 68%"
+                            android:textColor="#D500F9"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="LATENCY: 0.31ms"
+                            android:textColor="#2979FF"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MASTER ENGINE"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txt_shizuku"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="> CLIQUE AQUI P/ ABRIR SHIZUKU"
-                    android:textColor="#FF1744"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_ajuste_fino"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_margin="6dp"
+                    android:text="AJUSTE FINO\nEXTREMO"
+                    android:textColor="#FFFFFF"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt_cpu_speed"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="1,35 GHz"
-                    android:textColor="#00FF41"
-                    android:textSize="64sp"
                     android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp" />
+                    app:backgroundTint="#4D0000"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="#FF1744"
+                    app:strokeWidth="4dp" /> <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_economia"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_margin="6dp"
+                    android:text="ECONOMIA\nEXTREMA"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="#003300"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="#00E676"
+                    app:strokeWidth="4dp" /> </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="RAM USAGE: 68%"
-                        android:textColor="#D500F9"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="LATENCY: 0.31ms"
-                        android:textColor="#2979FF"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="MASTER ENGINE"
-            android:textColor="#888888"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_ajuste_fino"
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_weight="1"
-                android:layout_margin="6dp"
-                android:text="AJUSTE FINO\nEXTREMO"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CORE OPTIMIZERS"
                 android:textColor="#FFFFFF"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                app:backgroundTint="#4D0000"
-                app:cornerRadius="12dp"
-                app:elevation="8dp"
-                app:strokeColor="#FF1744"
-                app:strokeWidth="2dp" />
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_economia"
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_weight="1"
-                android:layout_margin="6dp"
-                android:text="ECONOMIA\nEXTREMA"
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:useDefaultMargins="true">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_performance"
+                    android:layout_width="0dp"
+                    android:layout_height="95dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:text="PERFORMANCE"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="#4D2600"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="#FF9100"
+                    app:strokeWidth="4dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_bateria"
+                    android:layout_width="0dp"
+                    android:layout_height="95dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:text="BATERIA"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="#00224D"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="#00B0FF"
+                    app:strokeWidth="4dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_touch"
+                    android:layout_width="0dp"
+                    android:layout_height="95dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:text="TOUCH"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="#3A004D"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="#D500F9"
+                    app:strokeWidth="4dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_fps"
+                    android:layout_width="0dp"
+                    android:layout_height="95dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:text="FPS MAX"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="#00331A"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="#00FF8C"
+                    app:strokeWidth="4dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_sistema"
+                    android:layout_width="0dp"
+                    android:layout_height="95dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:text="SISTEMA"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="#4D4D00"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="#FFEA00"
+                    app:strokeWidth="4dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_zram"
+                    android:layout_width="0dp"
+                    android:layout_height="95dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:text="ZRAM/MEM"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="#20004D"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="#651FFF"
+                    app:strokeWidth="4dp" />
+            </GridLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MORAES YAROSNI // VIP 2026"
                 android:textColor="#FFFFFF"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                app:backgroundTint="#003300"
-                app:cornerRadius="12dp"
-                app:elevation="8dp"
-                app:strokeColor="#00E676"
-                app:strokeWidth="2dp" />
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:letterSpacing="0.05" />
+
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CORE OPTIMIZERS"
-            android:textColor="#888888"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center" />
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:useDefaultMargins="true">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_performance"
-                android:layout_width="0dp"
-                android:layout_height="85dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:text="PERFORMANCE"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:backgroundTint="#4D2600"
-                app:cornerRadius="12dp"
-                app:elevation="8dp"
-                app:strokeColor="#FF9100"
-                app:strokeWidth="2dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_bateria"
-                android:layout_width="0dp"
-                android:layout_height="85dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:text="BATERIA"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:backgroundTint="#00224D"
-                app:cornerRadius="12dp"
-                app:elevation="8dp"
-                app:strokeColor="#00B0FF"
-                app:strokeWidth="2dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_touch"
-                android:layout_width="0dp"
-                android:layout_height="85dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:text="TOUCH"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:backgroundTint="#3A004D"
-                app:cornerRadius="12dp"
-                app:elevation="8dp"
-                app:strokeColor="#D500F9"
-                app:strokeWidth="2dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_fps"
-                android:layout_width="0dp"
-                android:layout_height="85dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:text="FPS MAX"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:backgroundTint="#00331A"
-                app:cornerRadius="12dp"
-                app:elevation="8dp"
-                app:strokeColor="#00FF8C"
-                app:strokeWidth="2dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_sistema"
-                android:layout_width="0dp"
-                android:layout_height="85dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:text="SISTEMA"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:backgroundTint="#4D4D00"
-                app:cornerRadius="12dp"
-                app:elevation="8dp"
-                app:strokeColor="#FFEA00"
-                app:strokeWidth="2dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_zram"
-                android:layout_width="0dp"
-                android:layout_height="85dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:text="ZRAM/MEM"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:backgroundTint="#20004D"
-                app:cornerRadius="12dp"
-                app:elevation="8dp"
-                app:strokeColor="#651FFF"
-                app:strokeWidth="2dp" />
-        </GridLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="MORAES YAROSNI // VIP 2026"
-            android:textColor="#666666"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="10dp" />
-
-    </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 </ScrollView>
