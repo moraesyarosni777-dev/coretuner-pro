@@ -1,23 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape>
-            <gradient
-                android:startColor="#1A1C24"
-                android:centerColor="#2A2E38"
-                android:endColor="#1A1C24"
-                android:angle="135"
-                android:type="linear"/>
-        </shape>
-    </item>
-    
-    <item>
-        <shape>
-            <gradient
-                android:startColor="#00000000"
-                android:endColor="#15FFFFFF"
-                android:angle="0"
-                android:type="linear" />
-        </shape>
-    </item>
-</layer-list>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.CoreTunerPro" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#651FFF</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="android:windowBackground">#0D0D12</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:statusBarColor">#0D0D12</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+    </style>
+</resources>
