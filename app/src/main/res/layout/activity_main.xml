@@ -1,265 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_metal_industrial">
+    android:background="#0F0F13">
 
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        app:cardBackgroundColor="@android:color/transparent"
-        app:strokeColor="#651FFF"
-        app:strokeWidth="6dp"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="0dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CORETUNER MAX // VIP"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="10dp"
+            android:gravity="center" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="180dp"
+            android:background="@drawable/border_neon_green"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="10dp"
+            android:gravity="center">
 
             <TextView
+                android:id="@+id/txt_shizuku"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CORETUNER MAX // VIP"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp"
+                android:text="> CLIQUE AQUI P/ ABRIR SHIZUKU"
+                android:textColor="#FF0000"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                android:letterSpacing="0.1" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mainCard"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.5"
-                android:layout_marginTop="10dp"
-                app:cardCornerRadius="24dp"
-                app:cardBackgroundColor="#CC1A1C24" 
-                app:strokeColor="#BBFF00" 
-                app:strokeWidth="3dp"
-                app:cardElevation="25dp">
-                
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="15dp">
-
-                    <TextView
-                        android:id="@+id/statusText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="> STATUS: INICIANDO..."
-                        android:textColor="#BBFF00"
-                        android:fontFamily="monospace"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/coreValueText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="0.00 GHz"
-                        android:textColor="#00FF41"
-                        android:textSize="40sp"
-                        android:fontFamily="monospace"
-                        android:shadowColor="#00FF41"
-                        android:shadowRadius="15" />
-
-                    <TextView
-                        android:id="@+id/ramValueText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:text="RAM_LOAD: 0%"
-                        android:textColor="#D500F9"
-                        android:fontFamily="monospace" />
-
-                    <TextView
-                        android:id="@+id/dtcValueText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
-                        android:text="DTC: 0.00"
-                        android:textColor="#00B0FF"
-                        android:fontFamily="monospace" />
-                </RelativeLayout>
-            </com.google.android.material.card.MaterialCardView>
+                android:layout_gravity="start" />
 
             <TextView
+                android:id="@+id/txt_cpu_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1,35 GHz"
+                android:textColor="#00FF41"
+                android:textSize="48sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp" />
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="> CONTROLES MESTRES"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="20dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.2"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MEM: 68%"
+                    android:textColor="#B026FF"
+                    android:textSize="12sp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/smartExtremeButton"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:text="AJUSTE FINO\nEXTREMO 🚀"
-                    app:backgroundTint="#261A1C24"
-                    android:textColor="#D50000"
-                    app:cornerRadius="15dp"
-                    app:strokeWidth="3dp"
-                    app:strokeColor="#D50000"
-                    app:elevation="10dp"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/smartEcoButton"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:text="ECONOMIA\nEXTREMA 🔋"
-                    app:backgroundTint="#261A1C24"
-                    android:textColor="#00C853"
-                    app:cornerRadius="15dp"
-                    app:strokeWidth="3dp"
-                    app:strokeColor="#00C853"
-                    app:elevation="10dp"/>
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="> CONTROLES INDIVIDUAIS"
-                android:textColor="#A0A0A0"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/performanceButton"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:text="PERFORMANCE"
-                    app:backgroundTint="#261A1C24"
-                    android:textColor="#FF3D00"
-                    app:cornerRadius="12dp"
-                    app:strokeWidth="2.5dp"
-                    app:strokeColor="#FF3D00"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/batteryButton"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:text="BATERIA"
-                    app:backgroundTint="#261A1C24"
-                    android:textColor="#00B0FF"
-                    app:cornerRadius="12dp"
-                    app:strokeWidth="2.5dp"
-                    app:strokeColor="#00B0FF"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/touchButton"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:text="TOUCH"
-                    app:backgroundTint="#261A1C24"
-                    android:textColor="#D500F9"
-                    app:cornerRadius="12dp"
-                    app:strokeWidth="2.5dp"
-                    app:strokeColor="#D500F9"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/fpsButton"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:text="FPS MAX"
-                    app:backgroundTint="#261A1C24"
-                    android:textColor="#00E676"
-                    app:cornerRadius="12dp"
-                    app:strokeWidth="2.5dp"
-                    app:strokeColor="#00E676"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/systemButton"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:text="SISTEMA"
-                    app:backgroundTint="#261A1C24"
-                    android:textColor="#FFC107"
-                    app:cornerRadius="12dp"
-                    app:strokeWidth="2.5dp"
-                    app:strokeColor="#FFC107"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/zramButton"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:text="ZRAM/MEM"
-                    app:backgroundTint="#261A1C24"
-                    android:textColor="#651FFF"
-                    app:cornerRadius="12dp"
-                    app:strokeWidth="2.5dp"
-                    app:strokeColor="#651FFF"/>
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/signature3D"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="Moraes Yarosni VIP"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:elevation="30dp"
-                android:shadowColor="#000000"
-                android:shadowRadius="20"
-                android:shadowDx="3"
-                android:shadowDy="3" />
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DTC: 0,31"
+                    android:textColor="#3D7DFF"
+                    android:textSize="12sp"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-</FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="> CONTROLES MESTRES"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_ajuste_fino"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:text="AJUSTE FINO\nEXTREMO 🚀"
+                android:textColor="#FF0000"
+                android:backgroundTint="#1A1A1A"
+                android:layout_margin="4dp" />
+
+            <Button
+                android:id="@+id/btn_economia"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:text="ECONOMIA\nEXTREMA 🔋"
+                android:textColor="#00FF00"
+                android:backgroundTint="#1A1A1A"
+                android:layout_margin="4dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="> CONTROLES INDIVIDUAIS"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="3">
+
+            <Button
+                android:id="@+id/btn_performance"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_columnWeight="1"
+                android:text="PERFORMANCE"
+                android:textColor="#FF5E00"
+                android:backgroundTint="#1A1A1A"
+                android:layout_margin="4dp" />
+
+            <Button
+                android:id="@+id/btn_bateria"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_columnWeight="1"
+                android:text="BATERIA"
+                android:textColor="#00A2FF"
+                android:backgroundTint="#1A1A1A"
+                android:layout_margin="4dp" />
+
+            <Button
+                android:id="@+id/btn_touch"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_columnWeight="1"
+                android:text="TOUCH"
+                android:textColor="#B026FF"
+                android:backgroundTint="#1A1A1A"
+                android:layout_margin="4dp" />
+
+            <Button
+                android:id="@+id/btn_fps"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_columnWeight="1"
+                android:text="FPS MAX"
+                android:textColor="#00FF8C"
+                android:backgroundTint="#1A1A1A"
+                android:layout_margin="4dp" />
+
+            <Button
+                android:id="@+id/btn_sistema"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_columnWeight="1"
+                android:text="SISTEMA"
+                android:textColor="#FFD000"
+                android:backgroundTint="#1A1A1A"
+                android:layout_margin="4dp" />
+
+            <Button
+                android:id="@+id/btn_zram"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_columnWeight="1"
+                android:text="ZRAM/MEM"
+                android:textColor="#4C00FF"
+                android:backgroundTint="#1A1A1A"
+                android:layout_margin="4dp" />
+        </GridLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Moraes Yarosni VIP"
+            android:textColor="#BBBBBB"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginTop="20dp" />
+
+    </LinearLayout>
+</ScrollView>
