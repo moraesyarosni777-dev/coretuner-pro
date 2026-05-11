@@ -36,16 +36,13 @@ class MainActivity : AppCompatActivity() {
         signature3D = findViewById(R.id.signature3D)
         tabLayout = findViewById(R.id.tabLayout)
 
-        setupTabs()
-        setupButtons()
-        startTelemetry()
-        connectShizuku()
-    }
-
-    private fun setupTabs() {
         tabLayout.addTab(tabLayout.newTab().setText("PRINCIPAL"))
         tabLayout.addTab(tabLayout.newTab().setText("TUNING"))
         tabLayout.addTab(tabLayout.newTab().setText("INFO"))
+
+        setupButtons()
+        startTelemetry()
+        connectShizuku()
     }
 
     private fun connectShizuku() {
@@ -110,15 +107,11 @@ class MainActivity : AppCompatActivity() {
         val h = Handler(Looper.getMainLooper())
         h.post(object : Runnable {
             override fun run() {
-                val coreBase = if (isPerformanceMode) 2.9 else 1.2
+                val coreBase = if (isPerformanceMode) 3.1 else 1.5
                 coreValueText.text = String.format("%.2f GHz", coreBase + random.nextDouble())
-                ramValueText.text = "MEM: ${random.nextInt(40) + 40}%"
+                ramValueText.text = "MEM: ${random.nextInt(30) + 50}%"
                 dtcValueText.text = "DTC: ${String.format("%.2f", random.nextDouble())}"
-                
-                // Animação 3D da Assinatura
-                signature3D.translationX = (Math.sin(System.currentTimeMillis() * 0.002) * 12).toFloat()
-                signature3D.translationY = (Math.cos(System.currentTimeMillis() * 0.001) * 5).toFloat()
-                
+                signature3D.translationX = (Math.sin(System.currentTimeMillis() * 0.002) * 15).toFloat()
                 h.postDelayed(this, 1000)
             }
         })
