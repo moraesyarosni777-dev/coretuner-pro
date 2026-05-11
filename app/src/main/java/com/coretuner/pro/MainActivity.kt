@@ -1,5 +1,6 @@
 package com.coretuner.pro
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.*
 import rikka.shizuku.Shizuku
 import java.util.Random
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var ramValueText: TextView
     private lateinit var signature3D: TextView
     private lateinit var mainCard: MaterialCardView
+    private lateinit var tabLayout: TabLayout
     
     private var isPerformanceMode = false
     private val scope = CoroutineScope(Dispatchers.Main + Job())
@@ -29,13 +32,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         
-        // Inicializar componentes da UI VIP
         statusText = findViewById(R.id.statusText)
         coreValueText = findViewById(R.id.coreValueText)
         dtcValueText = findViewById(R.id.dtcValueText)
         ramValueText = findViewById(R.id.ramValueText)
         signature3D = findViewById(R.id.signature3D)
         mainCard = findViewById(R.id.mainCard)
+        tabLayout = findViewById(R.id.tabLayout)
+
+        tabLayout.addTab(tabLayout.newTab().setText("PRINCIPAL"))
+        tabLayout.addTab(tabLayout.newTab().setText("TUNING"))
+        tabLayout.addTab(tabLayout.newTab().setText("INFO"))
 
         setupButtons()
         startTelemetry()
@@ -48,15 +55,16 @@ class MainActivity : AppCompatActivity() {
                 if (Shizuku.pingBinder()) {
                     if (Shizuku.checkSelfPermission() == 0) {
                         statusText.text = "> STATUS: ONLINE // VIP"
-                        statusText.setTextColor(android.graphics.Color.GREEN)
-                        break // Shizuku Online!
+                        statusText.setTextColor(Color.parseColor("#00C853"))
+                        break 
                     } else {
-                        statusText.text = "> STATUS: PERMISSION REQ"
+                        statusText.text = "> STATUS: REQUER PERMISSÃO"
+                        statusText.setTextColor(Color.parseColor("#FFC107"))
                         Shizuku.requestPermission(1001)
                     }
                 } else {
                     statusText.text = "> STATUS: SHIZUKU OFFLINE"
-                    statusText.setTextColor(android.graphics.Color.RED)
+                    statusText.setTextColor(Color.parseColor("#FF3D00"))
                 }
                 delay(3000)
             }
@@ -64,59 +72,61 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupButtons() {
-        // 1. PERFORMANCE EXTREMA
+        // BOTÃO 1: PERFORMANCE E ANIMAÇÕES EM 0.03
         findViewById<MaterialButton>(R.id.performanceButton).setOnClickListener {
             isPerformanceMode = !isPerformanceMode
-            val command = "settings put global window_animation_scale ${if (isPerformanceMode) "0.5" else "1.0"}; " +
-                          "settings put system peak_refresh_rate 120.0"
-            executarAjusteVip(command)
             
-            // Mudar cor do console central para Laranja Neon (Ativo) ou Verde (Normal)
-            mainCard.setStrokeColor(if (isPerformanceMode) android.graphics.Color.parseColor("#FF5722") else android.graphics.Color.parseColor("#6600FF41"))
-            Toast.makeText(this, if (isPerformanceMode) "PERFORMANCE INJETADA" else "NORMAL RESTAURADO", Toast.LENGTH_SHORT).show()
+            // Aqui estão as 3 escalas exatas em 0.03
+            val scale = if (isPerformanceMode) "0.03" else "1.0"
+            val command = "settings put global window_animation_scale $scale; " +
+                          "settings put global transition_animation_scale $scale; " +
+                          "settings put global animator_duration_scale $scale; " +
+                          "settings put system peak_refresh_rate 120.0"
+            
+            executarAjusteVip(command, "ESCALAS EM 0.03 E PERFORMANCE INJETADA ⚡")
+            
+            // Muda a moldura do console para laranja quando ativo, preto quando normal
+            mainCard.setStrokeColor(if (isPerformanceMode) Color.parseColor("#FF3D00") else Color.parseColor("#1A1A1A"))
         }
 
-        // 2. ECONOMIA DE BATERIA (FRIO)
         findViewById<MaterialButton>(R.id.batteryButton).setOnClickListener {
-            executarAjusteVip("settings put global low_power 1; settings put global window_animation_scale 1.5")
-            Toast.makeText(this, "MODO FRIO ATIVO ❄️", Toast.LENGTH_SHORT).show()
+            executarAjusteVip("settings put global low_power 1; settings put global window_animation_scale 1.5", "MODO FRIO ATIVO ❄️")
         }
 
-        // 3. ULTRA TOUCH
         findViewById<MaterialButton>(R.id.touchButton).setOnClickListener {
-            executarAjusteVip("settings put global touch_sensitivity_level 10; settings put secure touch_pressure_scale 0.1")
-            Toast.makeText(this, "TOUCH OPTIMIZED", Toast.LENGTH_SHORT).show()
+            executarAjusteVip("settings put global touch_sensitivity_level 10; settings put secure touch_pressure_scale 0.1", "TOUCH EXTREMO 👆")
         }
 
-        // 4. FPS MAXIMIZADO
         findViewById<MaterialButton>(R.id.fpsButton).setOnClickListener {
-            executarAjusteVip("settings put system peak_refresh_rate 120.0; settings put system min_refresh_rate 120.0")
-            Toast.makeText(this, "REFRESH RATE FORÇADO (120Hz)", Toast.LENGTH_SHORT).show()
+            executarAjusteVip("settings put system peak_refresh_rate 120.0; settings put system min_refresh_rate 120.0", "FPS MAX 📺")
         }
 
-        // 5. OTIMIZAR SISTEMA
         findViewById<MaterialButton>(R.id.systemButton).setOnClickListener {
-            executarAjusteVip("am kill-all; pm trim-caches 999G")
-            Toast.makeText(this, "PURGE COMPLETE", Toast.LENGTH_SHORT).show()
+            executarAjusteVip("am kill-all; pm trim-caches 999G", "SISTEMA LIMPO 🧠")
         }
 
-        // 6. ZRAM TUNING
         findViewById<MaterialButton>(R.id.zramButton).setOnClickListener {
-            executarAjusteVip("settings put global zram_enabled 1; settings put global cached_apps_freezer enabled")
-            Toast.makeText(this, "RAM TUNED", Toast.LENGTH_SHORT).show()
+            executarAjusteVip("settings put global zram_enabled 1; settings put global cached_apps_freezer enabled", "RAM TUNED 💾")
         }
     }
 
-    private fun executarAjusteVip(cmd: String) {
+    private fun executarAjusteVip(cmd: String, msgSucesso: String) {
+        // Trava de segurança: Se estiver offline, não faz nada e avisa o usuário.
+        if (!Shizuku.pingBinder() || Shizuku.checkSelfPermission() != 0) {
+            Toast.makeText(this, "ERRO: SHIZUKU OFFLINE. Autorize o app primeiro!", Toast.LENGTH_LONG).show()
+            return
+        }
+
         scope.launch(Dispatchers.IO) {
             try {
-                if (Shizuku.pingBinder()) {
-                    val args = arrayOf("sh", "-c", cmd)
-                    // Bypass via Reflection para evitar erro de acesso privado no Android 12
-                    val method = Shizuku::class.java.getDeclaredMethod("newProcess", Array<String>::class.java, Array<String>::class.java, String::class.java)
-                    method.isAccessible = true
-                    val proc = method.invoke(null, args, null, null) as java.lang.Process
-                    proc.waitFor()
+                val args = arrayOf("sh", "-c", cmd)
+                val method = Shizuku::class.java.getDeclaredMethod("newProcess", Array<String>::class.java, Array<String>::class.java, String::class.java)
+                method.isAccessible = true
+                val proc = method.invoke(null, args, null, null) as java.lang.Process
+                proc.waitFor()
+                
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@MainActivity, msgSucesso, Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) { e.printStackTrace() }
         }
@@ -131,9 +141,9 @@ class MainActivity : AppCompatActivity() {
                 ramValueText.text = "MEM: ${random.nextInt(40) + 40}%"
                 dtcValueText.text = "DTC: ${String.format("%.2f", random.nextDouble())}"
                 
-                // Animação da Assinatura 3D Branco (Movimento Suave)
-                signature3D.translationX = (Math.sin(System.currentTimeMillis() * 0.002) * 15).toFloat()
-                signature3D.translationY = (Math.cos(System.currentTimeMillis() * 0.001) * 6).toFloat()
+                // Animação de flutuação 3D para a assinatura
+                signature3D.translationX = (Math.sin(System.currentTimeMillis() * 0.002) * 12).toFloat()
+                signature3D.translationY = (Math.cos(System.currentTimeMillis() * 0.001) * 5).toFloat()
                 
                 h.postDelayed(this, 1000)
             }
