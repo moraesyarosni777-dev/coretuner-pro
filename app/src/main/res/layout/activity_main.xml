@@ -3,18 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#05020A"
+    android:background="#020105"
     android:fillViewport="true">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        app:cardBackgroundColor="#0A0710"
+        app:cardBackgroundColor="#CC0D0A1A"
         app:cardCornerRadius="24dp"
-        app:cardElevation="0dp"
         app:strokeColor="#9D00FF"
-        app:strokeWidth="4dp"> <LinearLayout
+        app:strokeWidth="4dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -28,17 +29,17 @@
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:letterSpacing="0.1"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="5dp" />
+                android:layout_marginBottom="20dp" />
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#151020"
+                app:cardBackgroundColor="#CC151025"
                 app:cardCornerRadius="16dp"
                 app:strokeColor="#651FFF"
-                app:strokeWidth="4dp"> <LinearLayout
+                app:strokeWidth="4dp">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -61,204 +62,126 @@
                         android:textColor="#00FF41"
                         android:textSize="64sp"
                         android:textStyle="bold"
-                        android:gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="RAM USAGE: 68%"
-                            android:textColor="#D500F9"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="LATENCY: 0.31ms"
-                            android:textColor="#2979FF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
+                        android:gravity="center" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="MASTER ENGINE"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_ajuste_fino"
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
+                    android:layout_height="110dp"
                     android:layout_weight="1"
-                    android:layout_margin="6dp"
-                    android:text="AJUSTE FINO\nEXTREMO"
+                    android:layout_margin="5dp"
+                    android:text="AJUSTE FINO"
                     android:textColor="#FFFFFF"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="#4D0000"
-                    app:cornerRadius="12dp"
+                    app:backgroundTint="#CC4D0000"
                     app:strokeColor="#FF1744"
-                    app:strokeWidth="4dp" /> <com.google.android.material.button.MaterialButton
+                    app:strokeWidth="3dp"
+                    app:cornerRadius="12dp" />
+
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_economia"
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
+                    android:layout_height="110dp"
                     android:layout_weight="1"
-                    android:layout_margin="6dp"
-                    android:text="ECONOMIA\nEXTREMA"
+                    android:layout_margin="5dp"
+                    android:text="ECONOMIA"
                     android:textColor="#FFFFFF"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="#003300"
-                    app:cornerRadius="12dp"
+                    app:backgroundTint="#CC003300"
                     app:strokeColor="#00E676"
-                    app:strokeWidth="4dp" /> </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="CORE OPTIMIZERS"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center" />
+                    app:strokeWidth="3dp"
+                    app:cornerRadius="12dp" />
+            </LinearLayout>
 
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:columnCount="2"
-                android:useDefaultMargins="true">
+                android:layout_marginTop="10dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_performance"
                     android:layout_width="0dp"
-                    android:layout_height="95dp"
+                    android:layout_height="80dp"
                     android:layout_columnWeight="1"
-                    android:layout_margin="6dp"
-                    android:text="PERFORMANCE"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="#4D2600"
-                    app:cornerRadius="12dp"
+                    android:layout_margin="4dp"
+                    android:text="PERF"
+                    app:backgroundTint="#CC331900"
                     app:strokeColor="#FF9100"
-                    app:strokeWidth="4dp" />
+                    app:strokeWidth="3dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_bateria"
                     android:layout_width="0dp"
-                    android:layout_height="95dp"
+                    android:layout_height="80dp"
                     android:layout_columnWeight="1"
-                    android:layout_margin="6dp"
+                    android:layout_margin="4dp"
                     android:text="BATERIA"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="#00224D"
-                    app:cornerRadius="12dp"
+                    app:backgroundTint="#CC001A33"
                     app:strokeColor="#00B0FF"
-                    app:strokeWidth="4dp" />
+                    app:strokeWidth="3dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_touch"
                     android:layout_width="0dp"
-                    android:layout_height="95dp"
+                    android:layout_height="80dp"
                     android:layout_columnWeight="1"
-                    android:layout_margin="6dp"
+                    android:layout_margin="4dp"
                     android:text="TOUCH"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="#3A004D"
-                    app:cornerRadius="12dp"
+                    app:backgroundTint="#CC260033"
                     app:strokeColor="#D500F9"
-                    app:strokeWidth="4dp" />
+                    app:strokeWidth="3dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_fps"
                     android:layout_width="0dp"
-                    android:layout_height="95dp"
+                    android:layout_height="80dp"
                     android:layout_columnWeight="1"
-                    android:layout_margin="6dp"
-                    android:text="FPS MAX"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="#00331A"
-                    app:cornerRadius="12dp"
+                    android:layout_margin="4dp"
+                    android:text="FPS"
+                    app:backgroundTint="#CC002613"
                     app:strokeColor="#00FF8C"
-                    app:strokeWidth="4dp" />
+                    app:strokeWidth="3dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_sistema"
                     android:layout_width="0dp"
-                    android:layout_height="95dp"
+                    android:layout_height="80dp"
                     android:layout_columnWeight="1"
-                    android:layout_margin="6dp"
-                    android:text="SISTEMA"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="#4D4D00"
-                    app:cornerRadius="12dp"
+                    android:layout_margin="4dp"
+                    android:text="SYSTEM"
+                    app:backgroundTint="#CC333300"
                     app:strokeColor="#FFEA00"
-                    app:strokeWidth="4dp" />
+                    app:strokeWidth="3dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_zram"
                     android:layout_width="0dp"
-                    android:layout_height="95dp"
+                    android:layout_height="80dp"
                     android:layout_columnWeight="1"
-                    android:layout_margin="6dp"
-                    android:text="ZRAM/MEM"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="#20004D"
-                    app:cornerRadius="12dp"
+                    android:layout_margin="4dp"
+                    android:text="ZRAM"
+                    app:backgroundTint="#CC1A0033"
                     app:strokeColor="#651FFF"
-                    app:strokeWidth="4dp" />
+                    app:strokeWidth="3dp" />
             </GridLayout>
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+            <Space android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="MORAES YAROSNI // VIP 2026"
                 android:textColor="#FFFFFF"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:letterSpacing="0.05" />
-
+                android:gravity="center" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </ScrollView>
