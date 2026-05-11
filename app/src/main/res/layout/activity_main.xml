@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_white_3d">
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="#FFFFFF"
-        app:tabTextColor="#757575"
-        app:tabSelectedTextColor="#D500F9"
-        app:tabIndicatorColor="#D500F9"
-        android:elevation="10dp"/>
+    android:background="@drawable/bg_metal_industrial">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tabLayout"
         android:padding="16dp">
 
         <LinearLayout
@@ -31,20 +19,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CORETUNER MAX // VIP"
-                android:textColor="#1A1A1A"
+                android:textColor="#FFFFFF"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.1"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/mainCard"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="15dp"
                 app:cardCornerRadius="24dp"
-                app:cardBackgroundColor="#FFFFFF"
-                app:strokeColor="#1A1A1A"
+                app:cardBackgroundColor="#CC1A1C24" 
+                app:strokeColor="#BBFF00" 
                 app:strokeWidth="3dp"
                 app:cardElevation="25dp"
                 android:translationZ="10dp">
@@ -58,8 +46,8 @@
                         android:id="@+id/statusText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="> STATUS: SYSTEM_ONLINE"
-                        android:textColor="#00C853"
+                        android:text="> STATUS: INICIANDO..."
+                        android:textColor="#BBFF00"
                         android:fontFamily="monospace"
                         android:textStyle="bold" />
 
@@ -69,11 +57,11 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:text="0.00 GHz"
-                        android:textColor="#00C853"
-                        android:textSize="40sp"
+                        android:textColor="#00FF41"
+                        android:textSize="45sp"
                         android:fontFamily="monospace"
-                        android:shadowColor="#4400C853"
-                        android:shadowRadius="10" />
+                        android:shadowColor="#00FF41"
+                        android:shadowRadius="15" />
 
                     <TextView
                         android:id="@+id/ramValueText"
@@ -81,9 +69,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:text="RAM_LOAD: 0%"
-                        android:textColor="#AA00FF"
-                        android:fontFamily="monospace"
-                        android:textStyle="bold" />
+                        android:textColor="#D500F9"
+                        android:fontFamily="monospace" />
 
                     <TextView
                         android:id="@+id/dtcValueText"
@@ -94,8 +81,7 @@
                         android:layout_alignParentEnd="true"
                         android:text="DTC: 0.00"
                         android:textColor="#00B0FF"
-                        android:fontFamily="monospace"
-                        android:textStyle="bold" />
+                        android:fontFamily="monospace" />
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -104,8 +90,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="> MODOS MESTRES INTELIGENTES"
-                android:textColor="#1A1A1A"
+                android:text="> CONTROLES MESTRES"
+                android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -122,12 +108,12 @@
                     android:layout_weight="1"
                     android:layout_margin="5dp"
                     android:text="AJUSTE FINO\nEXTREMO 🚀"
-                    app:backgroundTint="#FFFFFF"
+                    app:backgroundTint="#261A1C24"
                     android:textColor="#D50000"
-                    app:cornerRadius="15dp"
+                    app:cornerRadius="18dp"
                     app:strokeWidth="3dp"
                     app:strokeColor="#D50000"
-                    app:elevation="12dp"
+                    app:elevation="15dp"
                     android:translationZ="5dp"/>
 
                 <com.google.android.material.button.MaterialButton
@@ -137,12 +123,12 @@
                     android:layout_weight="1"
                     android:layout_margin="5dp"
                     android:text="ECONOMIA\nEXTREMA 🔋"
-                    app:backgroundTint="#FFFFFF"
+                    app:backgroundTint="#261A1C24"
                     android:textColor="#00C853"
-                    app:cornerRadius="15dp"
+                    app:cornerRadius="18dp"
                     app:strokeWidth="3dp"
                     app:strokeColor="#00C853"
-                    app:elevation="12dp"
+                    app:elevation="15dp"
                     android:translationZ="5dp"/>
             </LinearLayout>
 
@@ -151,8 +137,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:text="> Ajustes Individuais Manuais"
-                android:textColor="#757575"
+                android:text="> CONTROLES INDIVIDUAIS"
+                android:textColor="#A0A0A0"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
@@ -169,12 +155,13 @@
                     android:layout_columnWeight="1"
                     android:layout_margin="5dp"
                     android:text="PERFORMANCE"
-                    app:backgroundTint="#FFFFFF"
+                    app:backgroundTint="#261A1C24"
                     android:textColor="#FF3D00"
-                    app:cornerRadius="12dp"
-                    app:strokeWidth="2dp"
+                    app:cornerRadius="15dp"
+                    app:strokeWidth="2.5dp"
                     app:strokeColor="#FF3D00"
-                    app:elevation="8dp"/>
+                    app:elevation="10dp"
+                    android:translationZ="3dp"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/batteryButton"
@@ -183,12 +170,13 @@
                     android:layout_columnWeight="1"
                     android:layout_margin="5dp"
                     android:text="BATERIA"
-                    app:backgroundTint="#FFFFFF"
+                    app:backgroundTint="#261A1C24"
                     android:textColor="#00B0FF"
-                    app:cornerRadius="12dp"
-                    app:strokeWidth="2dp"
+                    app:cornerRadius="15dp"
+                    app:strokeWidth="2.5dp"
                     app:strokeColor="#00B0FF"
-                    app:elevation="8dp"/>
+                    app:elevation="10dp"
+                    android:translationZ="3dp"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/touchButton"
@@ -197,12 +185,13 @@
                     android:layout_columnWeight="1"
                     android:layout_margin="5dp"
                     android:text="TOUCH"
-                    app:backgroundTint="#FFFFFF"
+                    app:backgroundTint="#261A1C24"
                     android:textColor="#D500F9"
-                    app:cornerRadius="12dp"
-                    app:strokeWidth="2dp"
+                    app:cornerRadius="15dp"
+                    app:strokeWidth="2.5dp"
                     app:strokeColor="#D500F9"
-                    app:elevation="8dp"/>
+                    app:elevation="10dp"
+                    android:translationZ="3dp"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/fpsButton"
@@ -211,12 +200,13 @@
                     android:layout_columnWeight="1"
                     android:layout_margin="5dp"
                     android:text="FPS MAX"
-                    app:backgroundTint="#FFFFFF"
+                    app:backgroundTint="#261A1C24"
                     android:textColor="#00E676"
-                    app:cornerRadius="12dp"
-                    app:strokeWidth="2dp"
+                    app:cornerRadius="15dp"
+                    app:strokeWidth="2.5dp"
                     app:strokeColor="#00E676"
-                    app:elevation="8dp"/>
+                    app:elevation="10dp"
+                    android:translationZ="3dp"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/systemButton"
@@ -225,12 +215,13 @@
                     android:layout_columnWeight="1"
                     android:layout_margin="5dp"
                     android:text="SISTEMA"
-                    app:backgroundTint="#FFFFFF"
+                    app:backgroundTint="#261A1C24"
                     android:textColor="#FFC107"
-                    app:cornerRadius="12dp"
-                    app:strokeWidth="2dp"
+                    app:cornerRadius="15dp"
+                    app:strokeWidth="2.5dp"
                     app:strokeColor="#FFC107"
-                    app:elevation="8dp"/>
+                    app:elevation="10dp"
+                    android:translationZ="3dp"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/zramButton"
@@ -239,12 +230,13 @@
                     android:layout_columnWeight="1"
                     android:layout_margin="5dp"
                     android:text="ZRAM/MEM"
-                    app:backgroundTint="#FFFFFF"
+                    app:backgroundTint="#261A1C24"
                     android:textColor="#651FFF"
-                    app:cornerRadius="12dp"
-                    app:strokeWidth="2dp"
+                    app:cornerRadius="15dp"
+                    app:strokeWidth="2.5dp"
                     app:strokeColor="#651FFF"
-                    app:elevation="8dp"/>
+                    app:elevation="10dp"
+                    android:translationZ="3dp"/>
             </GridLayout>
 
             <TextView
@@ -260,9 +252,9 @@
                 android:elevation="30dp"
                 android:shadowColor="#000000"
                 android:shadowRadius="20"
-                android:shadowDx="3"
-                android:shadowDy="3" />
+                android:shadowDx="5"
+                android:shadowDy="5" />
 
         </LinearLayout>
     </ScrollView>
-</RelativeLayout>
+</FrameLayout>
