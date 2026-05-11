@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 executarComandoShizuku("settings put global window_animation_scale 0.0.3")
                 executarComandoShizuku("settings put global transition_animation_scale 0.0.3")
                 executarComandoShizuku("settings put global animator_duration_scale 0.0.3")
-                Toast.makeText(this, "Escalas cravadas em 0.0.3!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Escalas cravadas estritamente em 0.0.3!", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(this, "Shizuku sem permissão!", Toast.LENGTH_SHORT).show()
             }
@@ -56,7 +56,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun executarComandoShizuku(comando: String) {
         try {
-            val processo = Shizuku.newProcess(arrayOf("sh", "-c", comando), null, null)
+            // O truque para o Kotlin não bugar com o "private newProcess" do Shizuku
+            val env: Array<String>? = null
+            val dir: String? = null
+            val processo = Shizuku.newProcess(arrayOf("sh", "-c", comando), env, dir)
             processo.waitFor()
         } catch (e: Exception) {
             e.printStackTrace()
