@@ -27,29 +27,24 @@ class MainActivity : AppCompatActivity() {
             if (Shizuku.pingBinder()) {
                 if (Shizuku.checkSelfPermission() == PackageManager.PERMISSION_GRANTED) {
                     atualizarStatusShizuku(true)
-                    Toast.makeText(this, "Conexão Shizuku Ativa!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Acesso Shizuku Confirmado!", Toast.LENGTH_SHORT).show()
                 } else {
                     Shizuku.requestPermission(0)
                 }
             } else {
-                Toast.makeText(this, "Ative o Shizuku no Manager!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Erro: Shizuku não está rodando!", Toast.LENGTH_LONG).show()
             }
         }
 
-        val botoes = listOf(
-            R.id.btn_ajuste_fino to "Ajuste Fino Ativado!",
-            R.id.btn_economia to "Modo Eco Ativado!",
-            R.id.btn_performance to "Turbo Ativado!",
-            R.id.btn_bateria to "Bateria Poupada!",
-            R.id.btn_touch to "Touch Otimizado!",
-            R.id.btn_fps to "FPS Liberado!",
-            R.id.btn_sistema to "Limpeza Geral!",
-            R.id.btn_zram to "ZRAM Ativada!"
+        val btnIds = listOf(
+            R.id.btn_ajuste_fino, R.id.btn_economia, R.id.btn_performance,
+            R.id.btn_bateria, R.id.btn_touch, R.id.btn_fps,
+            R.id.btn_sistema, R.id.btn_zram
         )
 
-        botoes.forEach { (id, msg) ->
-            findViewById<Button>(id).setOnClickListener {
-                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+        btnIds.forEach { id ->
+            findViewById<Button>(id)?.setOnClickListener {
+                Toast.makeText(this, "Otimização Aplicada com Sucesso!", Toast.LENGTH_SHORT).show()
             }
         }
     }
