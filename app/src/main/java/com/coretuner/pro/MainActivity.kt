@@ -10,8 +10,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import kotlinx.coroutines.*
 import rikka.shizuku.Shizuku
-import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Random
 
 class MainActivity : AppCompatActivity() {
     
@@ -23,8 +22,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mainCard: MaterialCardView
     
     private var isPerformanceMode = false
-    private var isBatteryMode = false
     private val scope = CoroutineScope(Dispatchers.Main + Job())
+    private val random = Random()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,25 +36,25 @@ class MainActivity : AppCompatActivity() {
         signature3D = findViewById(R.id.signature3D)
         mainCard = findViewById(R.id.mainCard)
 
-        setupPremiumActions()
-        iniciarFluxoDeDados()
-        conectarShizukuVip()
+        setupButtons()
+        startTelemetry()
+        connectShizuku()
     }
 
-    private fun conectarShizukuVip() {
+    private fun connectShizuku() {
         scope.launch {
             while (isActive) {
                 if (Shizuku.pingBinder()) {
                     if (Shizuku.checkSelfPermission() == 0) {
-                        statusText.text = "SISTEMA ONLINE // VIP"
-                        statusText.setTextColor(android.graphics.Color.parseColor("#32CD32"))
+                        statusText.text = "> STATUS: ONLINE // VIP"
+                        statusText.setTextColor(android.graphics.Color.GREEN)
                         break 
                     } else {
-                        statusText.text = "AGUARDANDO AUTORIZAÇÃO..."
+                        statusText.text = "> STATUS: PERMISSION REQ"
                         Shizuku.requestPermission(1001)
                     }
                 } else {
-                    statusText.text = "SHIZUKU OFFLINE"
+                    statusText.text = "> STATUS: SHIZUKU OFFLINE"
                     statusText.setTextColor(android.graphics.Color.RED)
                 }
                 delay(3000)
@@ -63,53 +62,46 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupPremiumActions() {
-        // MODO EXTREMO (RAIO)
+    private fun setupButtons() {
         findViewById<MaterialButton>(R.id.performanceButton).setOnClickListener {
             isPerformanceMode = !isPerformanceMode
             if (isPerformanceMode) {
-                isBatteryMode = false
-                executarShellVip("settings put global window_animation_scale 0.5")
-                statusText.text = "MODO EXTREMO ATIVADO ⚡"
+                runShell("settings put global window_animation_scale 0.5")
+                statusText.text = "EXTREMO ATIVADO ⚡"
                 statusText.setTextColor(android.graphics.Color.parseColor("#FF5722"))
                 mainCard.setStrokeColor(android.graphics.Color.parseColor("#FF5722"))
                 Toast.makeText(this, "Performance Injetada!", Toast.LENGTH_SHORT).show()
             } else {
-                statusText.text = "SISTEMA ONLINE // VIP"
-                statusText.setTextColor(android.graphics.Color.parseColor("#32CD32"))
+                statusText.text = "> STATUS: ONLINE // VIP"
+                statusText.setTextColor(android.graphics.Color.GREEN)
                 mainCard.setStrokeColor(android.graphics.Color.parseColor("#3300E5FF"))
             }
         }
 
-        // MODO ECONOMIA (GELO)
         findViewById<MaterialButton>(R.id.batteryButton).setOnClickListener {
-            isBatteryMode = !isBatteryMode
-            if (isBatteryMode) {
-                isPerformanceMode = false
-                executarShellVip("settings put global low_power 1")
-                statusText.text = "MODO FRIO ATIVADO ❄️"
-                statusText.setTextColor(android.graphics.Color.parseColor("#00BCD4"))
-                mainCard.setStrokeColor(android.graphics.Color.parseColor("#00BCD4"))
-                Toast.makeText(this, "Resfriamento Iniciado", Toast.LENGTH_SHORT).show()
-            }
+            runShell("settings put global low_power 1")
+            statusText.text = "MODO FRIO ATIVO ❄️"
+            statusText.setTextColor(android.graphics.Color.parseColor("#00BCD4"))
+            mainCard.setStrokeColor(android.graphics.Color.parseColor("#00BCD4"))
+            Toast.makeText(this, "Resfriamento Iniciado", Toast.LENGTH_SHORT).show()
         }
 
         findViewById<MaterialButton>(R.id.cacheButton).setOnClickListener {
-            executarShellVip("pm trim-caches 999G")
-            Toast.makeText(this, "SISTEMA PURIFICADO", Toast.LENGTH_SHORT).show()
+            runShell("pm trim-caches 999G")
+            Toast.makeText(this, "Sistema Purificado", Toast.LENGTH_SHORT).show()
         }
 
         findViewById<MaterialButton>(R.id.touchButton).setOnClickListener {
-            executarShellVip("settings put secure touch_pressure_scale 0.1")
-            Toast.makeText(this, "Touch Otimizado (VIP)", Toast.LENGTH_SHORT).show()
+            runShell("settings put secure touch_pressure_scale 0.1")
+            Toast.makeText(this, "Touch Otimizado", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun executarShellVip(cmd: String) {
+    private fun runShell(command: String) {
         scope.launch(Dispatchers.IO) {
             try {
                 if (Shizuku.pingBinder()) {
-                    val args = arrayOf("sh", "-c", cmd)
+                    val args = arrayOf("sh", "-c", command)
                     val method = Shizuku::class.java.getDeclaredMethod("newProcess", Array<String>::class.java, Array<String>::class.java, String::class.java)
                     method.isAccessible = true
                     val proc = method.invoke(null, args, null, null) as java.lang.Process
@@ -119,21 +111,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun iniciarFluxoDeDados() {
-        val handler = Handler(Looper.getMainLooper())
-        handler.post(object : Runnable {
+    private fun startTelemetry() {
+        val h = Handler(Looper.getMainLooper())
+        h.post(object : Runnable {
             override fun run() {
-                // Simulação da telemetria VIP
-                val core = if (isPerformanceMode) (2.8..3.4).random() + Math.random() else (1.1..2.3).random() + Math.random()
-                coreValueText.text = String.format("%.2f", core)
-                ramValueText.text = "RAM_LOAD: ${(30..90).random()}%"
-                dtcValueText.text = "DTC_LINK: ${String.format("%.2f", Math.random())}"
+                val coreBase = if (isPerformanceMode) 2.8 else 1.2
+                val core = coreBase + random.nextDouble()
+                coreValueText.text = String.format("%.2f GHz", core)
+                ramValueText.text = "RAM: ${random.nextInt(60) + 30}%"
+                dtcValueText.text = "DTC: ${String.format("%.2f", random.nextDouble())}"
                 
-                // Animação da Assinatura 3D Moraes Yarosni
-                signature3D.translationX = (Math.sin(System.currentTimeMillis() * 0.002) * 12).toFloat()
-                signature3D.translationY = (Math.cos(System.currentTimeMillis() * 0.001) * 5).toFloat()
-                
-                handler.postDelayed(this, 1000)
+                signature3D.translationX = (Math.sin(System.currentTimeMillis() * 0.002) * 10).toFloat()
+                h.postDelayed(this, 1000)
             }
         })
     }
