@@ -3,69 +3,62 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#050505"
+    android:background="#0A0710"
     android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="16dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CORETUNER MAX // ULTRA VIP"
-            android:textColor="#E0E0E0"
-            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:letterSpacing="0.2"
-            android:layout_marginBottom="25dp" />
+            android:letterSpacing="0.1"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="#121212"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="10dp"
-            app:strokeColor="#1FFFFFFF"
-            app:strokeWidth="1dp">
+            app:cardBackgroundColor="#151020"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="15dp"
+            app:strokeColor="#651FFF"
+            app:strokeWidth="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="24dp">
+                android:padding="20dp">
 
                 <TextView
                     android:id="@+id/txt_shizuku"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="> STATUS: AGUARDANDO SHIZUKU"
+                    android:text="> CLIQUE AQUI P/ ABRIR SHIZUKU"
                     android:textColor="#FF1744"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.05" />
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txt_cpu_speed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="1,35 GHz"
-                    android:textColor="#00E676"
-                    android:textSize="60sp"
+                    android:textColor="#00FF41"
+                    android:textSize="64sp"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:fontFamily="sans-serif-condensed-light" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#1FFFFFFF"
-                    android:layout_marginBottom="15dp" />
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -78,7 +71,7 @@
                         android:layout_weight="1"
                         android:text="RAM USAGE: 68%"
                         android:textColor="#D500F9"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -86,7 +79,7 @@
                         android:layout_height="wrap_content"
                         android:text="LATENCY: 0.31ms"
                         android:textColor="#2979FF"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
@@ -95,14 +88,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="MASTER ENGINE CONTROL"
-            android:textColor="#555555"
-            android:textSize="11sp"
+            android:text="MASTER ENGINE"
+            android:textColor="#888888"
+            android:textSize="14sp"
             android:textStyle="bold"
-            android:layout_marginTop="35dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:letterSpacing="0.1" />
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,40 +103,47 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_ajuste_fino"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:layout_weight="1"
-                android:layout_margin="5dp"
+                android:layout_margin="6dp"
                 android:text="AJUSTE FINO\nEXTREMO"
-                android:textColor="#FF1744"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:backgroundTint="#4D0000"
+                app:cornerRadius="12dp"
+                app:elevation="8dp"
                 app:strokeColor="#FF1744"
-                app:cornerRadius="8dp" />
+                app:strokeWidth="2dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_economia"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:layout_weight="1"
-                android:layout_margin="5dp"
+                android:layout_margin="6dp"
                 android:text="ECONOMIA\nEXTREMA"
-                android:textColor="#00E676"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:backgroundTint="#003300"
+                app:cornerRadius="12dp"
+                app:elevation="8dp"
                 app:strokeColor="#00E676"
-                app:cornerRadius="8dp" />
+                app:strokeWidth="2dp" />
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CORE OPTIMIZERS"
-            android:textColor="#555555"
-            android:textSize="11sp"
+            android:textColor="#888888"
+            android:textSize="14sp"
             android:textStyle="bold"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:letterSpacing="0.1" />
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center" />
 
         <GridLayout
             android:layout_width="match_parent"
@@ -155,79 +154,115 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_performance"
                 android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_height="85dp"
                 android:layout_columnWeight="1"
+                android:layout_margin="6dp"
                 android:text="PERFORMANCE"
-                android:textColor="#FF9100"
-                app:backgroundTint="#121212"
-                app:cornerRadius="8dp"
-                android:textSize="11sp" />
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="#4D2600"
+                app:cornerRadius="12dp"
+                app:elevation="8dp"
+                app:strokeColor="#FF9100"
+                app:strokeWidth="2dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_bateria"
                 android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_height="85dp"
                 android:layout_columnWeight="1"
+                android:layout_margin="6dp"
                 android:text="BATERIA"
-                android:textColor="#00B0FF"
-                app:backgroundTint="#121212"
-                app:cornerRadius="8dp"
-                android:textSize="11sp" />
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="#00224D"
+                app:cornerRadius="12dp"
+                app:elevation="8dp"
+                app:strokeColor="#00B0FF"
+                app:strokeWidth="2dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_touch"
                 android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_height="85dp"
                 android:layout_columnWeight="1"
+                android:layout_margin="6dp"
                 android:text="TOUCH"
-                android:textColor="#D500F9"
-                app:backgroundTint="#121212"
-                app:cornerRadius="8dp"
-                android:textSize="11sp" />
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="#3A004D"
+                app:cornerRadius="12dp"
+                app:elevation="8dp"
+                app:strokeColor="#D500F9"
+                app:strokeWidth="2dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_fps"
                 android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_height="85dp"
                 android:layout_columnWeight="1"
+                android:layout_margin="6dp"
                 android:text="FPS MAX"
-                android:textColor="#00FF8C"
-                app:backgroundTint="#121212"
-                app:cornerRadius="8dp"
-                android:textSize="11sp" />
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="#00331A"
+                app:cornerRadius="12dp"
+                app:elevation="8dp"
+                app:strokeColor="#00FF8C"
+                app:strokeWidth="2dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_sistema"
                 android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_height="85dp"
                 android:layout_columnWeight="1"
+                android:layout_margin="6dp"
                 android:text="SISTEMA"
-                android:textColor="#FFEA00"
-                app:backgroundTint="#121212"
-                app:cornerRadius="8dp"
-                android:textSize="11sp" />
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="#4D4D00"
+                app:cornerRadius="12dp"
+                app:elevation="8dp"
+                app:strokeColor="#FFEA00"
+                app:strokeWidth="2dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_zram"
                 android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_height="85dp"
                 android:layout_columnWeight="1"
+                android:layout_margin="6dp"
                 android:text="ZRAM/MEM"
-                android:textColor="#3D5AFE"
-                app:backgroundTint="#121212"
-                app:cornerRadius="8dp"
-                android:textSize="11sp" />
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="#20004D"
+                app:cornerRadius="12dp"
+                app:elevation="8dp"
+                app:strokeColor="#651FFF"
+                app:strokeWidth="2dp" />
         </GridLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="DEV BY MORAES YAROSNI // 2026"
-            android:textColor="#333333"
-            android:textSize="10sp"
+            android:text="MORAES YAROSNI // VIP 2026"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            android:textStyle="bold"
             android:gravity="center"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp" />
 
     </LinearLayout>
 </ScrollView>
