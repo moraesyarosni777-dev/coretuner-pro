@@ -27,25 +27,24 @@ class MainActivity : AppCompatActivity() {
             if (Shizuku.pingBinder()) {
                 if (Shizuku.checkSelfPermission() == PackageManager.PERMISSION_GRANTED) {
                     atualizarStatusShizuku(true)
-                    Toast.makeText(this, "Shizuku já autorizado!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Conexão Shizuku Ativa!", Toast.LENGTH_SHORT).show()
                 } else {
                     Shizuku.requestPermission(0)
                 }
             } else {
-                Toast.makeText(this, "Serviço Shizuku não detectado!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Ative o Shizuku no Manager!", Toast.LENGTH_LONG).show()
             }
         }
 
-        // Ativação dos cliques para resposta tátil
         val botoes = listOf(
-            R.id.btn_ajuste_fino to "Ajuste Fino Extremo Ativado!",
-            R.id.btn_economia to "Economia Máxima Ativada!",
-            R.id.btn_performance to "Performance Engatada!",
-            R.id.btn_bateria to "Bateria Otimizada!",
-            R.id.btn_touch to "Touch Acelerado!",
-            R.id.btn_fps to "FPS Máximo Liberado!",
-            R.id.btn_sistema to "Sistema Limpo!",
-            R.id.btn_zram to "ZRAM Otimizada!"
+            R.id.btn_ajuste_fino to "Ajuste Fino Ativado!",
+            R.id.btn_economia to "Modo Eco Ativado!",
+            R.id.btn_performance to "Turbo Ativado!",
+            R.id.btn_bateria to "Bateria Poupada!",
+            R.id.btn_touch to "Touch Otimizado!",
+            R.id.btn_fps to "FPS Liberado!",
+            R.id.btn_sistema to "Limpeza Geral!",
+            R.id.btn_zram to "ZRAM Ativada!"
         )
 
         botoes.forEach { (id, msg) ->
