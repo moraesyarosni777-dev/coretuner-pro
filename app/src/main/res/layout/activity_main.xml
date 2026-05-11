@@ -23,9 +23,9 @@
         android:layout_height="0dp"
         android:layout_weight="24"
         android:layout_marginBottom="16dp"
-        app:cardBackgroundColor="#33FFFFFF" 
+        app:cardBackgroundColor="#33FFFFFF"
         app:cardCornerRadius="24dp"
-        app:strokeColor="#B3FFFFFF" 
+        app:strokeColor="#B3FFFFFF"
         app:strokeWidth="3dp"
         app:cardElevation="0dp">
 
@@ -76,7 +76,14 @@
             app:strokeColor="#B3FF1744"
             app:strokeWidth="3dp"
             app:cardElevation="0dp">
-            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="AJUSTE FINO" android:textColor="#FF1744" android:textStyle="bold" android:gravity="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="AJUSTE FINO"
+                android:textColor="#FF1744"
+                android:textStyle="bold"
+                android:gravity="center" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
@@ -92,7 +99,14 @@
             app:strokeColor="#B300FF41"
             app:strokeWidth="3dp"
             app:cardElevation="0dp">
-            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="ECONOMIA" android:textColor="#00FF41" android:textStyle="bold" android:gravity="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="ECONOMIA"
+                android:textColor="#00FF41"
+                android:textStyle="bold"
+                android:gravity="center" />
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
@@ -103,33 +117,164 @@
         android:orientation="vertical"
         android:weightSum="3">
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal" android:layout_marginBottom="6dp">
-            <com.google.android.material.card.MaterialCardView android:id="@+id/btn_performance" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="6dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#4DFF9100" app:cardCornerRadius="16dp" app:strokeColor="#B3FF9100" app:strokeWidth="2dp" app:cardElevation="0dp">
-                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="PERFORMANCE" android:textColor="#FF9100" android:textStyle="bold" android:gravity="center" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_marginBottom="6dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_performance"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="#4DFF9100"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#B3FF9100"
+                app:strokeWidth="2dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="PERFORMANCE"
+                    android:textColor="#FF9100"
+                    android:textStyle="bold"
+                    android:gravity="center" />
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.card.MaterialCardView android:id="@+id/btn_bateria" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginStart="6dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#4D2979FF" app:cardCornerRadius="16dp" app:strokeColor="#B32979FF" app:strokeWidth="2dp" app:cardElevation="0dp">
-                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="BATERIA" android:textColor="#42A5F5" android:textStyle="bold" android:gravity="center" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_bateria"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="#4D2979FF"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#B32979FF"
+                app:strokeWidth="2dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="BATERIA"
+                    android:textColor="#42A5F5"
+                    android:textStyle="bold"
+                    android:gravity="center" />
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal" android:layout_marginBottom="6dp">
-            <com.google.android.material.card.MaterialCardView android:id="@+id/btn_touch" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="6dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#4DD500F9" app:cardCornerRadius="16dp" app:strokeColor="#B3D500F9" app:strokeWidth="2dp" app:cardElevation="0dp">
-                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="TOUCH" android:textColor="#E040FB" android:textStyle="bold" android:gravity="center" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_marginBottom="6dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_touch"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="#4DD500F9"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#B3D500F9"
+                app:strokeWidth="2dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="TOUCH"
+                    android:textColor="#E040FB"
+                    android:textStyle="bold"
+                    android:gravity="center" />
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.card.MaterialCardView android:id="@+id/btn_fps" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginStart="6dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#4D00E676" app:cardCornerRadius="16dp" app:strokeColor="#B300E676" app:strokeWidth="2dp" app:cardElevation="0dp">
-                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="FPS MAX" android:textColor="#69F0AE" android:textStyle="bold" android:gravity="center" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_fps"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="#4D00E676"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#B300E676"
+                app:strokeWidth="2dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="FPS MAX"
+                    android:textColor="#69F0AE"
+                    android:textStyle="bold"
+                    android:gravity="center" />
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal">
-            <com.google.android.material.card.MaterialCardView android:id="@+id/btn_sistema" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="6dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#4DFFEA00" app:cardCornerRadius="16dp" app:strokeColor="#B3FFEA00" app:strokeWidth="2dp" app:cardElevation="0dp">
-                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="SISTEMA" android:textColor="#FFFF00" android:textStyle="bold" android:gravity="center" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_sistema"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="#4DFFEA00"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#B3FFEA00"
+                app:strokeWidth="2dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="SISTEMA"
+                    android:textColor="#FFFF00"
+                    android:textStyle="bold"
+                    android:gravity="center" />
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.card.MaterialCardView android:id="@+id/btn_zram" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginStart="6dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#33FFFFFF" app:cardCornerRadius="16dp" app:strokeColor="#B3FFFFFF" app:strokeWidth="2dp" app:cardElevation="0dp">
-                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="ZRAM" android:textColor="#FFFFFF" android:textStyle="bold" android:gravity="center" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_zram"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="#33FFFFFF"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#B3FFFFFF"
+                app:strokeWidth="2dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="ZRAM"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:gravity="center" />
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </LinearLayout>
@@ -138,10 +283,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
-        android:text="MORAES YAROSNI // VIP 2026\nby Yarosni"
-        android:textColor="#39FF14" 
+        android:text="MORAES YAROSNI // VIP 2026&#10;by Yarosni"
+        android:textColor="#39FF14"
         android:textSize="18sp"
         android:textStyle="bold"
         android:gravity="center" />
 
-</LinearLayout
+</LinearLayout>
