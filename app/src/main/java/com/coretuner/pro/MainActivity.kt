@@ -72,25 +72,46 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupButtons() {
-        // BOTÃO 1: PERFORMANCE E ANIMAÇÕES EM 0.03
+        // --- BOTÕES MESTRES (INTELIGENTES) ---
+        
+        // 1. AJUSTE FINO EXTREMO (Modo iPhone: Tudo no talo, Animações 0.03)
+        findViewById<MaterialButton>(R.id.smartExtremeButton).setOnClickListener {
+            isPerformanceMode = true
+            val cmd = "settings put global window_animation_scale 0.03; " +
+                      "settings put global transition_animation_scale 0.03; " +
+                      "settings put global animator_duration_scale 0.03; " +
+                      "settings put system peak_refresh_rate 120.0; " +
+                      "settings put system min_refresh_rate 120.0; " +
+                      "settings put global touch_sensitivity_level 10; " +
+                      "settings put secure touch_pressure_scale 0.1; " +
+                      "settings put global low_power 0"
+            executarAjusteVip(cmd, "AJUSTE FINO EXTREMO INJETADO 🚀")
+            mainCard.setStrokeColor(Color.parseColor("#D50000")) // Fica vermelho
+        }
+
+        // 2. ECONOMIA EXTREMA (Bateria máxima, Tela apaga em 2 min = 120000ms)
+        findViewById<MaterialButton>(R.id.smartEcoButton).setOnClickListener {
+            isPerformanceMode = false
+            val cmd = "settings put global low_power 1; " +
+                      "settings put global window_animation_scale 1.5; " +
+                      "settings put global transition_animation_scale 1.5; " +
+                      "settings put global animator_duration_scale 1.5; " +
+                      "settings put system screen_off_timeout 120000; " +
+                      "settings put system peak_refresh_rate 60.0"
+            executarAjusteVip(cmd, "ECONOMIA EXTREMA ATIVADA (TELA 2 MIN) 🔋")
+            mainCard.setStrokeColor(Color.parseColor("#00C853")) // Fica verde
+        }
+
+        // --- BOTÕES INDIVIDUAIS MANUAIS ---
+
         findViewById<MaterialButton>(R.id.performanceButton).setOnClickListener {
-            isPerformanceMode = !isPerformanceMode
-            
-            // Aqui estão as 3 escalas exatas em 0.03
-            val scale = if (isPerformanceMode) "0.03" else "1.0"
-            val command = "settings put global window_animation_scale $scale; " +
-                          "settings put global transition_animation_scale $scale; " +
-                          "settings put global animator_duration_scale $scale; " +
-                          "settings put system peak_refresh_rate 120.0"
-            
-            executarAjusteVip(command, "ESCALAS EM 0.03 E PERFORMANCE INJETADA ⚡")
-            
-            // Muda a moldura do console para laranja quando ativo, preto quando normal
-            mainCard.setStrokeColor(if (isPerformanceMode) Color.parseColor("#FF3D00") else Color.parseColor("#1A1A1A"))
+            val scale = "0.03"
+            val cmd = "settings put global window_animation_scale $scale; settings put global transition_animation_scale $scale; settings put global animator_duration_scale $scale"
+            executarAjusteVip(cmd, "ANIMAÇÕES CORTADAS (0.03) ⚡")
         }
 
         findViewById<MaterialButton>(R.id.batteryButton).setOnClickListener {
-            executarAjusteVip("settings put global low_power 1; settings put global window_animation_scale 1.5", "MODO FRIO ATIVO ❄️")
+            executarAjusteVip("settings put global low_power 1", "ECONOMIA LIGADA ❄️")
         }
 
         findViewById<MaterialButton>(R.id.touchButton).setOnClickListener {
@@ -111,7 +132,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun executarAjusteVip(cmd: String, msgSucesso: String) {
-        // Trava de segurança: Se estiver offline, não faz nada e avisa o usuário.
         if (!Shizuku.pingBinder() || Shizuku.checkSelfPermission() != 0) {
             Toast.makeText(this, "ERRO: SHIZUKU OFFLINE. Autorize o app primeiro!", Toast.LENGTH_LONG).show()
             return
@@ -141,7 +161,6 @@ class MainActivity : AppCompatActivity() {
                 ramValueText.text = "MEM: ${random.nextInt(40) + 40}%"
                 dtcValueText.text = "DTC: ${String.format("%.2f", random.nextDouble())}"
                 
-                // Animação de flutuação 3D para a assinatura
                 signature3D.translationX = (Math.sin(System.currentTimeMillis() * 0.002) * 12).toFloat()
                 signature3D.translationY = (Math.cos(System.currentTimeMillis() * 0.001) * 5).toFloat()
                 
