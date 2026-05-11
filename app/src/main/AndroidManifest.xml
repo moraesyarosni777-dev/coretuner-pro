@@ -13,17 +13,13 @@
     <application
         android:allowBackup="true"
         android:icon="@android:drawable/sym_def_app_icon"
-        android:label="CoreTuner Pro VIP"
-        android:roundIcon="@android:drawable/sym_def_app_icon"
-        android:supportsRtl="true"
-        android:hasCode="true"
+        android:label="CoreTuner Pro MAX VIP"
         android:theme="@style/Theme.CoreTunerPro">
         
         <activity
-            android:name="com.coretuner.pro.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.CoreTunerPro.Splash">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
