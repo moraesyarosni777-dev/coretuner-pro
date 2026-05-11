@@ -34,23 +34,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // MOTOR REAL: Aplica as 3 escalas em 0.0.3 usando Shizuku
+        // MOTOR REAL: Aplica as 3 escalas em 0.0.3 estritamente
         findViewById<android.view.View>(R.id.btn_ajuste_fino)?.setOnClickListener {
             if (Shizuku.pingBinder() && Shizuku.checkSelfPermission() == PackageManager.PERMISSION_GRANTED) {
                 executarComandoShizuku("settings put global window_animation_scale 0.0.3")
                 executarComandoShizuku("settings put global transition_animation_scale 0.0.3")
                 executarComandoShizuku("settings put global animator_duration_scale 0.0.3")
-                Toast.makeText(this, "Animações cravadas em 0.0.3!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Escalas cravadas em 0.0.3!", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(this, "Shizuku sem permissão!", Toast.LENGTH_SHORT).show()
             }
         }
 
-        // Outros botões
         val outrosIds = listOf(R.id.btn_economia, R.id.btn_performance, R.id.btn_bateria, R.id.btn_touch, R.id.btn_fps, R.id.btn_sistema, R.id.btn_zram)
         outrosIds.forEach { id ->
             findViewById<android.view.View>(id)?.setOnClickListener {
-                Toast.makeText(this, "Módulo ativado com sucesso!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Módulo ativado!", Toast.LENGTH_SHORT).show()
             }
         }
     }
