@@ -1,14 +1,23 @@
-<resources>
-    <style name="Theme.CoreTunerPro" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">#D500F9</item> 
-        <item name="colorOnPrimary">#FFFFFF</item>
-        
-        <item name="android:windowBackground">#FFFFFF</item>
-        
-        <item name="android:textColorPrimary">#1A1A1A</item>
-        <item name="android:textColorSecondary">#4D4D4D</item>
-        
-        <item name="android:statusBarColor">#F8F9FA</item>
-        <item name="android:windowLightStatusBar">true</item>
-    </style>
-</resources>
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <gradient
+                android:startColor="#1A1C24"
+                android:centerColor="#2A2E38"
+                android:endColor="#1A1C24"
+                android:angle="135"
+                android:type="linear"/>
+        </shape>
+    </item>
+    
+    <item>
+        <shape>
+            <gradient
+                android:startColor="#00000000"
+                android:endColor="#15FFFFFF"
+                android:angle="0"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list>
