@@ -27,12 +27,11 @@ class MainActivity : AppCompatActivity() {
             if (Shizuku.pingBinder()) {
                 if (Shizuku.checkSelfPermission() == PackageManager.PERMISSION_GRANTED) {
                     atualizarStatusShizuku(true)
-                    Toast.makeText(this, "Acesso Shizuku Confirmado!", Toast.LENGTH_SHORT).show()
                 } else {
                     Shizuku.requestPermission(0)
                 }
             } else {
-                Toast.makeText(this, "Erro: Shizuku não está rodando!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Inicie o Shizuku!", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -44,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         btnIds.forEach { id ->
             findViewById<Button>(id)?.setOnClickListener {
-                Toast.makeText(this, "Otimização Aplicada com Sucesso!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Otimização Aplicada!", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     private fun atualizarStatusShizuku(vinculado: Boolean) {
         val txtShizuku = findViewById<TextView>(R.id.txt_shizuku)
         if (vinculado) {
-            txtShizuku.text = "> SHIZUKU VINCULADO COM SUCESSO <"
+            txtShizuku.text = "SHIZUKU VINCULADO COM SUCESSO"
             txtShizuku.setTextColor(Color.GREEN)
         }
     }
