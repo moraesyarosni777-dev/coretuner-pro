@@ -11,8 +11,8 @@ android {
         applicationId "com.coretuner.pro"
         minSdk 24
         targetSdk 34
-        versionCode 57
-        versionName "57.0-ULTRA-VIP"
+        versionCode 58
+        versionName "58.0-ULTRA-VIP"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
