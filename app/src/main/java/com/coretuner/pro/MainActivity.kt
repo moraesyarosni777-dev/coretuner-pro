@@ -13,23 +13,30 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var txtShizuku: TextView
     private lateinit var txtStatus: TextView
+    private lateinit var buttons: Map<String, MaterialCardView>
     
-    // Cores solicitadas: Azul Petróleo e Laranja Vivo (não neon)
-    private val COR_FUNDO = Color.parseColor("#004D40") // Azul Petróleo
-    private val COR_LARANJA = Color.parseColor("#FF6D00") // Laranja Vivo Forte
-    private val COR_ATIVO_BG = Color.parseColor("#33FF6D00") // Laranja translúcido para fundo ativo
+    // CORES: Azul Petróleo + Verde Robusto + Texto Laranja Vivo
+    private val COR_FUNDO = Color.parseColor("#004D40")
+    private val COR_VERDE_ROBUSTO = Color.parseColor("#00E676")
+    private val COR_LARANJA_VIVO = Color.parseColor("#FF6D00")
+    private val COR_ATIVO_BG = Color.parseColor("#3300E676")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Configuração Visual Instantânea via Código
         window.decorView.setBackgroundColor(COR_FUNDO)
         
         txtShizuku = findViewById(R.id.txt_shizuku)
         txtStatus = findViewById(R.id.txt_cpu_speed)
 
-        val buttons = mapOf(
+        try {
+            val painelSuperior = findViewById<MaterialCardView>(R.id.container_principal)
+            painelSuperior?.strokeColor = COR_VERDE_ROBUSTO
+            painelSuperior?.strokeWidth = 10 
+        } catch (e: Exception) { }
+
+        buttons = mapOf(
             "ajuste" to findViewById<MaterialCardView>(R.id.btn_ajuste_fino),
             "economia" to findViewById<MaterialCardView>(R.id.btn_economia),
             "perf" to findViewById<MaterialCardView>(R.id.btn_performance),
@@ -40,33 +47,18 @@ class MainActivity : AppCompatActivity() {
             "zram" to findViewById<MaterialCardView>(R.id.btn_zram)
         )
 
-        // Carrega o estado salvo e aplica o visual de "travado"
         val prefs = getSharedPreferences("TorkPrefs", Context.MODE_PRIVATE)
         
         buttons.forEach { (chave, btn) ->
-            val isActive = prefs.getBoolean(chave, false)
-            
-            // Aplica a "gaiola" laranja e o estado visual
-            btn.strokeColor = COR_LARANJA
-            btn.strokeWidth = 5
-            
-            if (isActive) {
-                btn.setCardBackgroundColor(COR_ATIVO_BG)
-            } else {
-                btn.setCardBackgroundColor(Color.TRANSPARENT)
-            }
-
             btn.setOnClickListener {
                 val currentState = prefs.getBoolean(chave, false)
                 val newState = !currentState
                 
-                // Salva o novo estado "travado"
-                prefs.edit().putBoolean(chave, newState).apply()
+                // COMMIT = Salva no disco imediatamente. Impossível o Android apagar.
+                prefs.edit().putBoolean(chave, newState).commit()
                 
-                // Executa o comando de injeção ou reversão
                 gerenciarComandos(chave, newState)
                 
-                // Atualiza o visual na hora
                 if (newState) {
                     btn.setCardBackgroundColor(COR_ATIVO_BG)
                     Toast.makeText(this, "${chave.uppercase()} TRAVADO: ATIVADO", Toast.LENGTH_SHORT).show()
@@ -80,9 +72,29 @@ class MainActivity : AppCompatActivity() {
 
         if (Shizuku.pingBinder()) {
             txtShizuku.text = "SISTEMA VINCULADO: MODO VIP"
-            txtShizuku.setTextColor(Color.parseColor("#00E676"))
+            txtShizuku.setTextColor(COR_VERDE_ROBUSTO)
         }
+    }
+
+    // ONRESUME = Toda vez que o app aparece na tela (ao abrir), ele checa a memória
+    override fun onResume() {
+        super.onResume()
+        val prefs = getSharedPreferences("TorkPrefs", Context.MODE_PRIVATE)
         
+        buttons.forEach { (chave, btn) ->
+            val isActive = prefs.getBoolean(chave, false)
+            
+            btn.strokeColor = COR_VERDE_ROBUSTO
+            btn.strokeWidth = 8 
+            
+            if (isActive) {
+                btn.setCardBackgroundColor(COR_ATIVO_BG)
+                // AUTO-REFORÇO: Re-injeta o comando garantindo que o Android não derrubou
+                gerenciarComandos(chave, true)
+            } else {
+                btn.setCardBackgroundColor(Color.TRANSPARENT)
+            }
+        }
         atualizarPainelInjetados(prefs)
     }
 
@@ -107,13 +119,17 @@ class MainActivity : AppCompatActivity() {
         if (prefs.getBoolean("perf", false)) ativos.add("Tork")
         if (prefs.getBoolean("sistema", false)) ativos.add("0.1x Speed")
         if (prefs.getBoolean("touch", false)) ativos.add("Resposta")
+        if (prefs.getBoolean("economia", false)) ativos.add("Economia")
+        if (prefs.getBoolean("bat", false)) ativos.add("Bateria")
+        if (prefs.getBoolean("fps", false)) ativos.add("FPS")
+        if (prefs.getBoolean("zram", false)) ativos.add("ZRAM")
         
         if (ativos.isEmpty()) {
             txtStatus.text = "STATUS: MODO ORIGINAL"
             txtStatus.setTextColor(Color.WHITE)
         } else {
             txtStatus.text = "INJETADO: ${ativos.joinToString(" | ")}"
-            txtStatus.setTextColor(COR_LARANJA)
+            txtStatus.setTextColor(COR_LARANJA_VIVO)
         }
     }
 
