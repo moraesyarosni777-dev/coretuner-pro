@@ -4,9 +4,9 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.util.TypedValue
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.card.MaterialCardView
 import rikka.shizuku.Shizuku
@@ -17,27 +17,30 @@ class MainActivity : AppCompatActivity() {
     private lateinit var txtStatus: TextView
     private lateinit var buttons: Map<String, MaterialCardView>
     
-    // DEFINIÇÃO DAS CORES
-    private val COR_FUNDO_AZUL_PETROLEO = Color.parseColor("#004D40")
-    private val COR_VERDE_GAIOLA = Color.parseColor("#00E676")
-    private val COR_AMARELO_STATUS = Color.parseColor("#FFFF00")
-    private val COR_ATIVO_BG = Color.parseColor("#3300E676")
+    // AS CORES ABSOLUTAS: Cartonado Branco, Roxo e Preto
+    private val COR_CARTONADO_BRANCO = Color.parseColor("#F4EFE6") // Cartonado Branco
+    private val COR_ROXO = Color.parseColor("#8A2BE2")             // Roxo Vivo (Gaiolas e Menu)
+    private val COR_ROXO_ATIVO = Color.parseColor("#338A2BE2")     // Roxo Fundo (Botão Ligado)
+    private val COR_TEXTO_PRETO = Color.parseColor("#000000")      // Letras Pretas
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // 1. FORÇA BRUTA NO FUNDO (Mata a cor preta do XML)
-        try {
-            val rootView = findViewById<ViewGroup>(android.R.id.content).getChildAt(0)
-            rootView.setBackgroundColor(COR_FUNDO_AZUL_PETROLEO)
-        } catch (e: Exception) {
-            window.decorView.setBackgroundColor(COR_FUNDO_AZUL_PETROLEO)
-        }
-        
+        // 1. DESTRÓI O FUNDO DO XML E INJETA O CARTONADO BRANCO
+        val rootView = findViewById<ViewGroup>(android.R.id.content).getChildAt(0)
+        rootView.setBackgroundColor(COR_CARTONADO_BRANCO)
+        window.decorView.setBackgroundColor(COR_CARTONADO_BRANCO)
+
         txtShizuku = findViewById(R.id.txt_shizuku)
         txtStatus = findViewById(R.id.txt_cpu_speed)
 
+        // 2. DEFINE A GROSSURA E INJETA PARA DENTRO
+        val espessuraDp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8f, resources.displayMetrics).toInt()
+        aplicarVisualRaioX(rootView, espessuraDp)
+
+        txtShizuku.setTextColor(COR_ROXO)
+        
         buttons = mapOf(
             "ajuste" to findViewById<MaterialCardView>(R.id.btn_ajuste_fino),
             "economia" to findViewById<MaterialCardView>(R.id.btn_economia),
@@ -58,9 +61,9 @@ class MainActivity : AppCompatActivity() {
                 gerenciarComandos(chave, newState)
                 
                 if (newState) {
-                    btn.setCardBackgroundColor(COR_ATIVO_BG)
+                    btn.setCardBackgroundColor(COR_ROXO_ATIVO)
                 } else {
-                    btn.setCardBackgroundColor(Color.TRANSPARENT)
+                    btn.setCardBackgroundColor(Color.TRANSPARENT) 
                 }
                 atualizarPainelInjetados(prefs)
             }
@@ -68,7 +71,6 @@ class MainActivity : AppCompatActivity() {
 
         if (Shizuku.pingBinder()) {
             txtShizuku.text = "SISTEMA VINCULADO: MODO VIP"
-            txtShizuku.setTextColor(COR_VERDE_GAIOLA)
         }
     }
 
@@ -76,29 +78,37 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         val prefs = getSharedPreferences("TorkPrefs", Context.MODE_PRIVATE)
         
-        // 2. CONVERSOR DE GROSSURA DA GAIOLA (De Pixels para DP Real)
-        // Isso vai garantir que fique robusto no Moto G60
-        val espessuraRobustaPx = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP, 
-            8f, // 8dp é muito grosso e industrial
-            resources.displayMetrics
-        ).toInt()
-
         buttons.forEach { (chave, btn) ->
             val isActive = prefs.getBoolean(chave, false)
-            
-            // Aplica a borda verde com a espessura calculada correta
-            btn.strokeColor = COR_VERDE_GAIOLA
-            btn.strokeWidth = espessuraRobustaPx 
-            
             if (isActive) {
-                btn.setCardBackgroundColor(COR_ATIVO_BG)
+                btn.setCardBackgroundColor(COR_ROXO_ATIVO)
                 gerenciarComandos(chave, true)
             } else {
                 btn.setCardBackgroundColor(Color.TRANSPARENT)
             }
         }
         atualizarPainelInjetados(prefs)
+    }
+
+    // A MÁGICA: Empurra o layout para o lado de dentro para a borda grossa não vazar
+    private fun aplicarVisualRaioX(view: View, espessura: Int) {
+        if (view is MaterialCardView) {
+            view.strokeColor = COR_ROXO
+            view.strokeWidth = espessura
+            view.setCardBackgroundColor(Color.TRANSPARENT)
+            
+            // O COMANDO QUE OBRIGA A BORDA A FICAR DO LADO DE DENTRO
+            view.setContentPadding(espessura, espessura, espessura, espessura)
+            view.clipToOutline = true // Corta qualquer excesso que tente ir para fora
+        }
+        if (view is TextView) {
+            view.setTextColor(COR_TEXTO_PRETO) // Força leitura no fundo branco
+        }
+        if (view is ViewGroup) {
+            for (i in 0 until view.childCount) {
+                aplicarVisualRaioX(view.getChildAt(i), espessura)
+            }
+        }
     }
 
     private fun atualizarPainelInjetados(prefs: android.content.SharedPreferences) {
@@ -114,10 +124,10 @@ class MainActivity : AppCompatActivity() {
         
         if (ativos.isEmpty()) {
             txtStatus.text = "STATUS: MODO ORIGINAL"
-            txtStatus.setTextColor(Color.WHITE)
+            txtStatus.setTextColor(COR_TEXTO_PRETO)
         } else {
             txtStatus.text = "INJETADO: ${ativos.joinToString(" | ")}"
-            txtStatus.setTextColor(COR_AMARELO_STATUS)
+            txtStatus.setTextColor(COR_ROXO)
         }
     }
     
