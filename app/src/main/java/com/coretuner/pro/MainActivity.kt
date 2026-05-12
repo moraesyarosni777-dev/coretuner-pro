@@ -3,6 +3,8 @@ package com.coretuner.pro
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.util.TypedValue
+import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var txtStatus: TextView
     private lateinit var buttons: Map<String, MaterialCardView>
     
-    // DEFINIÇÃO DAS CORES EXATAS
+    // DEFINIÇÃO DAS CORES
     private val COR_FUNDO_AZUL_PETROLEO = Color.parseColor("#004D40")
     private val COR_VERDE_GAIOLA = Color.parseColor("#00E676")
     private val COR_AMARELO_STATUS = Color.parseColor("#FFFF00")
@@ -25,9 +27,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // FORÇA O AZUL PETRÓLEO EM TODA A JANELA
-        window.decorView.setBackgroundColor(COR_FUNDO_AZUL_PETROLEO)
-        findViewById<android.view.View>(android.R.id.content).setBackgroundColor(COR_FUNDO_AZUL_PETROLEO)
+        // 1. FORÇA BRUTA NO FUNDO (Mata a cor preta do XML)
+        try {
+            val rootView = findViewById<ViewGroup>(android.R.id.content).getChildAt(0)
+            rootView.setBackgroundColor(COR_FUNDO_AZUL_PETROLEO)
+        } catch (e: Exception) {
+            window.decorView.setBackgroundColor(COR_FUNDO_AZUL_PETROLEO)
+        }
         
         txtShizuku = findViewById(R.id.txt_shizuku)
         txtStatus = findViewById(R.id.txt_cpu_speed)
@@ -70,12 +76,20 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         val prefs = getSharedPreferences("TorkPrefs", Context.MODE_PRIVATE)
         
+        // 2. CONVERSOR DE GROSSURA DA GAIOLA (De Pixels para DP Real)
+        // Isso vai garantir que fique robusto no Moto G60
+        val espessuraRobustaPx = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, 
+            8f, // 8dp é muito grosso e industrial
+            resources.displayMetrics
+        ).toInt()
+
         buttons.forEach { (chave, btn) ->
             val isActive = prefs.getBoolean(chave, false)
             
-            // Bordas VERDES E GROSSAS (12dp)
+            // Aplica a borda verde com a espessura calculada correta
             btn.strokeColor = COR_VERDE_GAIOLA
-            btn.strokeWidth = 12 
+            btn.strokeWidth = espessuraRobustaPx 
             
             if (isActive) {
                 btn.setCardBackgroundColor(COR_ATIVO_BG)
@@ -102,7 +116,6 @@ class MainActivity : AppCompatActivity() {
             txtStatus.text = "STATUS: MODO ORIGINAL"
             txtStatus.setTextColor(Color.WHITE)
         } else {
-            // TEXTO STATUS AMARELO PURO
             txtStatus.text = "INJETADO: ${ativos.joinToString(" | ")}"
             txtStatus.setTextColor(COR_AMARELO_STATUS)
         }
