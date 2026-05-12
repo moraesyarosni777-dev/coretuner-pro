@@ -23,9 +23,9 @@
         android:layout_height="0dp"
         android:layout_weight="24"
         android:layout_marginBottom="16dp"
-        app:cardBackgroundColor="#33FFFFFF"
+        app:cardBackgroundColor="#2600E5FF"
         app:cardCornerRadius="24dp"
-        app:strokeColor="#B3FFFFFF"
+        app:strokeColor="#8000E5FF"
         app:strokeWidth="3dp"
         app:cardElevation="0dp">
 
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="AJUSTE FINO"
-                android:textColor="#FF1744"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:gravity="center" />
         </com.google.android.material.card.MaterialCardView>
@@ -104,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="ECONOMIA"
-                android:textColor="#00FF41"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:gravity="center" />
         </com.google.android.material.card.MaterialCardView>
@@ -142,7 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="PERFORMANCE"
-                    android:textColor="#FF9100"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:gravity="center" />
             </com.google.android.material.card.MaterialCardView>
@@ -165,7 +165,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="BATERIA"
-                    android:textColor="#42A5F5"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:gravity="center" />
             </com.google.android.material.card.MaterialCardView>
@@ -196,7 +196,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="TOUCH"
-                    android:textColor="#E040FB"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:gravity="center" />
             </com.google.android.material.card.MaterialCardView>
@@ -219,7 +219,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="FPS MAX"
-                    android:textColor="#69F0AE"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:gravity="center" />
             </com.google.android.material.card.MaterialCardView>
@@ -249,7 +249,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="SISTEMA"
-                    android:textColor="#FFFF00"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:gravity="center" />
             </com.google.android.material.card.MaterialCardView>
@@ -262,9 +262,9 @@
                 android:layout_marginStart="6dp"
                 android:clickable="true"
                 android:focusable="true"
-                app:cardBackgroundColor="#33FFFFFF"
+                app:cardBackgroundColor="#4D00B0FF"
                 app:cardCornerRadius="16dp"
-                app:strokeColor="#B3FFFFFF"
+                app:strokeColor="#B300B0FF"
                 app:strokeWidth="2dp"
                 app:cardElevation="0dp">
 
@@ -283,7 +283,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
-        android:text="MORAES YAROSNI // VIP 2026\nby Yarosni"
+        android:text="MORAES YAROSNI // VIP 2026&#10;by Yarosni"
         android:textColor="#39FF14"
         android:textSize="18sp"
         android:textStyle="bold"
