@@ -1,9 +1,8 @@
-package com.coretuner.pro // Lembre de conferir se este pacote bate com o seu
+package com.coretuner.pro 
 
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MotionEvent
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.card.MaterialCardView
@@ -14,60 +13,56 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Carrega dados fake na telemetria
-        findViewById<TextView>(R.id.txt_data_val).text = "1.30"
-        findViewById<TextView>(R.id.txt_atu_val).text = "53.57 MHz"
-        findViewById<TextView>(R.id.txt_upi_val).text = "25.03"
-        findViewById<TextView>(R.id.txt_bpg_val).text = "38.05 MHs"
-
-        configureVipModules()
+        configureNeonButtons()
     }
 
-    private fun configureVipModules() {
+    private fun configureNeonButtons() {
         val btnAjuste = findViewById<MaterialCardView>(R.id.btn_ajuste_fino)
-        val btnFinger = findViewById<MaterialCardView>(R.id.btn_fingerprint)
-        val btnMonitor = findViewById<MaterialCardView>(R.id.btn_monitor)
-        
-        val btnLine = findViewById<MaterialCardView>(R.id.btn_line_time)
+        val btnEco = findViewById<MaterialCardView>(R.id.btn_economia)
         val btnPerf = findViewById<MaterialCardView>(R.id.btn_performance)
-        val btnZram = findViewById<MaterialCardView>(R.id.btn_zram)
+        val btnBat = findViewById<MaterialCardView>(R.id.btn_bateria)
+        val btnTouch = findViewById<MaterialCardView>(R.id.btn_touch)
+        val btnFps = findViewById<MaterialCardView>(R.id.btn_fps)
 
-        val colorPurpleBase = Color.parseColor("#8A2BE2")
-        val colorPurpleActive = Color.parseColor("#C084FC")
-        val colorCyanBase = Color.parseColor("#22D3EE")
-        val colorCyanActive = Color.parseColor("#FFFFFF")
-
-        // Botões Roxos
-        setupButtonAction(btnAjuste, colorPurpleBase, colorPurpleActive, "Módulo: Ajuste Fino iniciado!")
-        setupButtonAction(btnFinger, colorPurpleBase, colorPurpleActive, "Módulo: Fingerprint iniciado!")
-        setupButtonAction(btnMonitor, colorPurpleBase, colorPurpleActive, "Módulo: Monitor iniciado!")
-
-        // Botões Ciano
-        setupButtonAction(btnLine, colorCyanBase, colorCyanActive, "Módulo: Line Time iniciado!")
-        setupButtonAction(btnPerf, colorCyanBase, colorCyanActive, "Módulo: Performance iniciado!")
-        setupButtonAction(btnZram, colorCyanBase, colorCyanActive, "Módulo: ZRAM iniciado!")
+        // Cores do Neon baseado no seu print
+        val baseDarkStroke = Color.parseColor("#251F30") 
+        val cyanNeonStroke = Color.parseColor("#67E8F9")
+        
+        // O Ajuste fino já começa aceso no roxo no XML, mas os outros acendem em Ciano
+        setupButtonAction(btnEco, baseDarkStroke, cyanNeonStroke, "Economia Ativada")
+        setupButtonAction(btnPerf, baseDarkStroke, cyanNeonStroke, "Performance Ativada")
+        setupButtonAction(btnBat, baseDarkStroke, cyanNeonStroke, "Bateria Otimizada")
+        setupButtonAction(btnTouch, baseDarkStroke, cyanNeonStroke, "Touch Calibrado")
+        setupButtonAction(btnFps, baseDarkStroke, cyanNeonStroke, "FPS Max Injetado")
+        
+        // Mantendo o clique no Ajuste Fino
+        btnAjuste.setOnClickListener {
+            Toast.makeText(this, "Ajuste Fino Configurado", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setupButtonAction(button: MaterialCardView, baseColor: Int, highlightColor: Int, message: String) {
-        button.strokeColor = baseColor
-        
-        // Efeito visual de neon
         button.setOnTouchListener { v, event ->
             when (event.action) {
-                MotionEvent.ACTION_DOWN -> button.strokeColor = highlightColor
+                MotionEvent.ACTION_DOWN -> {
+                    button.strokeColor = highlightColor
+                    button.strokeWidth = 4 // Engrossa a borda pra dar o "Glow" do neon
+                }
                 MotionEvent.ACTION_UP -> {
                     button.strokeColor = baseColor
-                    v.performClick() // Garante que o clique seja disparado
+                    button.strokeWidth = 2
+                    v.performClick()
                 }
-                MotionEvent.ACTION_CANCEL -> button.strokeColor = baseColor
+                MotionEvent.ACTION_CANCEL -> {
+                    button.strokeColor = baseColor
+                    button.strokeWidth = 2
+                }
             }
-            true // Consome o evento de toque
+            true 
         }
 
-        // Ação real que vai funcionar na tela
         button.setOnClickListener {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-            // AQUI VOCÊ COLOCARÁ SEU CÓDIGO SHELL/SHIZUKU DEPOIS
         }
     }
 }
