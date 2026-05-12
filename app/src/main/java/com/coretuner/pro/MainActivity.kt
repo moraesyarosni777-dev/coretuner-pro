@@ -1,4 +1,4 @@
-package com.coretuner.pro 
+package com.coretuner.pro
 
 import android.graphics.Color
 import android.os.Bundle
@@ -13,56 +13,33 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        configureNeonButtons()
+        // Configuração do botão de Ajuste Fino como exemplo
+        val btnAjuste = findViewById<MaterialCardView>(R.id.btn_ajuste)
+        
+        setupVipAction(btnAjuste, "#8A2BE2", "#C084FC", "Iniciando Ajuste Fino VIP...")
     }
 
-    private fun configureNeonButtons() {
-        val btnAjuste = findViewById<MaterialCardView>(R.id.btn_ajuste_fino)
-        val btnEco = findViewById<MaterialCardView>(R.id.btn_economia)
-        val btnPerf = findViewById<MaterialCardView>(R.id.btn_performance)
-        val btnBat = findViewById<MaterialCardView>(R.id.btn_bateria)
-        val btnTouch = findViewById<MaterialCardView>(R.id.btn_touch)
-        val btnFps = findViewById<MaterialCardView>(R.id.btn_fps)
+    private fun setupVipAction(card: MaterialCardView, baseHex: String, activeHex: String, msg: String) {
+        val baseCol = Color.parseColor(baseHex)
+        val activeCol = Color.parseColor(activeHex)
 
-        // Cores do Neon baseado no seu print
-        val baseDarkStroke = Color.parseColor("#251F30") 
-        val cyanNeonStroke = Color.parseColor("#67E8F9")
-        
-        // O Ajuste fino já começa aceso no roxo no XML, mas os outros acendem em Ciano
-        setupButtonAction(btnEco, baseDarkStroke, cyanNeonStroke, "Economia Ativada")
-        setupButtonAction(btnPerf, baseDarkStroke, cyanNeonStroke, "Performance Ativada")
-        setupButtonAction(btnBat, baseDarkStroke, cyanNeonStroke, "Bateria Otimizada")
-        setupButtonAction(btnTouch, baseDarkStroke, cyanNeonStroke, "Touch Calibrado")
-        setupButtonAction(btnFps, baseDarkStroke, cyanNeonStroke, "FPS Max Injetado")
-        
-        // Mantendo o clique no Ajuste Fino
-        btnAjuste.setOnClickListener {
-            Toast.makeText(this, "Ajuste Fino Configurado", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun setupButtonAction(button: MaterialCardView, baseColor: Int, highlightColor: Int, message: String) {
-        button.setOnTouchListener { v, event ->
+        card.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    button.strokeColor = highlightColor
-                    button.strokeWidth = 4 // Engrossa a borda pra dar o "Glow" do neon
+                    card.strokeColor = activeCol
+                    card.strokeWidth = 4 // Efeito de brilho neon no toque
                 }
-                MotionEvent.ACTION_UP -> {
-                    button.strokeColor = baseColor
-                    button.strokeWidth = 2
-                    v.performClick()
-                }
-                MotionEvent.ACTION_CANCEL -> {
-                    button.strokeColor = baseColor
-                    button.strokeWidth = 2
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    card.strokeColor = Color.parseColor("#1F1F26") // Volta pro stealth
+                    card.strokeWidth = 2
+                    if (event.action == MotionEvent.ACTION_UP) v.performClick()
                 }
             }
-            true 
+            true
         }
 
-        button.setOnClickListener {
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        card.setOnClickListener {
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
         }
     }
 }
