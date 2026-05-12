@@ -11,8 +11,8 @@ android {
         applicationId "com.coretuner.pro"
         minSdk 24
         targetSdk 34
-        versionCode 64
-        versionName "64.0-ULTRA-VIP"
+        versionCode 69
+        versionName "69.0-ULTRA-VIP"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,7 +44,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     
-    // DOWNGRADE BLINDADO: Versão 12.1.0 onde o 'newProcess' é 100% público e estável
+    // API Blindada LTS XDA
     implementation "dev.rikka.shizuku:api:12.1.0"
     implementation "dev.rikka.shizuku:provider:12.1.0"
 }
