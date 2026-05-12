@@ -31,13 +31,57 @@ class MainActivity : AppCompatActivity() {
         val btnSistema = findViewById<MaterialCardView>(R.id.btn_sistema)
         val btnZram = findViewById<MaterialCardView>(R.id.btn_zram)
 
-        // SHIZUKU VERIFICAÇÃO
+        // SHIZUKU VERIFICAÇÃO INICIAL
         if (checkShizukuPermission()) {
             txt_shizuku.text = "SHIZUKU VINCULADO COM SUCESSO"
             txt_shizuku.setTextColor(android.graphics.Color.parseColor("#00E676"))
         } else {
             txt_shizuku.text = "SHIZUKU NÃO VINCULADO"
             txt_shizuku.setTextColor(android.graphics.Color.parseColor("#FF1744"))
+        }
+
+        // =========================================================
+        // LÓGICA DE CLIQUES E TOASTS
+        // =========================================================
+
+        btnAjusteFino.setOnClickListener {
+            Toast.makeText(this, "⚙️ Ajuste Fino Aplicado!", Toast.LENGTH_SHORT).show()
+            // Injetar comando Shizuku aqui depois
+        }
+
+        btnEconomia.setOnClickListener {
+            Toast.makeText(this, "🔋 Modo Economia Ativado!", Toast.LENGTH_SHORT).show()
+            // Injetar comando Shizuku aqui depois
+        }
+
+        btnPerformance.setOnClickListener {
+            Toast.makeText(this, "⚡ Performance Máxima!", Toast.LENGTH_SHORT).show()
+            // Injetar comando Shizuku aqui depois
+        }
+
+        btnBateria.setOnClickListener {
+            Toast.makeText(this, "🛡️ Bateria Otimizada!", Toast.LENGTH_SHORT).show()
+            // Injetar comando Shizuku aqui depois
+        }
+
+        btnTouch.setOnClickListener {
+            Toast.makeText(this, "👆 Touch Calibrado!", Toast.LENGTH_SHORT).show()
+            // Injetar comando Shizuku aqui depois
+        }
+
+        btnFps.setOnClickListener {
+            Toast.makeText(this, "🎮 FPS Max Destravado!", Toast.LENGTH_SHORT).show()
+            // Injetar comando Shizuku aqui depois
+        }
+
+        btnSistema.setOnClickListener {
+            Toast.makeText(this, "🖥️ Sistema Otimizado!", Toast.LENGTH_SHORT).show()
+            // Injetar comando Shizuku aqui depois
+        }
+
+        btnZram.setOnClickListener {
+            Toast.makeText(this, "🧠 ZRAM Expandida!", Toast.LENGTH_SHORT).show()
+            // Injetar comando Shizuku aqui depois
         }
     }
 
