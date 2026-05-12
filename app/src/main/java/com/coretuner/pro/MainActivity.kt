@@ -59,6 +59,11 @@ class MainActivity : AppCompatActivity() {
                 atualizarPainelInjetados(prefs)
             }
         }
+
+        if (Shizuku.pingBinder()) {
+            txtShizuku.text = "SISTEMA VINCULADO: MODO VIP"
+            txtShizuku.setTextColor(COR_VERDE_GAIOLA)
+        }
     }
 
     override fun onResume() {
@@ -103,5 +108,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
     
-    // ... (restante do código: gerenciarComandos e executarComandoShizuku permanecem os mesmos)
+    private fun gerenciarComandos(id: String, ativar: Boolean) {
+        val comando = when (id) {
+            "ajuste" -> if (ativar) "settings put global private_dns_mode hostname && settings put global private_dns_specifier 1dot1dot1dot1.cloudflare-dns.com && setprop net.tcp.buffersize.wifi 4096,87380,110208,4096,16384,110208" else "settings put global private_dns_mode off"
+            "perf" -> if (ativar) "cmd package compile -m speed -f -a && setprop debug.sf.latch_unsignaled 1" else "setprop debug.sf.latch_unsignaled 0"
+            "sistema" -> if (ativar) "settings put global window_animation_scale 0.1 && settings put global transition_animation_scale 0.1 && settings put global animator_duration_scale 0.1 && sm fstrim -v all && pm trim-caches 999G" else "settings put global window_animation_scale 1.0 && settings put global transition_animation_scale 1.0 && settings put global animator_duration_scale 1.0"
+            "touch" -> if (ativar) "setprop persist.sys.ui.hw true && setprop debug.performance.tuning 1 && setprop debug.screenshot.delay 0 && setprop debug.egl.swapinterval 0" else "setprop persist.sys.ui.hw false && setprop debug.screenshot.delay 1000"
+            "fps" -> if (ativar) "settings put system min_refresh_rate 120.0 && settings put system peak_refresh_rate 120.0 && setprop debug.egl.hw 1" else "settings put system min_refresh_rate 60.0 && setprop debug.egl.hw 0"
+            "economia" -> if (ativar) "for pkg in \$(pm list packages -3 | cut -d: -f2); do am set-standby-bucket \$pkg restricted; done" else "for pkg in \$(pm list packages -3 | cut -d: -f2); do am set-standby-bucket \$pkg active; done"
+            "zram" -> if (ativar) "settings put global cached_apps_freezer enabled && setprop persist.sys.fw.bg_apps_limit 64" else "settings put global cached_apps_freezer disabled"
+            "bat" -> if (ativar) "settings put global low_power 1 && cmd power set-fixed-performance-mode off" else "settings put global low_power 0"
+            else -> ""
+        }
+        if (comando.isNotEmpty()) executarComandoShizuku(comando)
+    }
+
+    private fun executarComandoShizuku(comando: String) {
+        if (Shizuku.pingBinder()) {
+            Thread { try { Shizuku.newProcess(arrayOf("sh", "-c", comando), null, null).waitFor() } catch (e: Exception) {} }.start()
+        }
+    }
 }
