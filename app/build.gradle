@@ -11,8 +11,8 @@ android {
         applicationId "com.coretuner.pro"
         minSdk 24
         targetSdk 34
-        versionCode 42
-        versionName "42.0-ULTRA-VIP"
+        versionCode 43
+        versionName "43.0-ULTRA-VIP"
     }
 
     compileOptions {
