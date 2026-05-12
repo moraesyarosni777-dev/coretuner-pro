@@ -3,170 +3,152 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#0A0E17"
-    android:padding="6dp">
+    android:padding="8dp"
+    android:weightSum="100">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:text="CORETUNER MAX // ULTRA VIP"
+        android:textColor="#00E5FF"
+        android:shadowColor="#00E5FF"
+        android:shadowRadius="8"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardBackgroundColor="#0A0E17"
-        app:cardCornerRadius="24dp"
-        app:strokeColor="#B3FFFFFF"
-        app:strokeWidth="3dp"
+        android:layout_height="0dp"
+        android:layout_weight="24"
+        android:layout_marginBottom="12dp"
+        app:cardBackgroundColor="#0A00E676"
+        app:cardCornerRadius="20dp"
+        app:strokeColor="#00E676"
+        app:strokeWidth="5dp"
         app:cardElevation="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="12dp"
-            android:weightSum="100">
+            android:gravity="center"
+            android:padding="16dp">
 
             <TextView
+                android:id="@+id/txt_shizuku"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SHIZUKU VINCULADO COM SUCESSO"
+                android:textColor="#00E676"
+                android:shadowColor="#00E676"
+                android:shadowRadius="10"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:id="@+id/txt_cpu_speed"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="8"
-                android:text="CORETUNER MAX // ULTRA VIP"
+                android:layout_height="wrap_content"
+                android:text="AO CLICAR NAS CONFIGURAÇÕES\nABAIXO LIMITADORES DE\nHARDWARE SERÃO DESATIVADOS\nATIVANDO EFEITOS IMEDIATOS"
                 android:textColor="#00E5FF"
                 android:shadowColor="#00E5FF"
                 android:shadowRadius="8"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:gravity="center" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="24"
-                android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#0A00E676"
-                app:cardCornerRadius="24dp"
-                app:strokeColor="#00E676"
-                app:strokeWidth="3dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:id="@+id/txt_shizuku"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="SHIZUKU VINCULADO COM SUCESSO"
-                        android:textColor="#00E676"
-                        android:shadowColor="#00E676"
-                        android:shadowRadius="10"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="8dp" />
-
-                    <TextView
-                        android:id="@+id/txt_cpu_speed"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="AO CLICAR NAS CONFIGURAÇÕES ABAIXO LIMITADORES DE HARDWARE SERÃO DESATIVADOS ATIVANDO EFEITOS IMEDIATOS"
-                        android:textColor="#E0F2F1"
-                        android:shadowColor="#E0F2F1"
-                        android:shadowRadius="8"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:gravity="center" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="16"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/btn_ajuste_fino"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="6dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardBackgroundColor="#0A2979FF"
-                    app:cardCornerRadius="16dp"
-                    app:strokeColor="#2979FF"
-                    app:strokeWidth="3dp"
-                    app:cardElevation="0dp">
-
-                    <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="AJUSTE FINO" android:textColor="#2979FF" android:shadowColor="#2979FF" android:shadowRadius="10" android:textStyle="bold" android:gravity="center" />
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/btn_economia"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardBackgroundColor="#0A2979FF"
-                    app:cardCornerRadius="16dp"
-                    app:strokeColor="#2979FF"
-                    app:strokeWidth="3dp"
-                    app:cardElevation="0dp">
-
-                    <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="ECONOMIA" android:textColor="#2979FF" android:shadowColor="#2979FF" android:shadowRadius="10" android:textStyle="bold" android:gravity="center" />
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="42"
-                android:orientation="vertical"
-                android:weightSum="3">
-
-                <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal" android:layout_marginBottom="6dp">
-                    <com.google.android.material.card.MaterialCardView android:id="@+id/btn_performance" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="6dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#0AFF007F" app:cardCornerRadius="16dp" app:strokeColor="#FF007F" app:strokeWidth="3dp" app:cardElevation="0dp">
-                        <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="PERFORMANCE" android:textColor="#FF007F" android:shadowColor="#FF007F" android:shadowRadius="10" android:textStyle="bold" android:gravity="center" />
-                    </com.google.android.material.card.MaterialCardView>
-                    <com.google.android.material.card.MaterialCardView android:id="@+id/btn_bateria" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginStart="6dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#0A2979FF" app:cardCornerRadius="16dp" app:strokeColor="#2979FF" app:strokeWidth="3dp" app:cardElevation="0dp">
-                        <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="BATERIA" android:textColor="#2979FF" android:shadowColor="#2979FF" android:shadowRadius="10" android:textStyle="bold" android:gravity="center" />
-                    </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
-
-                <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal" android:layout_marginBottom="6dp">
-                    <com.google.android.material.card.MaterialCardView android:id="@+id/btn_touch" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="6dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#0AD500F9" app:cardCornerRadius="16dp" app:strokeColor="#D500F9" app:strokeWidth="3dp" app:cardElevation="0dp">
-                        <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="TOUCH" android:textColor="#D500F9" android:shadowColor="#D500F9" android:shadowRadius="10" android:textStyle="bold" android:gravity="center" />
-                    </com.google.android.material.card.MaterialCardView>
-                    <com.google.android.material.card.MaterialCardView android:id="@+id/btn_fps" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginStart="6dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#0A00E676" app:cardCornerRadius="16dp" app:strokeColor="#00E676" app:strokeWidth="3dp" app:cardElevation="0dp">
-                        <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="FPS MAX" android:textColor="#00E676" android:shadowColor="#00E676" android:shadowRadius="10" android:textStyle="bold" android:gravity="center" />
-                    </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
-
-                <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal">
-                    <com.google.android.material.card.MaterialCardView android:id="@+id/btn_sistema" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="6dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#0A00E5FF" app:cardCornerRadius="16dp" app:strokeColor="#00E5FF" app:strokeWidth="3dp" app:cardElevation="0dp">
-                        <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="SISTEMA" android:textColor="#00E5FF" android:shadowColor="#00E5FF" android:shadowRadius="10" android:textStyle="bold" android:gravity="center" />
-                    </com.google.android.material.card.MaterialCardView>
-                    <com.google.android.material.card.MaterialCardView android:id="@+id/btn_zram" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginStart="6dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#0AFFFFFF" app:cardCornerRadius="16dp" app:strokeColor="#FFFFFF" app:strokeWidth="3dp" app:cardElevation="0dp">
-                        <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="ZRAM" android:textColor="#FFFFFF" android:shadowColor="#FFFFFF" android:shadowRadius="10" android:textStyle="bold" android:gravity="center" />
-                    </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="10"
-                android:text="MORAES YAROSNI // VIP 2026&#10;by Yarosni"
-                android:textColor="#00E5FF"
-                android:shadowColor="#00E5FF"
-                android:shadowRadius="10"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:gravity="center" />
-
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="16"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_ajuste_fino"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginEnd="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="#0A00E5FF"
+            app:cardCornerRadius="16dp"
+            app:strokeColor="#00E5FF"
+            app:strokeWidth="5dp"
+            app:cardElevation="0dp">
+            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="🛠️ AJUSTE FINO" android:textColor="#00E5FF" android:shadowColor="#00E5FF" android:shadowRadius="10" android:textSize="15sp" android:textStyle="bold" android:gravity="center" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_economia"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="#0A00E5FF"
+            app:cardCornerRadius="16dp"
+            app:strokeColor="#00E5FF"
+            app:strokeWidth="5dp"
+            app:cardElevation="0dp">
+            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="📉 ECONOMIA" android:textColor="#00E5FF" android:shadowColor="#00E5FF" android:shadowRadius="10" android:textSize="15sp" android:textStyle="bold" android:gravity="center" />
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="42"
+        android:orientation="vertical"
+        android:weightSum="3">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal" android:layout_marginBottom="10dp">
+            <com.google.android.material.card.MaterialCardView android:id="@+id/btn_performance" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="5dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#0A00E676" app:cardCornerRadius="16dp" app:strokeColor="#00E676" app:strokeWidth="5dp" app:cardElevation="0dp">
+                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="⚡ PERFORMANCE" android:textColor="#00E676" android:shadowColor="#00E676" android:shadowRadius="10" android:textSize="15sp" android:textStyle="bold" android:gravity="center" />
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView android:id="@+id/btn_bateria" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginStart="5dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#0A00E676" app:cardCornerRadius="16dp" app:strokeColor="#00E676" app:strokeWidth="5dp" app:cardElevation="0dp">
+                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="🔋 BATERIA" android:textColor="#00E676" android:shadowColor="#00E676" android:shadowRadius="10" android:textSize="15sp" android:textStyle="bold" android:gravity="center" />
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal" android:layout_marginBottom="10dp">
+            <com.google.android.material.card.MaterialCardView android:id="@+id/btn_touch" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="5dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#0A00E676" app:cardCornerRadius="16dp" app:strokeColor="#00E676" app:strokeWidth="5dp" app:cardElevation="0dp">
+                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="👆 TOUCH" android:textColor="#00E676" android:shadowColor="#00E676" android:shadowRadius="10" android:textSize="15sp" android:textStyle="bold" android:gravity="center" />
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView android:id="@+id/btn_fps" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginStart="5dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#0A00E676" app:cardCornerRadius="16dp" app:strokeColor="#00E676" app:strokeWidth="5dp" app:cardElevation="0dp">
+                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="🎮 FPS MAX" android:textColor="#00E676" android:shadowColor="#00E676" android:shadowRadius="10" android:textSize="15sp" android:textStyle="bold" android:gravity="center" />
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal">
+            <com.google.android.material.card.MaterialCardView android:id="@+id/btn_sistema" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="5dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#0A00E676" app:cardCornerRadius="16dp" app:strokeColor="#00E676" app:strokeWidth="5dp" app:cardElevation="0dp">
+                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="🖥️ SISTEMA" android:textColor="#00E676" android:shadowColor="#00E676" android:shadowRadius="10" android:textSize="15sp" android:textStyle="bold" android:gravity="center" />
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView android:id="@+id/btn_zram" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginStart="5dp" android:clickable="true" android:focusable="true" app:cardBackgroundColor="#0A00E676" app:cardCornerRadius="16dp" app:strokeColor="#00E676" app:strokeWidth="5dp" app:cardElevation="0dp">
+                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="🧠 ZRAM" android:textColor="#00E676" android:shadowColor="#00E676" android:shadowRadius="10" android:textSize="15sp" android:textStyle="bold" android:gravity="center" />
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:text="MORAES YAROSNI // VIP 2026\nby Yarosni"
+        android:textColor="#00E5FF"
+        android:shadowColor="#00E5FF"
+        android:shadowRadius="10"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
 </LinearLayout>
