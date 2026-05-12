@@ -1,4 +1,4 @@
-package com.coretuner.pro
+       package com.coretuner.pro
 
 import android.os.Bundle
 import android.widget.TextView
@@ -9,21 +9,13 @@ import rikka.shizuku.Shizuku
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var txt_shizuku: TextView
-    private var isAjusteFinoActive = false
-    private var isEconomiaActive = false
-    private var isPerformanceActive = false
-    private var isBateriaActive = false
-    private var isTouchActive = false
-    private var isFpsActive = false
-    private var isSistemaActive = false
-    private var isZramActive = false
+    private lateinit var txtShizuku: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        txt_shizuku = findViewById(R.id.txt_shizuku)
+        txtShizuku = findViewById(R.id.txt_shizuku)
 
         val btnAjusteFino = findViewById<MaterialCardView>(R.id.btn_ajuste_fino)
         val btnEconomia = findViewById<MaterialCardView>(R.id.btn_economia)
@@ -35,13 +27,12 @@ class MainActivity : AppCompatActivity() {
         val btnZram = findViewById<MaterialCardView>(R.id.btn_zram)
 
         if (checkShizukuPermission()) {
-            txt_shizuku.text = "SHIZUKU VINCULADO COM SUCESSO"
-            txt_shizuku.setTextColor(android.graphics.Color.parseColor("#00E676"))
+            txtShizuku.text = "SHIZUKU VINCULADO COM SUCESSO"
+            txtShizuku.setTextColor(android.graphics.Color.parseColor("#00E676"))
         }
 
         btnAjusteFino.setOnClickListener {
-            val cmd = "settings put global private_dns_mode hostname && settings put global private_dns_specifier 1.1.1.1 && setprop net.tcp.buffersize.wifi 4096,87380,110208,4096,16384,110208"
-            executarComandoShizuku(cmd)
+            executarComandoShizuku("settings put global private_dns_mode hostname && settings put global private_dns_specifier 1.1.1.1 && setprop net.tcp.buffersize.wifi 4096,87380,110208,4096,16384,110208")
             Toast.makeText(this, "⚙️ AJUSTE FINO: DNS 1.1.1.1 e buffers TCP otimizados para rede ultra rápida.", Toast.LENGTH_LONG).show()
         }
 
@@ -93,10 +84,9 @@ class MainActivity : AppCompatActivity() {
         if (checkShizukuPermission()) {
             Thread { 
                 try { 
-                    // Solução do erro: Declaração explícita dos tipos para o Kotlin não se baralhar
-                    val env: Array<String>? = null
-                    val dir: String? = null
-                    val p = Shizuku.newProcess(arrayOf("sh", "-c", comando), env, dir)
+                    // Array isolado para o Kotlin compilar sem margem de erro
+                    val cmdArray = arrayOf("sh", "-c", comando)
+                    val p = Shizuku.newProcess(cmdArray, null, null)
                     p.waitFor() 
                 } catch (e: Exception) { 
                     e.printStackTrace() 
