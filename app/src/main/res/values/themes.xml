@@ -1,10 +1,9 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.CoreTunerPro" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">#651FFF</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
-        <item name="android:windowBackground">#0D0D12</item>
-        <item name="android:textColorPrimary">#FFFFFF</item>
-        <item name="android:statusBarColor">#0D0D12</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
-    </style>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_glass_deep">#050A14</color>
+    
+    <color name="neon_cyan">#00E5FF</color>
+    <color name="neon_cyan_glow">#4D00E5FF</color> <color name="neon_cyan_tint">#0D00E5FF</color> <color name="neon_green">#00E676</color>
+    <color name="neon_green_glow">#4D00E676</color>
+    <color name="neon_green_tint">#0D00E676</color>
 </resources>
