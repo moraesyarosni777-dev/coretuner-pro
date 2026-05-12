@@ -30,12 +30,7 @@ class MainActivity : AppCompatActivity() {
         txtShizuku = findViewById(R.id.txt_shizuku)
         txtStatus = findViewById(R.id.txt_cpu_speed)
 
-        try {
-            val painelSuperior = findViewById<MaterialCardView>(R.id.container_principal)
-            painelSuperior?.strokeColor = COR_VERDE_ROBUSTO
-            painelSuperior?.strokeWidth = 10 
-        } catch (e: Exception) { }
-
+        // MAPEAMENTO DIRETO (Sem referências que quebram a build)
         buttons = mapOf(
             "ajuste" to findViewById<MaterialCardView>(R.id.btn_ajuste_fino),
             "economia" to findViewById<MaterialCardView>(R.id.btn_economia),
@@ -54,9 +49,8 @@ class MainActivity : AppCompatActivity() {
                 val currentState = prefs.getBoolean(chave, false)
                 val newState = !currentState
                 
-                // COMMIT = Salva no disco imediatamente. Impossível o Android apagar.
+                // COMMIT forçado para o botão não desativar
                 prefs.edit().putBoolean(chave, newState).commit()
-                
                 gerenciarComandos(chave, newState)
                 
                 if (newState) {
@@ -76,7 +70,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // ONRESUME = Toda vez que o app aparece na tela (ao abrir), ele checa a memória
     override fun onResume() {
         super.onResume()
         val prefs = getSharedPreferences("TorkPrefs", Context.MODE_PRIVATE)
@@ -84,12 +77,13 @@ class MainActivity : AppCompatActivity() {
         buttons.forEach { (chave, btn) ->
             val isActive = prefs.getBoolean(chave, false)
             
+            // Gaiola Verde Robusta e Grossa
             btn.strokeColor = COR_VERDE_ROBUSTO
             btn.strokeWidth = 8 
             
             if (isActive) {
                 btn.setCardBackgroundColor(COR_ATIVO_BG)
-                // AUTO-REFORÇO: Re-injeta o comando garantindo que o Android não derrubou
+                // Auto-Reforço do comando contra o Android
                 gerenciarComandos(chave, true)
             } else {
                 btn.setCardBackgroundColor(Color.TRANSPARENT)
@@ -100,14 +94,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun gerenciarComandos(id: String, ativar: Boolean) {
         val comando = when (id) {
-            "ajuste" -> if (ativar) "settings put global private_dns_mode hostname && settings put global private_dns_specifier 1dot1dot1dot1.cloudflare-dns.com" else "settings put global private_dns_mode off"
+            "ajuste" -> if (ativar) "settings put global private_dns_mode hostname && settings put global private_dns_specifier 1dot1dot1dot1.cloudflare-dns.com && setprop net.tcp.buffersize.wifi 4096,87380,110208,4096,16384,110208" else "settings put global private_dns_mode off"
             "perf" -> if (ativar) "cmd package compile -m speed -f -a && setprop debug.sf.latch_unsignaled 1" else "setprop debug.sf.latch_unsignaled 0"
-            "sistema" -> if (ativar) "settings put global window_animation_scale 0.1 && settings put global transition_animation_scale 0.1 && settings put global animator_duration_scale 0.1" else "settings put global window_animation_scale 1.0 && settings put global transition_animation_scale 1.0 && settings put global animator_duration_scale 1.0"
-            "touch" -> if (ativar) "setprop persist.sys.ui.hw true && setprop debug.performance.tuning 1" else "setprop persist.sys.ui.hw false"
-            "fps" -> if (ativar) "settings put system min_refresh_rate 120.0 && settings put system peak_refresh_rate 120.0" else "settings put system min_refresh_rate 60.0"
+            
+            // O ANTI-DELAY DE APLICATIVOS (SISTEMA): Animações 0.1x + fstrim do disco + buffers limpos
+            "sistema" -> if (ativar) "settings put global window_animation_scale 0.1 && settings put global transition_animation_scale 0.1 && settings put global animator_duration_scale 0.1 && sm fstrim -v all && pm trim-caches 999G" else "settings put global window_animation_scale 1.0 && settings put global transition_animation_scale 1.0 && settings put global animator_duration_scale 1.0"
+            
+            // O ANTI-DELAY DA CAPTURA E TOUCH: Delay de screenshot 0 absoluto + egl zeroed
+            "touch" -> if (ativar) "setprop persist.sys.ui.hw true && setprop debug.performance.tuning 1 && setprop debug.screenshot.delay 0 && setprop debug.egl.swapinterval 0" else "setprop persist.sys.ui.hw false && setprop debug.screenshot.delay 1000"
+            
+            "fps" -> if (ativar) "settings put system min_refresh_rate 120.0 && settings put system peak_refresh_rate 120.0 && setprop debug.egl.hw 1" else "settings put system min_refresh_rate 60.0 && setprop debug.egl.hw 0"
             "economia" -> if (ativar) "for pkg in \$(pm list packages -3 | cut -d: -f2); do am set-standby-bucket \$pkg restricted; done" else "for pkg in \$(pm list packages -3 | cut -d: -f2); do am set-standby-bucket \$pkg active; done"
-            "zram" -> if (ativar) "settings put global cached_apps_freezer enabled" else "settings put global cached_apps_freezer disabled"
-            "bat" -> if (ativar) "settings put global low_power 1" else "settings put global low_power 0"
+            "zram" -> if (ativar) "settings put global cached_apps_freezer enabled && setprop persist.sys.fw.bg_apps_limit 64" else "settings put global cached_apps_freezer disabled"
+            "bat" -> if (ativar) "settings put global low_power 1 && cmd power set-fixed-performance-mode off" else "settings put global low_power 0"
             else -> ""
         }
         if (comando.isNotEmpty()) executarComandoShizuku(comando)
