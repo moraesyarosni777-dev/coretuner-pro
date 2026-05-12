@@ -91,7 +91,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun executarComandoShizuku(comando: String) {
         if (checkShizukuPermission()) {
-            Thread { try { val p = Shizuku.newProcess(arrayOf("sh", "-c", comando), null, null); p.waitFor() } catch (e: Exception) { e.printStackTrace() } }.start()
+            Thread { 
+                try { 
+                    // Solução do erro: Declaração explícita dos tipos para o Kotlin não se baralhar
+                    val env: Array<String>? = null
+                    val dir: String? = null
+                    val p = Shizuku.newProcess(arrayOf("sh", "-c", comando), env, dir)
+                    p.waitFor() 
+                } catch (e: Exception) { 
+                    e.printStackTrace() 
+                } 
+            }.start()
         }
     }
 }
