@@ -1,89 +1,72 @@
 package com.coretuner.pro
 
-import android.content.pm.PackageManager
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.card.MaterialCardView
 import rikka.shizuku.Shizuku
 
 class MainActivity : AppCompatActivity() {
 
-    private val onRequestPermissionResultListener = Shizuku.OnRequestPermissionResultListener { _, grantResult ->
-        if (grantResult == PackageManager.PERMISSION_GRANTED) {
-            atualizarStatusShizuku(true)
-        }
-    }
+    // 1. DECLARAÇÃO GLOBAL: O arquivo inteiro agora enxerga essas variáveis (Resolve o erro da linha 70)
+    private lateinit var txt_shizuku: TextView
+    private lateinit var txt_cpu_speed: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val txtShizuku = findViewById<TextView>(R.id.txt_shizuku)
+        // 2. A PONTE MANUAL: Conectando o Kotlin com os IDs do XML (Resolve o erro da linha 23)
+        txt_shizuku = findViewById(R.id.txt_shizuku)
+        txt_cpu_speed = findViewById(R.id.txt_cpu_speed)
 
-        txtShizuku.setOnClickListener {
-            if (Shizuku.pingBinder()) {
-                if (Shizuku.checkSelfPermission() == PackageManager.PERMISSION_GRANTED) {
-                    atualizarStatusShizuku(true)
-                } else {
-                    Shizuku.requestPermission(0)
-                }
+        // Mapeamento dos botões (Pronto para receber os clicks)
+        val btnAjusteFino = findViewById<MaterialCardView>(R.id.btn_ajuste_fino)
+        val btnEconomia = findViewById<MaterialCardView>(R.id.btn_economia)
+        val btnPerformance = findViewById<MaterialCardView>(R.id.btn_performance)
+        val btnBateria = findViewById<MaterialCardView>(R.id.btn_bateria)
+        val btnTouch = findViewById<MaterialCardView>(R.id.btn_touch)
+        val btnFps = findViewById<MaterialCardView>(R.id.btn_fps)
+        val btnSistema = findViewById<MaterialCardView>(R.id.btn_sistema)
+        val btnZram = findViewById<MaterialCardView>(R.id.btn_zram)
+
+        // Verificação inicial do Shizuku
+        if (checkShizukuPermission()) {
+            txt_shizuku.text = "SHIZUKU VINCULADO COM SUCESSO"
+            txt_shizuku.setTextColor(android.graphics.Color.parseColor("#00E676"))
+        } else {
+            txt_shizuku.text = "SHIZUKU NÃO VINCULADO"
+            txt_shizuku.setTextColor(android.graphics.Color.parseColor("#FF1744"))
+        }
+
+        // =========================================================
+        // COLE AQUI PARA BAIXO A SUA LÓGICA DE CLIQUES E COMANDOS SHELL
+        // Exemplo:
+        // btnPerformance.setOnClickListener {
+        //     executarComandoShell("su -c 'seu_codigo_aqui'")
+        // }
+        // =========================================================
+    }
+
+    // Função padrão de checagem do Shizuku
+    private fun checkShizukuPermission(): Boolean {
+        if (Shizuku.pingBinder()) {
+            if (Shizuku.checkSelfPermission() == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                return true
+            } else if (Shizuku.shouldShowRequestPermissionRationale()) {
+                // Usuário negou antes
+                return false
             } else {
-                Toast.makeText(this, "Inicie o Shizuku!", Toast.LENGTH_SHORT).show()
+                // Pede permissão
+                Shizuku.requestPermission(0)
+                return false
             }
         }
-
-        // MOTOR REAL: Aplica as 3 escalas em 0.0.3 estritamente via Bypass
-        findViewById<android.view.View>(R.id.btn_ajuste_fino)?.setOnClickListener {
-            if (Shizuku.pingBinder() && Shizuku.checkSelfPermission() == PackageManager.PERMISSION_GRANTED) {
-                executarComandoShizuku("settings put global window_animation_scale 0.0.3")
-                executarComandoShizuku("settings put global transition_animation_scale 0.0.3")
-                executarComandoShizuku("settings put global animator_duration_scale 0.0.3")
-                Toast.makeText(this, "Escalas cravadas estritamente em 0.0.3!", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "Shizuku sem permissão!", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        val outrosIds = listOf(R.id.btn_economia, R.id.btn_performance, R.id.btn_bateria, R.id.btn_touch, R.id.btn_fps, R.id.btn_sistema, R.id.btn_zram)
-        outrosIds.forEach { id ->
-            findViewById<android.view.View>(id)?.setOnClickListener {
-                Toast.makeText(this, "Módulo ativado!", Toast.LENGTH_SHORT).show()
-            }
-        }
+        return false
     }
 
-    private fun executarComandoShizuku(comando: String) {
-        try {
-            // TÉCNICA DE REFLECTION: Fura o bloqueio do compilador e injeta no Shizuku
-            val metodo = Shizuku::class.java.getDeclaredMethod("newProcess", Array<String>::class.java, Array<String>::class.java, String::class.java)
-            metodo.isAccessible = true
-            val processo = metodo.invoke(null, arrayOf("sh", "-c", comando), null, null) as java.lang.Process
-            processo.waitFor()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    private fun atualizarStatusShizuku(vinculado: Boolean) {
-        val txtShizuku = findViewById<TextView>(R.id.txt_shizuku)
-        if (vinculado) {
-            txtShizuku.text = "SHIZUKU VINCULADO COM SUCESSO"
-            txtShizuku.setTextColor(Color.parseColor("#39FF14"))
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Shizuku.addRequestPermissionResultListener(onRequestPermissionResultListener)
-        if (Shizuku.pingBinder() && Shizuku.checkSelfPermission() == PackageManager.PERMISSION_GRANTED) {
-            atualizarStatusShizuku(true)
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Shizuku.removeRequestPermissionResultListener(onRequestPermissionResultListener)
-    }
+    // =========================================================
+    // COLE AQUI SUAS FUNÇÕES EXTRAS (COMO O EXECUTOR DE SHELL)
+    // =========================================================
 }
