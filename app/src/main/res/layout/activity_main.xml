@@ -1,288 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#050508"
-    android:fillViewport="true">
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+    <!-- ESTADO SELECIONADO: Neon Ciano Ativo com Camadas de Brilho -->
+    <item android:state_selected="true">
+        <layer-list>
+            <!-- Nível 1: Base com Múltiplos Gradientes para Metal Escovado (Obsidiana) -->
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="14dp" />
+                    <gradient
+                        android:startColor="#1A1A22"
+                        android:centerColor="#0C0C10"
+                        android:endColor="#14141A"
+                        android:type="linear"
+                        android:angle="135" />
+                </shape>
+            </item>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CORETUNER MAX // ULTRA VIP"
-            android:textAlignment="center"
-            android:textColor="#50E3C2"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:letterSpacing="0.08"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="20dp" />
+            <!-- Nível 2: Múltiplos Outer Glows (Brilho Neon Ciano Suave) - Simula o "Glow" -->
+            <item android:top="-12dp" android:bottom="-12dp" android:left="-12dp" android:right="-12dp">
+                <shape android:shape="rectangle">
+                    <corners android:radius="26dp" />
+                    <gradient
+                        android:startColor="#205BF0FE"
+                        android:centerColor="#055BF0FE"
+                        android:endColor="#005BF0FE"
+                        android:type="linear"
+                        android:angle="90" />
+                </shape>
+            </item>
+             <item android:top="-6dp" android:bottom="-6dp" android:left="-6dp" android:right="-6dp">
+                <shape android:shape="rectangle">
+                    <corners android:radius="20dp" />
+                    <gradient
+                        android:startColor="#605BF0FE"
+                        android:centerColor="#205BF0FE"
+                        android:endColor="#005BF0FE"
+                        android:type="linear"
+                        android:angle="90" />
+                </shape>
+            </item>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="#0F0F14"
-            app:cardCornerRadius="14dp"
-            app:cardElevation="8dp"
-            app:strokeColor="#6A1B9A"
-            app:strokeWidth="1.2dp"
-            android:layout_marginBottom="20dp">
+            <!-- Nível 3: Borda Neon Ciano Rígida e Brilhante (2dp) -->
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="14dp" />
+                    <stroke
+                        android:width="2dp"
+                        android:color="#5BF0FE" />
+                </shape>
+            </item>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="18dp">
+            <!-- Nível 4: Brilho Interno Ciano Suave (1dp) com Offset -->
+            <item android:insetLeft="2dp" android:insetTop="2dp" android:insetRight="2dp" android:insetBottom="2dp">
+                <shape android:shape="rectangle">
+                    <corners android:radius="12dp" />
+                    <gradient
+                        android:startColor="#405BF0FE"
+                        android:endColor="#005BF0FE"
+                        android:type="linear"
+                        android:angle="90" />
+                </shape>
+            </item>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SISTEMA VINCULADO: MODO VIP"
-                    android:textColor="#BC6AFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+        </layer-list>
+    </item>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="STATUS: MODO ORIGINAL"
-                    android:textColor="#666666"
-                    android:textSize="11sp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#251A35"
-                    android:layout_marginVertical="12dp"/>
+    <!-- ESTADO PADRÃO: Obsidiana Stealth com Sombra Interna e Borda Fina -->
+    <item>
+        <layer-list>
+            <!-- Nível 1: Base de Fundo Profundo -->
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="14dp" />
+                    <solid android:color="#0D0D12" />
+                </shape>
+            </item>
 
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:stretchColumns="1,3">
-                    <TableRow>
-                        <TextView android:text="DATA" android:textColor="#444444" android:textSize="10sp" android:paddingEnd="8dp"/>
-                        <TextView android:id="@+id/txt_data" android:text="1.30" android:textColor="#32FF7E" android:textSize="11sp" android:textStyle="bold"/>
-                        <TextView android:text="ATU:" android:textColor="#444444" android:textSize="10sp" android:paddingStart="16dp" android:paddingEnd="8dp"/>
-                        <TextView android:id="@+id/txt_atu" android:text="53.57 MHz" android:textColor="#32FF7E" android:textSize="11sp" android:textStyle="bold"/>
-                    </TableRow>
-                    <TableRow android:layout_marginTop="6dp">
-                        <TextView android:text="UPI:" android:textColor="#444444" android:textSize="10sp" android:paddingEnd="8dp"/>
-                        <TextView android:id="@+id/txt_upi" android:text="25.03" android:textColor="#32FF7E" android:textSize="11sp" android:textStyle="bold"/>
-                        <TextView android:text="BPG:" android:textColor="#444444" android:textSize="10sp" android:paddingStart="16dp" android:paddingEnd="8dp"/>
-                        <TextView android:id="@+id/txt_bpg" android:text="38.05 MHs" android:textColor="#32FF7E" android:textSize="11sp" android:textStyle="bold"/>
-                    </TableRow>
-                </TableLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+            <!-- Nível 2: Sombra Interna Falsa (Offset Superior-Esquerdo) -->
+            <item android:insetLeft="-2dp" android:insetTop="-2dp">
+                <shape android:shape="rectangle">
+                    <corners android:radius="14dp" />
+                    <gradient
+                        android:startColor="#F00A0A10"
+                        android:endColor="#000A0A10"
+                        android:type="linear"
+                        android:angle="135" />
+                </shape>
+            </item>
 
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:alignmentMode="alignMargins">
+            <!-- Nível 3: Borda Stealth Dark (2dp) - Degradê sutil de roxo para ciano -->
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="14dp" />
+                    <stroke
+                        android:width="2dp"
+                        android:color="#1F1F26" />
+                </shape>
+            </item>
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btn_ajuste"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                app:cardBackgroundColor="#0D0D12"
-                app:cardCornerRadius="10dp"
-                app:strokeColor="#1F1F26"
-                app:strokeWidth="1dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:src="@android:drawable/ic_menu_preferences"
-                        app:tint="#C084FC" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="AJUSTE FINO"
-                        android:textColor="#C084FC"
-                        android:layout_marginTop="8dp"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btn_line_time"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                app:cardBackgroundColor="#0D0D12"
-                app:cardCornerRadius="10dp"
-                app:strokeColor="#1F1F26"
-                app:strokeWidth="1dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:src="@android:drawable/ic_menu_recent_history"
-                        app:tint="#67E8F9" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="LINE TIME"
-                        android:textColor="#67E8F9"
-                        android:layout_marginTop="8dp"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btn_fingerprint"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                app:cardBackgroundColor="#0D0D12"
-                app:cardCornerRadius="10dp"
-                app:strokeColor="#1F1F26"
-                app:strokeWidth="1dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:src="@android:drawable/ic_secure"
-                        app:tint="#C084FC" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="FINGERPRINT"
-                        android:textColor="#C084FC"
-                        android:layout_marginTop="8dp"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btn_performance"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                app:cardBackgroundColor="#0D0D12"
-                app:cardCornerRadius="10dp"
-                app:strokeColor="#1F1F26"
-                app:strokeWidth="1dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:src="@android:drawable/ic_menu_compass"
-                        app:tint="#67E8F9" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="PERFORMANCE"
-                        android:textColor="#67E8F9"
-                        android:layout_marginTop="8dp"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btn_monitor"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                app:cardBackgroundColor="#0D0D12"
-                app:cardCornerRadius="10dp"
-                app:strokeColor="#1F1F26"
-                app:strokeWidth="1dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:src="@android:drawable/ic_dialog_info"
-                        app:tint="#C084FC" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="MONITOR"
-                        android:textColor="#C084FC"
-                        android:layout_marginTop="8dp"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btn_zram"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                app:cardBackgroundColor="#0D0D12"
-                app:cardCornerRadius="10dp"
-                app:strokeColor="#1F1F26"
-                app:strokeWidth="1dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:src="@android:drawable/ic_menu_save"
-                        app:tint="#67E8F9" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ZRAM"
-                        android:textColor="#67E8F9"
-                        android:layout_marginTop="8dp"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-        </GridLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="MORAES YAROSNI // VIP 2026\nby Yarosni"
-            android:textAlignment="center"
-            android:textColor="#333333"
-            android:textSize="10sp"
-            android:layout_marginTop="30dp" />
-
-    </LinearLayout>
-</ScrollView>
+        </layer-list>
+    </item>
+</selector>
