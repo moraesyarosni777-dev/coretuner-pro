@@ -1,4 +1,4 @@
-       package com.coretuner.pro
+package com.coretuner.pro
 
 import android.os.Bundle
 import android.widget.TextView
@@ -32,8 +32,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnAjusteFino.setOnClickListener {
-            executarComandoShizuku("settings put global private_dns_mode hostname && settings put global private_dns_specifier 1.1.1.1 && setprop net.tcp.buffersize.wifi 4096,87380,110208,4096,16384,110208")
-            Toast.makeText(this, "⚙️ AJUSTE FINO: DNS 1.1.1.1 e buffers TCP otimizados para rede ultra rápida.", Toast.LENGTH_LONG).show()
+            // CORREÇÃO CRÍTICA: Uso do hostname oficial do Cloudflare para evitar bloqueio no Wi-Fi
+            executarComandoShizuku("settings put global private_dns_mode hostname && settings put global private_dns_specifier 1dot1dot1dot1.cloudflare-dns.com && setprop net.tcp.buffersize.wifi 4096,87380,110208,4096,16384,110208")
+            Toast.makeText(this, "⚙️ AJUSTE FINO: DNS Cloudflare oficial e buffers TCP injetados.", Toast.LENGTH_LONG).show()
         }
 
         btnPerformance.setOnClickListener {
@@ -84,7 +85,6 @@ class MainActivity : AppCompatActivity() {
         if (checkShizukuPermission()) {
             Thread { 
                 try { 
-                    // Array isolado para o Kotlin compilar sem margem de erro
                     val cmdArray = arrayOf("sh", "-c", comando)
                     val p = Shizuku.newProcess(cmdArray, null, null)
                     p.waitFor() 
