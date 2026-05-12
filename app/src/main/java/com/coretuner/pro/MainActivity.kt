@@ -1,63 +1,39 @@
-package com.coretuner.pro
+<!-- Sua arquitetura principal de ScrollView/LinearLayout permanece. -->
 
-import android.graphics.Color
-import android.os.Bundle
-import android.view.MotionEvent
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.card.MaterialCardView
+    <!-- FRAME DO BOTÃO AJUSTE FINO COMPLEXO -->
+    <FrameLayout
+        android:layout_width="160dp" 
+        android:layout_height="100dp" 
+        android:layout_margin="8dp">
 
-class MainActivity : AppCompatActivity() {
+        <!-- A VIEW QUE CARREGA O VISUAL 3D VETORIAL (O novo Drawable) -->
+        <View
+            android:id="@+id/btn_ajuste_fino_stack"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_btn_vip_ajuste_stack"
+            android:clickable="true"
+            android:focusable="true" />
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        // Mapeando todos os 6 botões
-        val btnAjuste = findViewById<MaterialCardView>(R.id.btn_ajuste)
-        val btnLineTime = findViewById<MaterialCardView>(R.id.btn_line_time)
-        val btnFingerprint = findViewById<MaterialCardView>(R.id.btn_fingerprint)
-        val btnPerformance = findViewById<MaterialCardView>(R.id.btn_performance)
-        val btnMonitor = findViewById<MaterialCardView>(R.id.btn_monitor)
-        val btnZram = findViewById<MaterialCardView>(R.id.btn_zram)
-        
-        // Cores base (Stealth) e ativas (Neon)
-        val baseHex = "#1F1F26" // Borda apagada padrão
-        val roxoNeon = "#A044FF" // Neon Roxo
-        val cianoNeon = "#5BF0FE" // Neon Ciano
-
-        // Aplicando a lógica de neon e clique para cada um
-        setupVipAction(btnAjuste, baseHex, roxoNeon, "Iniciando Ajuste Fino VIP...")
-        setupVipAction(btnLineTime, baseHex, cianoNeon, "Módulo Line Time Ativado")
-        setupVipAction(btnFingerprint, baseHex, roxoNeon, "Injetando Fingerprint...")
-        setupVipAction(btnPerformance, baseHex, cianoNeon, "Modo Performance MAX")
-        setupVipAction(btnMonitor, baseHex, roxoNeon, "Monitor de Hardware Aberto")
-        setupVipAction(btnZram, baseHex, cianoNeon, "ZRAM Otimizada")
-    }
-
-    private fun setupVipAction(card: MaterialCardView, baseHex: String, activeHex: String, msg: String) {
-        val baseCol = Color.parseColor(baseHex)
-        val activeCol = Color.parseColor(activeHex)
-
-        card.setOnTouchListener { v, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    // Acende o neon grosso
-                    card.strokeColor = activeCol
-                    card.strokeWidth = 4 
-                }
-                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                    // Volta pro stealth fino
-                    card.strokeColor = baseCol 
-                    card.strokeWidth = 2
-                    if (event.action == MotionEvent.ACTION_UP) v.performClick()
-                }
-            }
-            true
-        }
-
-        card.setOnClickListener {
-            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-        }
-    }
-}
+        <!-- A CAMADA DE ÍCONE E TEXTO (Mantém os IDs existentes para as ações no Kotlin) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp">
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_menu_preferences"
+                app:tint="#A044FF" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AJUSTE FINO"
+                android:textColor="#C084FC"
+                android:layout_marginTop="8dp"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </FrameLayout>
