@@ -1,282 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#15151A"
-    android:padding="16dp">
+package com.coretuner.pro // VERIFIQUE: Se seu projeto estiver em outra pasta, mude isso aqui.
 
-    <!-- PAINEL DE STATUS SUPERIOR (Gaiola Roxa) -->
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="24dp"
-        app:cardBackgroundColor="#1A1A22"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="6dp"
-        app:strokeColor="#8A2BE2"
-        app:strokeWidth="1.5dp">
+import android.graphics.Color
+import android.os.Bundle
+import android.view.MotionEvent
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.card.MaterialCardView
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+class MainActivity : AppCompatActivity() {
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SISTEMA VINCULADO: MODO VIP"
-                android:textColor="#FFFFFF"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+    private lateinit var txtDataVal: TextView
+    private lateinit var txtAtuVal: TextView
+    private lateinit var txtUpiVal: TextView
+    private lateinit var txtBpgVal: TextView
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="STATUS: MODO ORIGINAL"
-                android:textColor="#A0A0A0"
-                android:textSize="12sp"
-                android:layout_marginTop="4dp" />
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-            <!-- LINHAS DE DADOS TÉCNICOS EM VERDE -->
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:layout_marginTop="12dp">
-                
-                <TextView android:text="DATA      1.30" android:textColor="#50E3C2" android:textSize="11sp" android:layout_columnWeight="1"/>
-                <TextView android:text="ATU:   53.57 MHz" android:textColor="#50E3C2" android:textSize="11sp" android:layout_columnWeight="1"/>
-                <TextView android:text="UPI:      25.03" android:textColor="#50E3C2" android:textSize="11sp" android:layout_columnWeight="1"/>
-                <TextView android:text="BPG:   38.05 MHs" android:textColor="#50E3C2" android:textSize="11sp" android:layout_columnWeight="1"/>
-            </GridLayout>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+        txtDataVal = findViewById(R.id.txt_data_val)
+        txtAtuVal = findViewById(R.id.txt_atu_val)
+        txtUpiVal = findViewById(R.id.txt_upi_val)
+        txtBpgVal = findViewById(R.id.txt_bpg_val)
 
-    <!-- GRID DOS MÓDULOS (Design Metálico Escuro) -->
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:columnCount="2"
-        android:rowCount="3"
-        android:alignmentMode="alignMargins"
-        android:columnOrderPreserved="false">
+        loadVipTelemetryData()
+        configureVipModules()
+    }
 
-        <!-- BOTÃO 1: AJUSTE FINO (Borda Roxa) -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="110dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            app:cardBackgroundColor="#1A1A22"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
-            app:strokeColor="#8A2BE2"
-            app:strokeWidth="1dp">
+    private fun loadVipTelemetryData() {
+        txtDataVal.text = "DATA      1.30"
+        txtAtuVal.text = "ATU:   53.57 MHz"
+        txtUpiVal.text = "UPI:      25.03"
+        txtBpgVal.text = "BPG:   38.05 MHs"
+    }
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🔧"
-                    android:textSize="28sp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ajuste Fino"
-                    android:textColor="#C084FC"
-                    android:layout_marginTop="8dp"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+    private fun configureVipModules() {
+        val purpleButtons = listOf(
+            findViewById<MaterialCardView>(R.id.btn_ajuste_fino),
+            findViewById<MaterialCardView>(R.id.btn_fingerprint),
+            findViewById<MaterialCardView>(R.id.btn_monitor)
+        )
 
-        <!-- BOTÃO 2: LINE TIME (Borda Ciano) -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="110dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            app:cardBackgroundColor="#1A1A22"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
-            app:strokeColor="#22D3EE"
-            app:strokeWidth="1dp">
+        val cyanButtons = listOf(
+            findViewById<MaterialCardView>(R.id.btn_line_time),
+            findViewById<MaterialCardView>(R.id.btn_performance),
+            findViewById<MaterialCardView>(R.id.btn_zram)
+        )
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="📈"
-                    android:textSize="28sp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Line Time"
-                    android:textColor="#67E8F9"
-                    android:layout_marginTop="8dp"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        val colorPurpleBase = Color.parseColor("#8A2BE2")
+        val colorPurpleActive = Color.parseColor("#A044FF")
+        val colorCyanBase = Color.parseColor("#22D3EE")
+        val colorCyanActive = Color.parseColor("#5BF0FE")
 
-        <!-- BOTÃO 3: FINGERPRINT (Borda Roxa) -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="110dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            app:cardBackgroundColor="#1A1A22"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
-            app:strokeColor="#8A2BE2"
-            app:strokeWidth="1dp">
+        purpleButtons.forEach { button ->
+            configureVipButtonHighlight(button, colorPurpleBase, colorPurpleActive)
+        }
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🔋"
-                    android:textSize="28sp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fingerprint"
-                    android:textColor="#67E8F9"
-                    android:layout_marginTop="8dp"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        cyanButtons.forEach { button ->
+            configureVipButtonHighlight(button, colorCyanBase, colorCyanActive)
+        }
+    }
 
-        <!-- BOTÃO 4: PERFORMANCE (Borda Ciano) -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="110dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            app:cardBackgroundColor="#1A1A22"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
-            app:strokeColor="#22D3EE"
-            app:strokeWidth="1dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="👆"
-                    android:textSize="28sp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Performance"
-                    android:textColor="#67E8F9"
-                    android:layout_marginTop="8dp"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- BOTÃO 5: MONITOR (Borda Roxa) -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="110dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            app:cardBackgroundColor="#1A1A22"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
-            app:strokeColor="#8A2BE2"
-            app:strokeWidth="1dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🖥️"
-                    android:textSize="28sp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Monitor"
-                    android:textColor="#67E8F9"
-                    android:layout_marginTop="8dp"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- BOTÃO 6: ZRAM (Borda Roxa) -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="110dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            app:cardBackgroundColor="#1A1A22"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
-            app:strokeColor="#8A2BE2"
-            app:strokeWidth="1dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🧠"
-                    android:textSize="28sp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ZRAM"
-                    android:textColor="#67E8F9"
-                    android:layout_marginTop="8dp"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-    </GridLayout>
-
-    <!-- RODAPÉ -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="MORAES YAROSNI // VIP 2026\nby Yarosni"
-        android:textAlignment="center"
-        android:textColor="#A0A0A0"
-        android:textSize="11sp"
-        android:textStyle="bold"
-        android:letterSpacing="0.05"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp" />
-
-</LinearLayout>
+    private fun configureVipButtonHighlight(button: MaterialCardView, baseColor: Int, highlightColor: Int) {
+        button.strokeColor = baseColor
+        button.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> button.strokeColor = highlightColor
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> button.strokeColor = baseColor
+            }
+            false
+        }
+    }
+}
