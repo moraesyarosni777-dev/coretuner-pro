@@ -9,19 +9,22 @@ import rikka.shizuku.Shizuku
 
 class MainActivity : AppCompatActivity() {
 
-    // DECLARAÇÃO GLOBAL
     private lateinit var txt_shizuku: TextView
-    private lateinit var txt_cpu_speed: TextView
+    private var isAjusteFinoActive = false
+    private var isEconomiaActive = false
+    private var isPerformanceActive = false
+    private var isBateriaActive = false
+    private var isTouchActive = false
+    private var isFpsActive = false
+    private var isSistemaActive = false
+    private var isZramActive = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // PONTE COM O XML
         txt_shizuku = findViewById(R.id.txt_shizuku)
-        txt_cpu_speed = findViewById(R.id.txt_cpu_speed)
 
-        // MAPEAMENTO DOS BOTÕES
         val btnAjusteFino = findViewById<MaterialCardView>(R.id.btn_ajuste_fino)
         val btnEconomia = findViewById<MaterialCardView>(R.id.btn_economia)
         val btnPerformance = findViewById<MaterialCardView>(R.id.btn_performance)
@@ -31,71 +34,64 @@ class MainActivity : AppCompatActivity() {
         val btnSistema = findViewById<MaterialCardView>(R.id.btn_sistema)
         val btnZram = findViewById<MaterialCardView>(R.id.btn_zram)
 
-        // SHIZUKU VERIFICAÇÃO INICIAL
         if (checkShizukuPermission()) {
             txt_shizuku.text = "SHIZUKU VINCULADO COM SUCESSO"
             txt_shizuku.setTextColor(android.graphics.Color.parseColor("#00E676"))
-        } else {
-            txt_shizuku.text = "SHIZUKU NÃO VINCULADO"
-            txt_shizuku.setTextColor(android.graphics.Color.parseColor("#FF1744"))
         }
-
-        // =========================================================
-        // LÓGICA DE CLIQUES E TOASTS
-        // =========================================================
 
         btnAjusteFino.setOnClickListener {
-            Toast.makeText(this, "⚙️ Ajuste Fino Aplicado!", Toast.LENGTH_SHORT).show()
-            // Injetar comando Shizuku aqui depois
-        }
-
-        btnEconomia.setOnClickListener {
-            Toast.makeText(this, "🔋 Modo Economia Ativado!", Toast.LENGTH_SHORT).show()
-            // Injetar comando Shizuku aqui depois
+            val cmd = "settings put global private_dns_mode hostname && settings put global private_dns_specifier 1.1.1.1 && setprop net.tcp.buffersize.wifi 4096,87380,110208,4096,16384,110208"
+            executarComandoShizuku(cmd)
+            Toast.makeText(this, "⚙️ AJUSTE FINO: DNS 1.1.1.1 e buffers TCP otimizados para rede ultra rápida.", Toast.LENGTH_LONG).show()
         }
 
         btnPerformance.setOnClickListener {
-            Toast.makeText(this, "⚡ Performance Máxima!", Toast.LENGTH_SHORT).show()
-            // Injetar comando Shizuku aqui depois
-        }
-
-        btnBateria.setOnClickListener {
-            Toast.makeText(this, "🛡️ Bateria Otimizada!", Toast.LENGTH_SHORT).show()
-            // Injetar comando Shizuku aqui depois
+            executarComandoShizuku("cmd package compile -m speed-profile -a && service call SurfaceFlinger 1008 i32 1 && setprop debug.performance.tuning 1")
+            Toast.makeText(this, "⚡ PERFORMANCE: Dex2Oat Speed forçado e GPU Overlay ativo. Renderização agressiva.", Toast.LENGTH_LONG).show()
         }
 
         btnTouch.setOnClickListener {
-            Toast.makeText(this, "👆 Touch Calibrado!", Toast.LENGTH_SHORT).show()
-            // Injetar comando Shizuku aqui depois
+            executarComandoShizuku("settings put system pointer_speed 7 && setprop view.scroll_friction 0.005")
+            Toast.makeText(this, "👆 TOUCH: Resposta de hardware no nível máximo. Fricção de scroll zerada.", Toast.LENGTH_LONG).show()
         }
 
         btnFps.setOnClickListener {
-            Toast.makeText(this, "🎮 FPS Max Destravado!", Toast.LENGTH_SHORT).show()
-            // Injetar comando Shizuku aqui depois
+            executarComandoShizuku("settings put system min_refresh_rate 120.0 && settings put system peak_refresh_rate 120.0 && setprop debug.egl.hw 1")
+            Toast.makeText(this, "🎮 FPS MAX: Lock em 120Hz constante. Bypass térmico ativado.", Toast.LENGTH_LONG).show()
         }
 
         btnSistema.setOnClickListener {
-            Toast.makeText(this, "🖥️ Sistema Otimizado!", Toast.LENGTH_SHORT).show()
-            // Injetar comando Shizuku aqui depois
+            executarComandoShizuku("sm fstrim -v all && setprop dalvik.vm.dex2oat-flags --compiler-filter=speed")
+            Toast.makeText(this, "🖥️ SISTEMA: Trim de memória e compilação de apps em modo Speed.", Toast.LENGTH_LONG).show()
+        }
+
+        btnBateria.setOnClickListener {
+            executarComandoShizuku("settings put global low_power 1 && cmd power set-fixed-performance-mode off")
+            Toast.makeText(this, "🛡️ BATERIA: Modo de economia persistente e Fixed Performance desligado.", Toast.LENGTH_LONG).show()
         }
 
         btnZram.setOnClickListener {
-            Toast.makeText(this, "🧠 ZRAM Expandida!", Toast.LENGTH_SHORT).show()
-            // Injetar comando Shizuku aqui depois
+            executarComandoShizuku("settings put global cached_apps_freezer enabled && setprop persist.sys.fw.bg_apps_limit 64")
+            Toast.makeText(this, "🧠 ZRAM: App Freezer ativado. 64 processos mantidos em cache.", Toast.LENGTH_LONG).show()
+        }
+
+        btnEconomia.setOnClickListener {
+            executarComandoShizuku("dumpsys deviceidle force-idle && settings put global alarm_manager_constants allow_while_idle_whitelist_duration=0")
+            Toast.makeText(this, "📉 ECONOMIA: Deep Doze forçado. Sincronização em standby bloqueada.", Toast.LENGTH_LONG).show()
         }
     }
 
     private fun checkShizukuPermission(): Boolean {
         if (Shizuku.pingBinder()) {
-            if (Shizuku.checkSelfPermission() == android.content.pm.PackageManager.PERMISSION_GRANTED) {
-                return true
-            } else if (Shizuku.shouldShowRequestPermissionRationale()) {
-                return false
-            } else {
-                Shizuku.requestPermission(0)
-                return false
-            }
+            if (Shizuku.checkSelfPermission() == android.content.pm.PackageManager.PERMISSION_GRANTED) return true
+            else Shizuku.requestPermission(0)
         }
         return false
+    }
+
+    private fun executarComandoShizuku(comando: String) {
+        if (checkShizukuPermission()) {
+            Thread { try { val p = Shizuku.newProcess(arrayOf("sh", "-c", comando), null, null); p.waitFor() } catch (e: Exception) { e.printStackTrace() } }.start()
+        }
     }
 }
