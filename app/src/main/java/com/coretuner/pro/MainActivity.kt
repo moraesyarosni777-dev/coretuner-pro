@@ -7,13 +7,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.card.MaterialCardView
 
+// TRAVA DE SEGURANÇA: Força o Kotlin a ler o R do seu app, e não o do sistema.
+// Se o seu applicationId no build.gradle for diferente, mude este import.
+import com.coretuner.pro.R 
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Mapeando todos os 6 botões do grid
+        // Agora o compilador sabe exatamente de onde puxar o "R.id"
         val btnAjuste = findViewById<MaterialCardView>(R.id.btn_ajuste)
         val btnLineTime = findViewById<MaterialCardView>(R.id.btn_line_time)
         val btnFingerprint = findViewById<MaterialCardView>(R.id.btn_fingerprint)
@@ -21,12 +25,10 @@ class MainActivity : AppCompatActivity() {
         val btnMonitor = findViewById<MaterialCardView>(R.id.btn_monitor)
         val btnZram = findViewById<MaterialCardView>(R.id.btn_zram)
         
-        // Cores base (Stealth) e ativas (Neon)
         val baseHex = "#1F1F26" 
         val roxoNeon = "#A044FF" 
         val cianoNeon = "#5BF0FE" 
 
-        // Aplicando a lógica de neon e clique para cada um
         setupVipAction(btnAjuste, baseHex, roxoNeon, "Iniciando Ajuste Fino VIP...")
         setupVipAction(btnLineTime, baseHex, cianoNeon, "Módulo Line Time Ativado")
         setupVipAction(btnFingerprint, baseHex, roxoNeon, "Injetando Fingerprint...")
@@ -36,7 +38,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupVipAction(card: MaterialCardView?, baseHex: String, activeHex: String, msg: String) {
-        // Trava de segurança: se o botão não existir no XML, ignora e não crasha o app
         if (card == null) return
 
         val baseCol = Color.parseColor(baseHex)
