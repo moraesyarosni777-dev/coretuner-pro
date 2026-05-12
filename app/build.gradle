@@ -11,8 +11,17 @@ android {
         applicationId "com.coretuner.pro"
         minSdk 24
         targetSdk 34
-        versionCode 55
-        versionName "55.0-ULTRA-VIP"
+        versionCode 56
+        versionName "56.0-ULTRA-VIP"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
 
     compileOptions {
@@ -23,13 +32,20 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+
+    buildFeatures {
+        viewBinding false
+    }
 }
 
 dependencies {
+    // Core & UI
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    
+    // Shizuku API (O motor do app)
     implementation "dev.rikka.shizuku:api:13.1.5"
     implementation "dev.rikka.shizuku:provider:13.1.5"
 }
