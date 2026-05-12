@@ -13,10 +13,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Configuração do botão de Ajuste Fino como exemplo
+        // Mapeando todos os 6 botões
         val btnAjuste = findViewById<MaterialCardView>(R.id.btn_ajuste)
+        val btnLineTime = findViewById<MaterialCardView>(R.id.btn_line_time)
+        val btnFingerprint = findViewById<MaterialCardView>(R.id.btn_fingerprint)
+        val btnPerformance = findViewById<MaterialCardView>(R.id.btn_performance)
+        val btnMonitor = findViewById<MaterialCardView>(R.id.btn_monitor)
+        val btnZram = findViewById<MaterialCardView>(R.id.btn_zram)
         
-        setupVipAction(btnAjuste, "#8A2BE2", "#C084FC", "Iniciando Ajuste Fino VIP...")
+        // Cores base (Stealth) e ativas (Neon)
+        val baseHex = "#1F1F26" // Borda apagada padrão
+        val roxoNeon = "#A044FF" // Neon Roxo
+        val cianoNeon = "#5BF0FE" // Neon Ciano
+
+        // Aplicando a lógica de neon e clique para cada um
+        setupVipAction(btnAjuste, baseHex, roxoNeon, "Iniciando Ajuste Fino VIP...")
+        setupVipAction(btnLineTime, baseHex, cianoNeon, "Módulo Line Time Ativado")
+        setupVipAction(btnFingerprint, baseHex, roxoNeon, "Injetando Fingerprint...")
+        setupVipAction(btnPerformance, baseHex, cianoNeon, "Modo Performance MAX")
+        setupVipAction(btnMonitor, baseHex, roxoNeon, "Monitor de Hardware Aberto")
+        setupVipAction(btnZram, baseHex, cianoNeon, "ZRAM Otimizada")
     }
 
     private fun setupVipAction(card: MaterialCardView, baseHex: String, activeHex: String, msg: String) {
@@ -26,11 +42,13 @@ class MainActivity : AppCompatActivity() {
         card.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
+                    // Acende o neon grosso
                     card.strokeColor = activeCol
-                    card.strokeWidth = 4 // Efeito de brilho neon no toque
+                    card.strokeWidth = 4 
                 }
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                    card.strokeColor = Color.parseColor("#1F1F26") // Volta pro stealth
+                    // Volta pro stealth fino
+                    card.strokeColor = baseCol 
                     card.strokeWidth = 2
                     if (event.action == MotionEvent.ACTION_UP) v.performClick()
                 }
