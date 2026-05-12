@@ -7,6 +7,7 @@
     android:background="#050508"
     android:padding="16dp">
 
+    <!-- CABEÇALHO VIP -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,6 +20,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp" />
 
+    <!-- GAIOLA DA TELEMETRIA -->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,6 +74,7 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
+    <!-- GRID DOS MÓDULOS -->
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -81,6 +84,7 @@
         android:alignmentMode="alignMargins"
         android:columnOrderPreserved="false">
 
+        <!-- MÓDULO 1: AJUSTE FINO -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_ajuste_fino"
             android:layout_width="0dp"
@@ -99,7 +103,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_manage"
+                    android:src="@android:drawable/ic_menu_preferences"
                     app:tint="#C084FC" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -112,6 +116,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- MÓDULO 2: LINE TIME -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_line_time"
             android:layout_width="0dp"
@@ -130,7 +135,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_sort_by_size"
+                    android:src="@android:drawable/ic_menu_recent_history"
                     app:tint="#67E8F9" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -143,6 +148,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- MÓDULO 3: FINGERPRINT -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_fingerprint"
             android:layout_width="0dp"
@@ -161,7 +167,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@android:drawable/ic_lock_idle_lock"
+                    android:src="@android:drawable/ic_secure"
                     app:tint="#C084FC" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -174,6 +180,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- MÓDULO 4: PERFORMANCE -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_performance"
             android:layout_width="0dp"
@@ -192,7 +199,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_always_landscape_portrait"
+                    android:src="@android:drawable/ic_menu_compass"
                     app:tint="#67E8F9" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -205,6 +212,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- MÓDULO 5: MONITOR -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_monitor"
             android:layout_width="0dp"
@@ -223,7 +231,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_desktop"
+                    android:src="@android:drawable/ic_dialog_info"
                     app:tint="#C084FC" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -236,6 +244,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- MÓDULO 6: ZRAM -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_zram"
             android:layout_width="0dp"
@@ -269,6 +278,7 @@
 
     </GridLayout>
 
+    <!-- RODAPÉ -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
