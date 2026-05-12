@@ -4,72 +4,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#0A0A0E"
+    android:background="#050508"
     android:padding="16dp">
 
-    <!-- CABEÇALHO VIP -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CORETUNER MAX // ULTRA VIP"
         android:textAlignment="center"
         android:textColor="#50E3C2"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:letterSpacing="0.05"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp" />
 
-    <!-- PAINEL DE TELEMETRIA (GAIOLA ROXA INDUSTRIAL) -->
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_telemetry_panel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#12121A"
+        app:cardBackgroundColor="#101014"
         app:cardCornerRadius="12dp"
-        app:cardElevation="10dp"
+        app:cardElevation="4dp"
         app:strokeColor="#8A2BE2"
-        app:strokeWidth="1.5dp"
-        android:layout_marginBottom="28dp">
+        app:strokeWidth="1dp"
+        android:layout_marginBottom="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SISTEMA VINCULADO: MODO VIP"
                 android:textColor="#FFFFFF"
-                android:textSize="13sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="STATUS: MODO ORIGINAL"
-                android:textColor="#A0A0A0"
-                android:textSize="12sp"
-                android:layout_marginTop="4dp" />
+                android:textColor="#888888"
+                android:textSize="11sp"
+                android:layout_marginTop="2dp" />
 
-            <!-- GRID DE DADOS VERDES (VIP TELEMETRY) -->
-            <GridLayout
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:layout_marginTop="16dp">
-                
-                <TextView android:id="@+id/txt_data_val" android:text="DATA      ---" android:textColor="#32FF7E" android:textSize="11sp" android:layout_columnWeight="1"/>
-                <TextView android:id="@+id/txt_atu_val" android:text="ATU:   --- MHz" android:textColor="#32FF7E" android:textSize="11sp" android:layout_columnWeight="1"/>
-                <TextView android:id="@+id/txt_upi_val" android:text="UPI:      ---" android:textColor="#32FF7E" android:textSize="11sp" android:layout_columnWeight="1"/>
-                <TextView android:id="@+id/txt_bpg_val" android:text="BPG:   --- MHs" android:textColor="#32FF7E" android:textSize="11sp" android:layout_columnWeight="1"/>
-            </GridLayout>
+                android:layout_marginTop="12dp"
+                android:stretchColumns="1,3">
+                <TableRow>
+                    <TextView android:text="DATA" android:textColor="#555555" android:textSize="11sp" android:paddingEnd="8dp"/>
+                    <TextView android:id="@+id/txt_data_val" android:text="1.30" android:textColor="#32FF7E" android:textSize="11sp"/>
+                    <TextView android:text="ATU:" android:textColor="#555555" android:textSize="11sp" android:paddingEnd="8dp"/>
+                    <TextView android:id="@+id/txt_atu_val" android:text="53.57 MHz" android:textColor="#32FF7E" android:textSize="11sp"/>
+                </TableRow>
+                <TableRow android:layout_marginTop="4dp">
+                    <TextView android:text="UPI:" android:textColor="#555555" android:textSize="11sp" android:paddingEnd="8dp"/>
+                    <TextView android:id="@+id/txt_upi_val" android:text="25.03" android:textColor="#32FF7E" android:textSize="11sp"/>
+                    <TextView android:text="BPG:" android:textColor="#555555" android:textSize="11sp" android:paddingEnd="8dp"/>
+                    <TextView android:id="@+id/txt_bpg_val" android:text="38.05 MHs" android:textColor="#32FF7E" android:textSize="11sp"/>
+                </TableRow>
+            </TableLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- GRID DOS MÓDULOS DE INJEÇÃO (METAL DARK + NEON FINO) -->
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -79,223 +81,204 @@
         android:alignmentMode="alignMargins"
         android:columnOrderPreserved="false">
 
-        <!-- MÓDULO 1: AJUSTE FINO (ROXO NEON) -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_ajuste_fino"
             android:layout_width="0dp"
-            android:layout_height="110dp"
+            android:layout_height="90dp"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            app:cardBackgroundColor="#1A1A22"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
+            android:layout_margin="6dp"
+            app:cardBackgroundColor="#101014"
+            app:cardCornerRadius="8dp"
             app:strokeColor="#8A2BE2"
             app:strokeWidth="1dp">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🔧"
-                    android:textSize="28sp" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_menu_manage"
+                    app:tint="#C084FC" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ajuste Fino"
                     android:textColor="#C084FC"
-                    android:layout_marginTop="8dp"
-                    android:textSize="12sp"
+                    android:layout_marginTop="6dp"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- MÓDULO 2: LINE TIME (CIANO NEON) -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_line_time"
             android:layout_width="0dp"
-            android:layout_height="110dp"
+            android:layout_height="90dp"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            app:cardBackgroundColor="#1A1A22"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
+            android:layout_margin="6dp"
+            app:cardBackgroundColor="#101014"
+            app:cardCornerRadius="8dp"
             app:strokeColor="#22D3EE"
             app:strokeWidth="1dp">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="📈"
-                    android:textSize="28sp" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_menu_sort_by_size"
+                    app:tint="#67E8F9" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Line Time"
                     android:textColor="#67E8F9"
-                    android:layout_marginTop="8dp"
-                    android:textSize="12sp"
+                    android:layout_marginTop="6dp"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- MÓDULO 3: FINGERPRINT (ROXO NEON) -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_fingerprint"
             android:layout_width="0dp"
-            android:layout_height="110dp"
+            android:layout_height="90dp"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            app:cardBackgroundColor="#1A1A22"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
+            android:layout_margin="6dp"
+            app:cardBackgroundColor="#101014"
+            app:cardCornerRadius="8dp"
             app:strokeColor="#8A2BE2"
             app:strokeWidth="1dp">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🔋"
-                    android:textSize="28sp" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_lock_idle_lock"
+                    app:tint="#C084FC" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Fingerprint"
-                    android:textColor="#67E8F9"
-                    android:layout_marginTop="8dp"
-                    android:textSize="12sp"
+                    android:textColor="#C084FC"
+                    android:layout_marginTop="6dp"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- MÓDULO 4: PERFORMANCE (CIANO NEON) -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_performance"
             android:layout_width="0dp"
-            android:layout_height="110dp"
+            android:layout_height="90dp"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            app:cardBackgroundColor="#1A1A22"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
+            android:layout_margin="6dp"
+            app:cardBackgroundColor="#101014"
+            app:cardCornerRadius="8dp"
             app:strokeColor="#22D3EE"
             app:strokeWidth="1dp">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="👆"
-                    android:textSize="28sp" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_menu_always_landscape_portrait"
+                    app:tint="#67E8F9" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Performance"
                     android:textColor="#67E8F9"
-                    android:layout_marginTop="8dp"
-                    android:textSize="12sp"
+                    android:layout_marginTop="6dp"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- MÓDULO 5: MONITOR (ROXO NEON) -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_monitor"
             android:layout_width="0dp"
-            android:layout_height="110dp"
+            android:layout_height="90dp"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            app:cardBackgroundColor="#1A1A22"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
+            android:layout_margin="6dp"
+            app:cardBackgroundColor="#101014"
+            app:cardCornerRadius="8dp"
             app:strokeColor="#8A2BE2"
             app:strokeWidth="1dp">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🖥️"
-                    android:textSize="28sp" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_menu_desktop"
+                    app:tint="#C084FC" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Monitor"
-                    android:textColor="#67E8F9"
-                    android:layout_marginTop="8dp"
-                    android:textSize="12sp"
+                    android:textColor="#C084FC"
+                    android:layout_marginTop="6dp"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- MÓDULO 6: ZRAM (CIANO NEON) -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_zram"
             android:layout_width="0dp"
-            android:layout_height="110dp"
+            android:layout_height="90dp"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            app:cardBackgroundColor="#1A1A22"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
+            android:layout_margin="6dp"
+            app:cardBackgroundColor="#101014"
+            app:cardCornerRadius="8dp"
             app:strokeColor="#22D3EE"
             app:strokeWidth="1dp">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🧠"
-                    android:textSize="28sp" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_menu_save"
+                    app:tint="#67E8F9" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ZRAM"
                     android:textColor="#67E8F9"
-                    android:layout_marginTop="8dp"
-                    android:textSize="12sp"
+                    android:layout_marginTop="6dp"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
     </GridLayout>
 
-    <!-- RODAPÉ -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="MORAES YAROSNI // VIP 2026\nby Yarosni"
         android:textAlignment="center"
-        android:textColor="#A0A0A0"
-        android:textSize="11sp"
+        android:textColor="#444444"
+        android:textSize="10sp"
         android:textStyle="bold"
-        android:letterSpacing="0.05"
-        android:layout_marginTop="16dp"
+        android:letterSpacing="0.1"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp" />
 
 </LinearLayout>
