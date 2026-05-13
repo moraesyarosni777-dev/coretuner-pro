@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Adicionado android:fillViewport="true" para forçar a tela a descer até o fim -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true" 
     android:background="@color/bg_glass_deep"
     android:padding="12dp">
 
+    <!-- Mudado layout_height para match_parent -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@drawable/bg_outer_frame"
         android:padding="20dp">
@@ -52,112 +55,112 @@
             android:columnCount="2"
             android:useDefaultMargins="true">
 
-            <!-- 1 Ajuste Fino -->
+            <!-- Botões aumentados para 110dp de altura -->
+            
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="6dp"
                 android:background="@drawable/bg_item_cyan"
                 android:gravity="center"
                 android:orientation="horizontal">
-                <!-- O ImageView está vazio, depois você baixa os emojis 3D do GitHub e coloca a referência deles aqui no src -->
-                <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <!-- O tamanho reservado pro ícone aumentou para 40dp -->
+                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
                 <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="AJUSTE FINO"/>
             </LinearLayout>
 
-            <!-- 2 Economia -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="6dp"
                 android:background="@drawable/bg_item_cyan"
                 android:gravity="center"
                 android:orientation="horizontal">
-                <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
                 <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ECONOMIA"/>
             </LinearLayout>
 
-            <!-- 3 Performance -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="6dp"
                 android:background="@drawable/bg_item_green"
                 android:gravity="center"
                 android:orientation="horizontal">
-                <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
                 <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PERFORMANCE"/>
             </LinearLayout>
 
-            <!-- 4 Bateria -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="6dp"
                 android:background="@drawable/bg_item_green"
                 android:gravity="center"
                 android:orientation="horizontal">
-                <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
                 <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BATERIA"/>
             </LinearLayout>
 
-            <!-- 5 Touch -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="6dp"
                 android:background="@drawable/bg_item_green"
                 android:gravity="center"
                 android:orientation="horizontal">
-                <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
                 <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TOUCH"/>
             </LinearLayout>
 
-            <!-- 6 FPS MAX -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="6dp"
                 android:background="@drawable/bg_item_green"
                 android:gravity="center"
                 android:orientation="horizontal">
-                <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
                 <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="FPS MAX"/>
             </LinearLayout>
 
-            <!-- 7 Sistema -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="6dp"
                 android:background="@drawable/bg_item_cyan"
                 android:gravity="center"
                 android:orientation="horizontal">
-                <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
                 <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SISTEMA"/>
             </LinearLayout>
 
-            <!-- 8 ZRAM -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="6dp"
                 android:background="@drawable/bg_item_cyan"
                 android:gravity="center"
                 android:orientation="horizontal">
-                <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
                 <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ZRAM"/>
             </LinearLayout>
 
         </GridLayout>
+
+        <!-- Essa Space vazia funciona como uma mola. Ela joga o rodapé lá pro limite de baixo da borda -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
         <TextView
             style="@style/NeonTextCyan"
