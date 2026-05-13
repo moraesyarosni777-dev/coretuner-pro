@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="@color/bg_glass_deep"
     android:padding="12dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/bg_outer_frame"
         android:padding="16dp">
@@ -17,29 +18,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:text="CORETUNER MAX // ULTRA VIP"
-            android:textSize="16sp"/>
+            android:textSize="18sp"
+            android:layout_marginBottom="20dp"/>
 
-        <!-- Mola 1: Empurra o título pra cima e o painel pra baixo -->
-        <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
-
-        <!-- Painel Shizuku com altura fixa de 140dp para ficar largo igual o original -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/bg_panel_shizuku"
-            android:padding="16dp"
-            android:gravity="center">
+            android:padding="20dp"
+            android:gravity="center"
+            android:layout_marginBottom="20dp">
 
             <TextView
                 style="@style/NeonTextGreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SHIZUKU VINCULADO COM SUCESSO"
-                android:layout_marginBottom="12dp"
-                android:textSize="13sp"/>
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp"/>
 
             <TextView
                 style="@style/NeonTextCyan"
@@ -47,11 +46,8 @@
                 android:layout_height="wrap_content"
                 android:text="AO CLICAR NAS CONFIGURAÇÕES\nABAIXO LIMITADORES DE\nHARDWARE SERÃO DESATIVADOS\nATIVANDO EFEITOS IMEDIATOS"
                 android:textAlignment="center"
-                android:textSize="11sp"/>
+                android:textSize="12sp"/>
         </LinearLayout>
-
-        <!-- Mola 2: Divide o espaço entre o painel e os botões -->
-        <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
 
         <GridLayout
             android:layout_width="match_parent"
@@ -59,61 +55,59 @@
             android:columnCount="2"
             android:useDefaultMargins="true">
 
-            <!-- Botões com 110dp de altura e um quadrado marcando onde o PNG vai entrar -->
-            <LinearLayout android:layout_width="0dp" android:layout_height="110dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
-                <ImageView android:layout_width="36dp" android:layout_height="36dp" android:layout_marginEnd="10dp" android:background="#3300E5FF"/>
-                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="AJUSTE FINO" android:textSize="13sp"/>
-            </LinearLayout>
-            
-            <LinearLayout android:layout_width="0dp" android:layout_height="110dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
-                <ImageView android:layout_width="36dp" android:layout_height="36dp" android:layout_marginEnd="10dp" android:background="#3300E5FF"/>
-                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ECONOMIA" android:textSize="13sp"/>
+            <!-- Botões com Ícones (Emojis) Grandes e Nítidos -->
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🛠️" android:textSize="30sp" android:layout_marginEnd="8dp"/>
+                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="AJUSTE FINO" android:textSize="13sp" android:textStyle="bold"/>
             </LinearLayout>
 
-            <LinearLayout android:layout_width="0dp" android:layout_height="110dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
-                <ImageView android:layout_width="36dp" android:layout_height="36dp" android:layout_marginEnd="10dp" android:background="#3300E676"/>
-                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PERFORMANCE" android:textSize="12sp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="📉" android:textSize="30sp" android:layout_marginEnd="8dp"/>
+                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ECONOMIA" android:textSize="13sp" android:textStyle="bold"/>
             </LinearLayout>
 
-            <LinearLayout android:layout_width="0dp" android:layout_height="110dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
-                <ImageView android:layout_width="36dp" android:layout_height="36dp" android:layout_marginEnd="10dp" android:background="#3300E676"/>
-                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BATERIA" android:textSize="13sp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⚡" android:textSize="30sp" android:layout_marginEnd="8dp"/>
+                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PERFORMANCE" android:textSize="12sp" android:textStyle="bold"/>
             </LinearLayout>
 
-            <LinearLayout android:layout_width="0dp" android:layout_height="110dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
-                <ImageView android:layout_width="36dp" android:layout_height="36dp" android:layout_marginEnd="10dp" android:background="#3300E676"/>
-                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TOUCH" android:textSize="13sp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🔋" android:textSize="30sp" android:layout_marginEnd="8dp"/>
+                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BATERIA" android:textSize="13sp" android:textStyle="bold"/>
             </LinearLayout>
 
-            <LinearLayout android:layout_width="0dp" android:layout_height="110dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
-                <ImageView android:layout_width="36dp" android:layout_height="36dp" android:layout_marginEnd="10dp" android:background="#3300E676"/>
-                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="FPS MAX" android:textSize="13sp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="👆" android:textSize="30sp" android:layout_marginEnd="8dp"/>
+                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TOUCH" android:textSize="13sp" android:textStyle="bold"/>
             </LinearLayout>
 
-            <LinearLayout android:layout_width="0dp" android:layout_height="110dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
-                <ImageView android:layout_width="36dp" android:layout_height="36dp" android:layout_marginEnd="10dp" android:background="#3300E5FF"/>
-                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SISTEMA" android:textSize="13sp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🎮" android:textSize="30sp" android:layout_marginEnd="8dp"/>
+                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="FPS MAX" android:textSize="13sp" android:textStyle="bold"/>
             </LinearLayout>
 
-            <LinearLayout android:layout_width="0dp" android:layout_height="110dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
-                <ImageView android:layout_width="36dp" android:layout_height="36dp" android:layout_marginEnd="10dp" android:background="#3300E5FF"/>
-                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ZRAM" android:textSize="13sp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🖥️" android:textSize="30sp" android:layout_marginEnd="8dp"/>
+                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SISTEMA" android:textSize="13sp" android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🧠" android:textSize="30sp" android:layout_marginEnd="8dp"/>
+                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ZRAM" android:textSize="13sp" android:textStyle="bold"/>
             </LinearLayout>
 
         </GridLayout>
-
-        <!-- Mola 3: Empurra o grid pra cima e o rodapé pro chão -->
-        <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
 
         <TextView
             style="@style/NeonTextCyan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
             android:text="MORAES YAROSNI // VIP 2026\nby Yarosni"
             android:textAlignment="center"
             android:textSize="14sp"/>
 
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
