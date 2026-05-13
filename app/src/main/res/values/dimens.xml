@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="glass_radius">18dp</dimen>
+    <dimen name="border_thin">1.5dp</dimen>
+    <dimen name="glow_spread">5dp</dimen>
+</resources>
