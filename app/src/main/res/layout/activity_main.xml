@@ -48,59 +48,57 @@
                 android:textSize="13sp"/>
         </LinearLayout>
 
-        <!-- A mola superior foi removida. Os botões vão colar aqui. -->
-
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="2"
             android:useDefaultMargins="true">
 
+            <!-- Views transparentes segurando o buraco dos ícones -->
             <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="5dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
-                <!-- Esse Space reserva o buraco pro seu ícone 3D real no futuro -->
-                <Space android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <View android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
                 <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="AJUSTE FINO" android:textSize="16sp"/>
             </LinearLayout>
 
             <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="5dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
-                <Space android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <View android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
                 <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ECONOMIA" android:textSize="16sp"/>
             </LinearLayout>
 
             <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="5dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
-                <Space android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <View android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
                 <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PERFORMANCE" android:textSize="16sp"/>
             </LinearLayout>
 
             <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="5dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
-                <Space android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <View android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
                 <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BATERIA" android:textSize="16sp"/>
             </LinearLayout>
 
             <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="5dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
-                <Space android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <View android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
                 <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TOUCH" android:textSize="16sp"/>
             </LinearLayout>
 
             <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="5dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
-                <Space android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <View android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
                 <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="FPS MAX" android:textSize="16sp"/>
             </LinearLayout>
 
             <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="5dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
-                <Space android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <View android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
                 <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SISTEMA" android:textSize="16sp"/>
             </LinearLayout>
 
             <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="5dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
-                <Space android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
+                <View android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="8dp"/>
                 <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ZRAM" android:textSize="16sp"/>
             </LinearLayout>
 
         </GridLayout>
 
-        <!-- Única mola: Vai empurrar o texto de baixo pro chão da tela -->
-        <Space
+        <!-- View invisível funcionando como mola para empurrar o rodapé pro chão -->
+        <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"/>
@@ -116,4 +114,4 @@
             android:textSize="14sp"/>
 
     </LinearLayout>
-</ScrollView
+</ScrollView>
