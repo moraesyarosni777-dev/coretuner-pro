@@ -7,7 +7,7 @@
             <solid android:color="@color/neon_cyan_tint"/>
         </shape>
     </item>
-    <item android:margin="1dp">
+    <item android:top="1dp" android:bottom="1dp" android:left="1dp" android:right="1dp">
         <shape>
             <corners android:radius="12dp"/>
             <stroke android:width="@dimen/border_thin" android:color="@color/neon_cyan"/>
