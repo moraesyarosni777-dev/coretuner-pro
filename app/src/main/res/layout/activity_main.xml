@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Adicionado android:fillViewport="true" para forçar a tela a descer até o fim -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true" 
+    android:fillViewport="true"
     android:background="@color/bg_glass_deep"
     android:padding="12dp">
 
-    <!-- Mudado layout_height para match_parent -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,7 +29,7 @@
             android:background="@drawable/bg_panel_shizuku"
             android:padding="20dp"
             android:gravity="center"
-            android:layout_marginBottom="24dp">
+            android:layout_marginBottom="16dp">
 
             <TextView
                 style="@style/NeonTextGreen"
@@ -49,114 +47,53 @@
                 android:textSize="12sp"/>
         </LinearLayout>
 
+        <!-- Mola superior para empurrar o grid de botões pro centro -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="2"
             android:useDefaultMargins="true">
 
-            <!-- Botões aumentados para 110dp de altura -->
-            
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:background="@drawable/bg_item_cyan"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <!-- O tamanho reservado pro ícone aumentou para 40dp -->
-                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
-                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="AJUSTE FINO"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="6dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
+                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🛠️ AJUSTE FINO" android:textSize="14sp"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:background="@drawable/bg_item_cyan"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
-                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ECONOMIA"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="6dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
+                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="📉 ECONOMIA" android:textSize="14sp"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:background="@drawable/bg_item_green"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
-                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PERFORMANCE"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="6dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
+                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⚡ PERFORMANCE" android:textSize="14sp"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:background="@drawable/bg_item_green"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
-                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BATERIA"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="6dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
+                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🔋 BATERIA" android:textSize="14sp"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:background="@drawable/bg_item_green"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
-                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TOUCH"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="6dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
+                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="👆 TOUCH" android:textSize="14sp"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:background="@drawable/bg_item_green"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
-                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="FPS MAX"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="6dp" android:background="@drawable/bg_item_green" android:gravity="center" android:orientation="horizontal">
+                <TextView style="@style/NeonTextGreen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🎮 FPS MAX" android:textSize="14sp"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:background="@drawable/bg_item_cyan"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
-                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SISTEMA"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="6dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
+                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🖥️ SISTEMA" android:textSize="14sp"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:background="@drawable/bg_item_cyan"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="12dp"/>
-                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ZRAM"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="100dp" android:layout_columnWeight="1" android:layout_margin="6dp" android:background="@drawable/bg_item_cyan" android:gravity="center" android:orientation="horizontal">
+                <TextView style="@style/NeonTextCyan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🧠 ZRAM" android:textSize="14sp"/>
             </LinearLayout>
 
         </GridLayout>
 
-        <!-- Essa Space vazia funciona como uma mola. Ela joga o rodapé lá pro limite de baixo da borda -->
+        <!-- Mola inferior para segurar tudo no meio e empurrar o rodapé pro chão -->
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -167,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="16dp"
             android:text="MORAES YAROSNI // VIP 2026\nby Yarosni"
             android:textAlignment="center"
             android:textSize="14sp"/>
