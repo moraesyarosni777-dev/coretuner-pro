@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.CoreTuner" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.CoreTunerPro" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@color/bg_glass_deep</item>
         <item name="android:statusBarColor">@color/bg_glass_deep</item>
     </style>
