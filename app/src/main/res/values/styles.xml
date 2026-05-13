@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="NeonTextCyan">
+        <item name="android:textColor">@color/neon_cyan</item>
+        <item name="android:shadowColor">@color/neon_cyan</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">12</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="NeonTextGreen">
+        <item name="android:textColor">@color/neon_green</item>
+        <item name="android:shadowColor">@color/neon_green</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">12</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
