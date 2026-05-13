@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape>
-            <corners android:radius="12dp"/>
-            <stroke android:width="6dp" android:color="#005F6B"/> </shape>
-    </item>
-</layer-list>
+<resources>
+    <color name="bg_glass_deep">#050A14</color>
+    <color name="petroleum_blue">#005F6B</color> <!-- O Azul Petróleo que você quer -->
+    
+    <color name="neon_cyan">#00E5FF</color>
+    <color name="neon_cyan_glow">#4D00E5FF</color>
+    <color name="neon_cyan_tint">#0D00E5FF</color>
+
+    <color name="neon_green">#00E676</color>
+    <color name="neon_green_glow">#4D00E676</color>
+    <color name="neon_green_tint">#0D00E676</color>
+</resources>
