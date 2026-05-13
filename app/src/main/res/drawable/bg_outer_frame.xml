@@ -2,14 +2,8 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape>
-            <corners android:radius="@dimen/glass_radius"/>
-            <stroke android:width="3dp" android:color="@color/neon_cyan_glow"/>
-        </shape>
-    </item>
-    <item android:top="1dp" android:bottom="1dp" android:left="1dp" android:right="1dp">
-        <shape>
-            <corners android:radius="@dimen/glass_radius"/>
-            <stroke android:width="@dimen/border_thin" android:color="@color/neon_cyan"/>
+            <corners android:radius="16dp"/>
+            <stroke android:width="4dp" android:color="@color/petroleum_blue"/>
         </shape>
     </item>
 </layer-list>
