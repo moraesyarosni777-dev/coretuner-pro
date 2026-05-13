@@ -1,13 +1,2 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="bg_glass_deep">#050A14</color>
-    <color name="petroleum_blue">#005F6B</color> <!-- Azul Petróleo para a Gaiola -->
-    
-    <color name="neon_cyan">#00E5FF</color>
-    <color name="neon_cyan_glow">#4D00E5FF</color>
-    <color name="neon_cyan_tint">#0D00E5FF</color>
-
-    <color name="neon_green">#00E676</color>
-    <color name="neon_green_glow">#4D00E676</color>
-    <color name="neon_green_tint">#0D00E676</color>
-</resources>
+<color name="petroleum_blue">#005F6B</color>
+<color name="bg_glass_deep">#050A14</color>
